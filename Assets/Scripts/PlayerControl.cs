@@ -10,7 +10,7 @@ public class PlayerControl : MonoBehaviour
     private string MouseMoveVertical = "Mouse X";
 
     public float rotateRate = 1;
-    public float moveRate = 30;
+    public float moveRate = -10;
 
     public Rigidbody Player;
 

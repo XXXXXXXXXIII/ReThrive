@@ -17,9 +17,9 @@ public class Manager : MonoBehaviour
         // rerender platforms
         // renderPlatforms(deathCoords);
 
-        for (var i = 0; i < deathCoords.Count(); i++) {
-            renderPlatform(deathCoords[i]);
-        }
+        //for (var i = 0; i < deathCoords.count(); i++) {
+         //   renderPlatform(deathCoords[i]);
+        //}
     }
 
     // Update is called once per frame
