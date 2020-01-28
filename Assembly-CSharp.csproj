@@ -64,8 +64,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraControl.cs" />
+    <Compile Include="Assets\Scripts\GhostController.cs" />
+    <Compile Include="Assets\Scripts\GhostManager.cs" />
     <Compile Include="Assets\Scripts\Manager.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
+    <Compile Include="Assets\Scripts\PlayerState.cs" />
     <Compile Include="Assets\Scripts\RestartLevelOnCollision.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/CSC404/ReThrive/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
