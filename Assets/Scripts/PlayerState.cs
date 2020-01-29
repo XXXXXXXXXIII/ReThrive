@@ -8,6 +8,8 @@ public class PlayerState : MonoBehaviour
     private int health;
     private bool isActive;
 
+    public float initX, initY, initZ;
+
     public UnityAction onDie;
     public UnityAction onSpawn;
     GhostManager GM;
@@ -56,7 +58,7 @@ public class PlayerState : MonoBehaviour
     void OnSpawn()
     {
         Debug.Log("Player spawned");
-        player.transform.position = new Vector3(-0.73f, 39.84f, 93.49f);
+        player.transform.position = new Vector3(initX, initY, initZ);
         GM.StartRecording();
         if (GM.allGhost.Count > 0)
         {
