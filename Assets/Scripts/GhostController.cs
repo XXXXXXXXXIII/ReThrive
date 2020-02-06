@@ -28,7 +28,7 @@ public class GhostController : MonoBehaviour
         if (isActive)
         {
             if (index >= coords.Count)
-                Destroy(this);
+                index = 0;
             ghost.transform.position = coords[index];
             index++;
         }

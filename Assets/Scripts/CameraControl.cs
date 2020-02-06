@@ -22,11 +22,11 @@ public class CameraControl : MonoBehaviour
         float turnAxisX = Input.GetAxis(MouseMoveHorizontal);
         float turnAxisY = Input.GetAxis(MouseMoveVertical);
 
-        ApplyTurnInput(turnAxisX, turnAxisY);
+        // ApplyTurnInput(turnAxisX, turnAxisY);
     }
 
-    private void ApplyTurnInput(float turnX, float turnY)
-    {
-        transform.Rotate(turnX * rotateRate * -1, 0, 0);
-    }
+    // private void ApplyTurnInput(float turnX, float turnY)
+    // {
+    //     transform.Rotate(turnX * rotateRate * -1, 0, 0);
+    // }
 }
