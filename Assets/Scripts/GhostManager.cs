@@ -38,18 +38,25 @@ public class GhostManager : MonoBehaviour
         
     }
 
-    // Stops recording and saves ghost
-    public void StopRecording()
-    {
-        Debug.Log("Stopped Recording Ghost\n");
-        isRecording = false;
-        allGhost.Add(currGhost);
-        currGhost = new List<Vector3>();
-    }
-
     public void StartRecording()
     {
         Debug.Log("Started Recording Ghost\n");
         isRecording = true;
+        currGhost = new List<Vector3>();
+    }
+
+    public void CancelRecording()
+    {
+        isRecording = false;
+        currGhost = new List<Vector3>();
+    }
+
+    // Stops recording and saves ghost
+    public List<Vector3> StopRecording()
+    {
+        Debug.Log("Stopped Recording Ghost\n");
+        isRecording = false;
+        allGhost.Add(currGhost);
+        return currGhost;
     }
 }
