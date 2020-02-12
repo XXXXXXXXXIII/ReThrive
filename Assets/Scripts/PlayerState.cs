@@ -28,8 +28,12 @@ public class PlayerState : MonoBehaviour
         GM = GetComponent<GhostManager>();
         PC = GetComponent<PlayerControl>();
         player = GetComponent<Rigidbody>();
+
+        CollectorPuzzle puzzle = GameObject.Find("Puzzle").GetComponent<CollectorPuzzle>();
+
         onDie += OnDie;
         onSpawn += OnSpawn;
+        onSpawn += puzzle.PuzzleReset;
         seedCoords = new List<Vector3>();
         isJumping = false;
         canPlant = false;
