@@ -9,18 +9,24 @@ using UnityEngine;
  */
 public class GhostManager : MonoBehaviour
 {
-    public List<List<Vector3>> allGhost;
+    public GameObject ghostPrefab;
 
-    private List<Vector3> currGhost;
-    private bool isRecording;
-    private Rigidbody player;
+    private List<Vector3> currPath;
+    private List<bool> currInteractions;
+    private List<int> currAnimations;
+    public bool isRecording;
+    
+    Rigidbody player;
+    PlayerState PS;
 
     // Start is called before the first frame update
     void Start()
     {
-        currGhost = new List<Vector3>();
-        allGhost = new List<List<Vector3>>();
+        currPath = new List<Vector3>();
+        currInteractions = new List<bool>();
+        currAnimations = new List<int>();
         player = GetComponent<Rigidbody>();
+        PS = GetComponent<PlayerState>();
         isRecording = false;
     }
 
@@ -28,7 +34,9 @@ public class GhostManager : MonoBehaviour
     {
         if (isRecording)
         {
-            currGhost.Add(player.position);
+            currPath.Add(player.position);
+            currInteractions.Add(PS.isInteracting);
+            currAnimations.Add(PS.currAnimation);
         }
     }
 
@@ -42,21 +50,32 @@ public class GhostManager : MonoBehaviour
     {
         Debug.Log("Started Recording Ghost\n");
         isRecording = true;
-        currGhost = new List<Vector3>();
+        currPath = new List<Vector3>();
+        currInteractions = new List<bool>();
+        currAnimations = new List<int>();
     }
 
     public void CancelRecording()
     {
         isRecording = false;
-        currGhost = new List<Vector3>();
+        currPath = new List<Vector3>();
+        currInteractions = new List<bool>();
+        currAnimations = new List<int>();
     }
 
-    // Stops recording and saves ghost
-    public List<Vector3> StopRecording()
+    // Stops recording and returns ghost
+    public Ghost StopRecording()
     {
         Debug.Log("Stopped Recording Ghost\n");
         isRecording = false;
-        allGhost.Add(currGhost);
-        return currGhost;
+
+        GameObject ghostObject = Instantiate(ghostPrefab, currPath[0], Quaternion.identity);
+        Ghost ghost = ghostObject.GetComponent<Ghost>();
+        ghost.seedCoord = currPath[0];
+        ghost.ghostPath = currPath;
+        ghost.animations = currAnimations;
+        ghost.interactions = currInteractions;
+
+        return ghost;
     }
 }

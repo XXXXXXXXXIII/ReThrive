@@ -255,7 +255,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateRate: 1
-  moveRate: 10
+  moveRate: 0.05
   Player: {fileID: 0}
   PS: {fileID: 0}
 --- !u!114 &2754513134114006514
@@ -274,7 +274,6 @@ MonoBehaviour:
   spawnY: -48.212
   spawnZ: 11.76364
   seedCoords: []
-  ghost: {fileID: 1162243334171978359, guid: f060abf5e09032f4188772dd3b290633, type: 3}
   seed: {fileID: 2763290920348985721, guid: 8c8868548e297b4448e27d87f3e25e29, type: 3}
 --- !u!114 &2754513134114006512
 MonoBehaviour:
@@ -288,3 +287,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8afd07685e7b1da44b86a847ad4883c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ghostPrefab: {fileID: 1162243334171978359, guid: f060abf5e09032f4188772dd3b290633,
+    type: 3}

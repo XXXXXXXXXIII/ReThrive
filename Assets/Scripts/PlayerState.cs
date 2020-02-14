@@ -3,23 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+// Keeps track of player's state and status
 public class PlayerState : MonoBehaviour
 {
-    private int health;
-    private bool isActive;
-    private bool isJumping;
-    private bool canPlant;
+    public int health { get; set; }
+    public int currAnimation { get; set; }
+    public bool isActive { get; set; }
+    public bool isJumping { get; set; }
+    public bool canPlant { get; set; }    
+    public bool isInteracting { get; set; }
 
+    private List<Ghost> ghosts;
+    private Puzzle currPuzzle;
+
+    // Initial spawn coordinates
     public float spawnX, spawnY, spawnZ;
     public List<Vector3> seedCoords;
 
+    // Append functions to these actions
+    // NOTE: Directly invoke these for the approperiate action
     public UnityAction onDie;
     public UnityAction onSpawn;
+    public UnityAction onInteract;
+    public UnityAction onPlant;
+    public UnityAction onWilt;
+
     GhostManager GM;
     PlayerControl PC;
     Rigidbody player;
 
-    public GameObject ghost;
+    // Prefabs for ghost and seed
     public GameObject seed;
 
     // Start is called before the first frame update
@@ -29,15 +42,23 @@ public class PlayerState : MonoBehaviour
         PC = GetComponent<PlayerControl>();
         player = GetComponent<Rigidbody>();
 
-        CollectorPuzzle puzzle = GameObject.Find("Puzzle").GetComponent<CollectorPuzzle>();
+        GameObject puzzleObject = GameObject.Find("Puzzle");
+        currPuzzle = puzzleObject.GetComponent<Puzzle>();
 
-        onDie += OnDie;
+        onDie += onDie;
+
+        onWilt += OnWilt;
+
         onSpawn += OnSpawn;
-        onSpawn += puzzle.PuzzleReset;
+
+        onPlant += PlantSeed;
+
+        ghosts = new List<Ghost>();
         seedCoords = new List<Vector3>();
         isJumping = false;
         canPlant = false;
         isActive = false;
+        isInteracting = false;
     }
 
     // Update is called once per frame
@@ -50,9 +71,11 @@ public class PlayerState : MonoBehaviour
         }
     }
 
+    // When player collides with object
+    // Only put common collisions such as "Death" or "Dirt" here, don't add puzzle specific detectors.
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Player Collision Detected");
+        Debug.Log("PlayerState:: Collision Detected");
         if (collision.collider.tag == "Platform")
         {
             player.velocity = Vector3.zero;
@@ -69,19 +92,27 @@ public class PlayerState : MonoBehaviour
         }
     }
 
-    public void OnWilt()
+    private void OnWilt()
     {
-        Debug.Log("Player died");
-        List<Vector3> newGhostCoords = GM.StopRecording();
-        GameObject newGhost = Instantiate(ghost, new Vector3(-0.73f, 39.84f, 93.49f), Quaternion.identity);
-        newGhost.GetComponent<GhostController>().SetRoute(newGhostCoords);
+        Debug.Log("Player wilted");
+        ghosts.Add(GM.StopRecording());
+        foreach (Ghost g in ghosts)
+        {
+            g.Reset();
+        }
+        currPuzzle.ResetPuzzle();
         onSpawn.Invoke();
     }
 
-    public void OnDie()
+    private void OnDie()
     {
         Debug.Log("Player died");
         GM.CancelRecording();
+        foreach (Ghost g in ghosts)
+        {
+            g.Reset();
+        }
+        currPuzzle.ResetPuzzle();
         onSpawn.Invoke();
     }
 
@@ -103,7 +134,7 @@ public class PlayerState : MonoBehaviour
         spawnZ = newZ;
     }
 
-    public void PlantSeed()
+    private void PlantSeed()
     {
         if (canPlant)
         {
@@ -116,10 +147,17 @@ public class PlayerState : MonoBehaviour
         else Debug.Log("CANNOT plant!");
     }
 
-    public void OnSpawn()
+    private void OnSpawn()
     {
         Debug.Log("Player spawned");
         player.transform.position = new Vector3(spawnX, spawnY, spawnZ);
+        foreach (Ghost g in ghosts)
+        {
+            g.Animate();
+        }
+
+        
+        currPuzzle.StartPuzzle();
         // if (GM.allGhost.Count > 0)
         // {
         //     foreach (List<Vector3> list in GM.allGhost)

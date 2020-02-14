@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Defines a collector puzzle
-public class CollectorPuzzle : MonoBehaviour
+public class CollectorPuzzle : MonoBehaviour, Puzzle
 {
     // Any child object is a collectable
     List<Collectable> collectables;
@@ -20,7 +20,6 @@ public class CollectorPuzzle : MonoBehaviour
         collectables = new List<Collectable>(GetComponentsInChildren<Collectable>());
         startTime = -allottedTime;
         isRunning = false;
-        PuzzleReset();
     }
 
     // Update is called once per frame
@@ -33,6 +32,7 @@ public class CollectorPuzzle : MonoBehaviour
 
         if (startTime + allottedTime < Time.time)
         {
+            StopPuzzle();
             isRunning = false;
             Debug.Log("Mission Failed");
         }
@@ -47,7 +47,7 @@ public class CollectorPuzzle : MonoBehaviour
                     if (totalObjects == 0)
                     {
                         Debug.Log("Mission Complete!");
-                        isRunning = false;
+                        StopPuzzle();
                         return;
                     }
                 }
@@ -55,16 +55,39 @@ public class CollectorPuzzle : MonoBehaviour
         }
     }
 
-    public void PuzzleReset()
+    public void InitPuzzle()
     {
-        startTime = Time.time;
-        isRunning = true;
-        totalObjects = collectables.Count;
+
+    }
+
+    public void StartPuzzle()
+    {
         Debug.Log("Mission Start!");
         Debug.Log("Total objects: " + totalObjects);
+        startTime = Time.time;
+        totalObjects = collectables.Count;
+        isRunning = true;
+    }
+
+    public void ResetPuzzle()
+    {
+        Debug.Log("Puzzle Reset!");
+        isRunning = false;
+        startTime = Time.time;
+        totalObjects = collectables.Count;
         foreach (Collectable o in collectables)
         {
             o.EnableCollectable();
         }
+    }
+
+    public void StopPuzzle()
+    {
+        isRunning = false;
+    }
+
+    public void DestroyPuzzle()
+    {
+
     }
 }

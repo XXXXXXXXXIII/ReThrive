@@ -11,6 +11,7 @@ public class Collectable : MonoBehaviour
     void Start()
     {
         collectable = this.transform.gameObject;
+        Debug.Log(collectable);
         isActive = true;
     }
 
