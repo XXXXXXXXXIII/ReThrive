@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Death
+  - Platform
+  - Destroy
+  - Ghost
+  - Dirt
   layers:
   - Default
   - TransparentFX

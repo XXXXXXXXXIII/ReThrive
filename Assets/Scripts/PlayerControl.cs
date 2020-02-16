@@ -10,16 +10,18 @@ public class PlayerControl : MonoBehaviour
     private string MouseMoveVertical = "Mouse X";
 
     public float rotateRate = 1;
-    public float moveRate = -10;
+    public float moveRate = 1;
 
-    public Rigidbody Player;
-    public PlayerState PS;
+    Rigidbody Player;
+    PlayerState PS;
+    GhostManager GM;
 
     // Start is called before the first frame update
     void Start()
     {
         Player = GetComponent<Rigidbody>();
         PS = GetComponent<PlayerState>();
+        GM = GetComponent<GhostManager>();
     }
 
     // Update is called once per frame
@@ -31,13 +33,13 @@ public class PlayerControl : MonoBehaviour
         float turnAxisY = Input.GetAxis(MouseMoveVertical);
 
         ApplyMoveInput(moveAxisX, moveAxisZ);
-        // ApplyTurnInput(turnAxisX, turnAxisY);
+        ApplyTurnInput(turnAxisX, turnAxisY);
     }
 
     private void ApplyMoveInput(float moveX, float moveZ)
     {
-        //transform.Translate(Vector3.forward * moveX * moveRate, Space.Self);
-        //transform.Translate(Vector3.right * moveZ * moveRate / 3, Space.Self);
+        transform.Translate(Vector3.forward * moveX * moveRate, Space.Self);
+        transform.Translate(Vector3.right * moveZ * moveRate / 3, Space.Self);
 
         // Press shift to run
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -57,24 +59,24 @@ public class PlayerControl : MonoBehaviour
 
         if ((Input.GetKeyDown(KeyCode.JoystickButton2) || Input.GetKeyDown(KeyCode.Q))) // Circle button
         {
-            PS.PlantSeed();
+            PS.onPlant.Invoke();
         }
 
         if ((Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.E))) // Triangle button
         {
             // Wilt/suicide only if a seed has been planted.
-            if (PS.seedCoords.Count > 0)
+            if (GM.isRecording)
             {
-                PS.OnWilt();
+                PS.onWilt.Invoke();
             }
         }
 
-        Player.AddForce(transform.forward * moveX * moveRate / 2, ForceMode.Force);
-        Player.AddForce(transform.right * moveZ * moveRate / 2, ForceMode.Force);
+        //Player.AddForce(transform.forward * moveX * moveRate / 2, ForceMode.Force);
+        //Player.AddForce(transform.right * moveZ * moveRate / 2, ForceMode.Force);
     }
 
-    // private void ApplyTurnInput(float turnX, float turnY)
-    // {
-    //     transform.Rotate(0, turnY * rotateRate, 0);
-    // }
+    private void ApplyTurnInput(float turnX, float turnY)
+    {
+        transform.Rotate(0, turnY * rotateRate, 0);
+    }
 }

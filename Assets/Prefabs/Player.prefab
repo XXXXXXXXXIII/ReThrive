@@ -70,13 +70,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2754513133642909284}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.71, z: -3.89}
+  m_LocalRotation: {x: 0.015858388, y: -0, z: -0, w: 0.99987423}
+  m_LocalPosition: {x: 0, y: 2.8000135, z: -3.8900013}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2754513133450296270}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 1.817, y: 0, z: 0}
 --- !u!20 &2754513133642909286
 Camera:
   m_ObjectHideFlags: 0
@@ -102,7 +102,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 116.6
+  field of view: 100.3
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 2754513134114006512}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -255,8 +255,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateRate: 1
-  moveRate: -10
+  moveRate: 0.05
   Player: {fileID: 0}
+  PS: {fileID: 0}
 --- !u!114 &2754513134114006514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,10 +270,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f36426ffce4774093ee40c6c018c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  initX: 0
-  initY: 0
-  initZ: 0
-  ghost: {fileID: 1162243334171978359, guid: f060abf5e09032f4188772dd3b290633, type: 3}
+  spawnX: -69.733
+  spawnY: -48.212
+  spawnZ: 11.76364
+  seedCoords: []
+  seed: {fileID: 2763290920348985721, guid: 8c8868548e297b4448e27d87f3e25e29, type: 3}
 --- !u!114 &2754513134114006512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -285,3 +287,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8afd07685e7b1da44b86a847ad4883c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ghostPrefab: {fileID: 1162243334171978359, guid: f060abf5e09032f4188772dd3b290633,
+    type: 3}
