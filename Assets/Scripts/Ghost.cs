@@ -2,26 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// A Ghost object
 // This replaces GhostController
 public class Ghost : MonoBehaviour
 {
     public float duration = 15f; // Duration of ghost, after which it will reset and loop
+    public float health;
     public bool isLoop = true;
+    public bool isInteracting = true;
 
     GameObject ghost;
 
-    public Vector3 seedCoord { get; set; }
-    public List<Vector3> ghostPath { get; set; }
-    public List<int> animations { get; set; }
-    public List<bool> interactions { get; set; }
+    public Vector3 SeedCoord { get; set; }
+    public List<Vector3> GhostPath { get; set; }
+    public List<int> AnimationState { get; set; }
+    public List<bool> InteractionState { get; set; }
 
     private bool isActive;
-    private bool isInteracting;
-    private int animationState;
     private int index;
 
-    // Start is called before the first frame update
+    // Awake is required here
     void Awake()
     {
         Debug.Log("Spawned new ghost");
@@ -29,20 +28,19 @@ public class Ghost : MonoBehaviour
         isActive = false;
         isInteracting = false;
         ghost.SetActive(false);
-        animationState = 0;
         index = 0;
 
-        seedCoord = new Vector3();
-        ghostPath = new List<Vector3>();
-        animations = new List<int>();
-        interactions = new List<bool>();
+        SeedCoord = new Vector3();
+        GhostPath = new List<Vector3>();
+        AnimationState = new List<int>();
+        InteractionState = new List<bool>();
     }
 
     void FixedUpdate()
     {
         if (isActive)
         {
-            if (index >= ghostPath.Count)
+            if (index >= GhostPath.Count)
             {
                 index = 0;
                 if (!isLoop)
@@ -51,8 +49,8 @@ public class Ghost : MonoBehaviour
                     isActive = false;
                 }
             }
-            ghost.transform.position = ghostPath[index];
-            this.isInteracting = interactions[index];
+            ghost.transform.position = GhostPath[index];
+            this.isInteracting = InteractionState[index];
             index++;
         }
     }
@@ -74,6 +72,5 @@ public class Ghost : MonoBehaviour
     public void Halt()
     {
         isActive = false;
-        ghost.SetActive(false);
     }
 }

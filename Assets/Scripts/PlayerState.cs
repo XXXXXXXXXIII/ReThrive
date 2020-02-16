@@ -42,8 +42,8 @@ public class PlayerState : MonoBehaviour
         PC = GetComponent<PlayerControl>();
         player = GetComponent<Rigidbody>();
 
-        GameObject puzzleObject = GameObject.Find("Puzzle");
-        currPuzzle = puzzleObject.GetComponent<Puzzle>();
+        //GameObject puzzleObject = GameObject.Find("Puzzle");
+        //currPuzzle = puzzleObject.GetComponent<Puzzle>();
 
         onDie += onDie;
 
@@ -100,7 +100,6 @@ public class PlayerState : MonoBehaviour
         {
             g.Reset();
         }
-        currPuzzle.ResetPuzzle();
         onSpawn.Invoke();
     }
 
@@ -112,7 +111,6 @@ public class PlayerState : MonoBehaviour
         {
             g.Reset();
         }
-        currPuzzle.ResetPuzzle();
         onSpawn.Invoke();
     }
 

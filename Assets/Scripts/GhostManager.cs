@@ -71,10 +71,10 @@ public class GhostManager : MonoBehaviour
 
         GameObject ghostObject = Instantiate(ghostPrefab, currPath[0], Quaternion.identity);
         Ghost ghost = ghostObject.GetComponent<Ghost>();
-        ghost.seedCoord = currPath[0];
-        ghost.ghostPath = currPath;
-        ghost.animations = currAnimations;
-        ghost.interactions = currInteractions;
+        ghost.SeedCoord = currPath[0];
+        ghost.GhostPath = currPath;
+        ghost.AnimationState = currAnimations;
+        ghost.InteractionState = currInteractions;
 
         return ghost;
     }
