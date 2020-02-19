@@ -5,7 +5,7 @@ using UnityEngine;
 // This replaces GhostController
 public class Ghost : MonoBehaviour
 {
-    public float duration = 15f; // Duration of ghost, after which it will reset and loop
+    public float duration = 10f; // Duration of ghost in seconds, after which it will reset and loop
     public float health;
     public bool isLoop = true;
     public bool isInteracting = true;
@@ -19,6 +19,8 @@ public class Ghost : MonoBehaviour
 
     private bool isActive;
     private int index;
+    private int maxIndex;
+    private Vector3 finalAction;
 
     // Awake is required here
     void Awake()
@@ -42,16 +44,27 @@ public class Ghost : MonoBehaviour
         {
             if (index >= GhostPath.Count)
             {
-                index = 0;
-                if (!isLoop)
+                if (index < maxIndex)
                 {
-                    ghost.SetActive(false); 
-                    isActive = false;
+                    transform.Translate(finalAction, Space.Self); // Repeat last step 
+                    //this.isInteracting = false;
+                    index++;
+                }
+                else
+                {
+                    Reset();
+                    if (isLoop)
+                    {
+                        Animate();
+                    }
                 }
             }
-            ghost.transform.position = GhostPath[index];
-            this.isInteracting = InteractionState[index];
-            index++;
+            else
+            {
+                transform.Translate(GhostPath[index], Space.Self);
+                this.isInteracting = InteractionState[index];
+                index++;
+            }
         }
     }
 
@@ -61,12 +74,16 @@ public class Ghost : MonoBehaviour
         index = 0;
         isInteracting = false;
         ghost.SetActive(false);
+        ghost.transform.position = this.SeedCoord;
     }
 
     public void Animate()
     {
         isActive = true;
         ghost.SetActive(true);
+        maxIndex = (int)(duration * (1 / Time.fixedDeltaTime));
+        finalAction = GhostPath[GhostPath.Count - 1];
+        finalAction.y = 0; // Prevent ghost from jumping up forever
     }
 
     public void Halt()

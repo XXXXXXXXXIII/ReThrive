@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Unity.Mathematics;
 
 
 /* 
@@ -11,13 +12,15 @@ public class GhostManager : MonoBehaviour
 {
     public GameObject ghostPrefab;
 
-    private List<Vector3> currPath;
+    private List<Vector3> currPath; // NOTE: Stores offset from prevCoord
     private List<bool> currInteractions;
     private List<int> currAnimations;
     public bool isRecording;
     
     Rigidbody player;
     PlayerState PS;
+
+    private Vector3 prevCoord, startCoord;
 
     // Start is called before the first frame update
     void Start()
@@ -34,16 +37,11 @@ public class GhostManager : MonoBehaviour
     {
         if (isRecording)
         {
-            currPath.Add(player.position);
+            currPath.Add(player.position - prevCoord);
+            prevCoord = player.position;
             currInteractions.Add(PS.isInteracting);
             currAnimations.Add(PS.currAnimation);
         }
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void StartRecording()
@@ -53,14 +51,13 @@ public class GhostManager : MonoBehaviour
         currPath = new List<Vector3>();
         currInteractions = new List<bool>();
         currAnimations = new List<int>();
+        prevCoord = player.position;
+        startCoord = player.position;
     }
 
     public void CancelRecording()
     {
         isRecording = false;
-        currPath = new List<Vector3>();
-        currInteractions = new List<bool>();
-        currAnimations = new List<int>();
     }
 
     // Stops recording and returns ghost
@@ -69,9 +66,9 @@ public class GhostManager : MonoBehaviour
         Debug.Log("Stopped Recording Ghost\n");
         isRecording = false;
 
-        GameObject ghostObject = Instantiate(ghostPrefab, currPath[0], Quaternion.identity);
+        GameObject ghostObject = Instantiate(ghostPrefab, startCoord, Quaternion.identity);
         Ghost ghost = ghostObject.GetComponent<Ghost>();
-        ghost.SeedCoord = currPath[0];
+        ghost.SeedCoord = startCoord;
         ghost.GhostPath = currPath;
         ghost.AnimationState = currAnimations;
         ghost.InteractionState = currInteractions;
