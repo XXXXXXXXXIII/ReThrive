@@ -19,8 +19,9 @@ public class InteractButton : MonoBehaviour
     void OnTriggerEnter(Collider collider)
     {
         triggerCount++;
-        if (collider.tag.Equals("Player") || collider.tag.Equals("Ghost"))
+        if (collider.CompareTag("Player") || collider.CompareTag("Ghost"))
         {
+            Debug.Log("Trigger Enter");
             OnButtonPress?.Invoke();
         }
     }
@@ -30,8 +31,9 @@ public class InteractButton : MonoBehaviour
         triggerCount--;
         if (triggerCount == 0)
         {
-            if (collider.tag.Equals("Player") || collider.tag.Equals("Ghost"))
+            if (collider.CompareTag("Player") || collider.CompareTag("Ghost"))
             {
+                Debug.Log("Trigger Exit");
                 OnButtonRelease?.Invoke();
             }
         }

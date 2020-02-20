@@ -47,7 +47,7 @@ public class Ghost : MonoBehaviour
                 if (index < maxIndex)
                 {
                     transform.Translate(finalAction, Space.Self); // Repeat last step 
-                    //this.isInteracting = false;
+                    // this.isInteracting = false;
                     index++;
                 }
                 else
@@ -70,11 +70,11 @@ public class Ghost : MonoBehaviour
 
     public void Reset()
     {
+        ghost.transform.position = this.SeedCoord;
         isActive = false;
         index = 0;
         isInteracting = false;
-        ghost.SetActive(false);
-        ghost.transform.position = this.SeedCoord;
+        //ghost.SetActive(false); //TODO: Removing this cuz it disables collider as well
     }
 
     public void Animate()
