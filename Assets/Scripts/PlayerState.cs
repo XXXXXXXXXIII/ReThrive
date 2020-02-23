@@ -16,7 +16,9 @@ public class PlayerState : MonoBehaviour
 
     public bool isInteracting { get; set; }
 
-    private List<Ghost> ghosts;
+    private Seed currSeed;
+    private List<Seed> seeds;
+    
     private Puzzle currPuzzle;
 
     // Initial spawn coordinates
@@ -36,7 +38,7 @@ public class PlayerState : MonoBehaviour
     Rigidbody player;
 
     // Prefabs for ghost and seed
-    public GameObject seed;
+    public GameObject seedPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +58,7 @@ public class PlayerState : MonoBehaviour
 
         onPlant += PlantSeed;
 
-        ghosts = new List<Ghost>();
+        seeds = new List<Seed>();
         seedCoords = new List<Vector3>();
         isJumping = false;
         onDirt = false;
@@ -80,13 +82,13 @@ public class PlayerState : MonoBehaviour
     // TODO: Remove this function
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.tag == "Platform")
+        if (collision.collider.CompareTag("Platform"))
         {
             player.velocity = Vector3.zero;
             player.angularVelocity = Vector3.zero;
             isJumping = false;
         }
-        if (collision.collider.tag == "Death")
+        if (collision.collider.CompareTag("Death"))
         {
             onDie.Invoke();
         }
@@ -95,12 +97,10 @@ public class PlayerState : MonoBehaviour
     private void OnWilt()
     {
         Debug.Log("PlayerState::Player wilted");
-        Ghost newGhost = GM.StopRecording();
-        ghosts.Add(newGhost);
-        currDirt.ghosts.Add(newGhost);
-        foreach (Ghost g in ghosts)
+        currSeed.ghost = GM.StopRecording();
+        foreach (Seed s in seeds)
         {
-            g.Reset();
+            s.ghost.Reset();
         }
         onSpawn.Invoke();
     }
@@ -108,10 +108,13 @@ public class PlayerState : MonoBehaviour
     private void OnDie()
     {
         Debug.Log("PlayerState::Player died");
-        GM.CancelRecording();
-        foreach (Ghost g in ghosts)
+        if (GM.isRecording)
         {
-            g.Reset();
+            currSeed.ghost = GM.StopRecording();
+        }
+        foreach (Seed s in seeds)
+        {
+            s.ghost.Reset();
         }
         onSpawn.Invoke();
     }
@@ -145,8 +148,12 @@ public class PlayerState : MonoBehaviour
             else if (currDirt.CanPlant())
             {
                 Debug.Log("I can plant");
-                GameObject newSeed = Instantiate(seed, player.position, Quaternion.identity);
+                GameObject newSeed = Instantiate(seedPrefab, player.position, Quaternion.identity);
                 newSeed.transform.SetParent(currDirt.transform);
+                Seed seed = newSeed.GetComponent<Seed>();
+                seeds.Add(seed);
+                currDirt.seeds.Add(seed);
+                currSeed = seed;
                 //SetSpawn(player.position[0], player.position[1], player.position[2]);
                 //seedCoords.Add(player.position);
                 GM.StartRecording();
@@ -163,9 +170,9 @@ public class PlayerState : MonoBehaviour
     {
         Debug.Log("PlayerState::Player spawned");
         player.transform.position = new Vector3(spawnX, spawnY, spawnZ);
-        foreach (Ghost g in ghosts)
+        foreach (Seed s in seeds)
         {
-            g.Animate();
+            s.ghost.Animate();
         }
 
         

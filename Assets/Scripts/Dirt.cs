@@ -9,7 +9,7 @@ public class Dirt : MonoBehaviour
     public int maxWaterCount = 3;
     public int maxSeedCount = 5;
 
-    public List<Ghost> ghosts { get; set; }
+    public List<Seed> seeds { get; set; }
 
     PlayerState PS;
     GhostManager GM;
@@ -18,7 +18,7 @@ public class Dirt : MonoBehaviour
 
     private void Start()
     {
-        ghosts = new List<Ghost>();
+        seeds = new List<Seed>();
     }
 
 
