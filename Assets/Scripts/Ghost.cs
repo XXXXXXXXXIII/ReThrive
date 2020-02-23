@@ -5,7 +5,7 @@ using UnityEngine;
 // This replaces GhostController
 public class Ghost : MonoBehaviour
 {
-    public float duration = 10f; // Duration of ghost in seconds, after which it will reset and loop
+    public float duration { get; set; } // Duration of ghost in seconds, after which it will reset and loop
     public float health;
     public bool isLoop = true;
     public bool isInteracting = true;

@@ -11,7 +11,9 @@ using Unity.Mathematics;
 public class GhostManager : MonoBehaviour
 {
     public GameObject ghostPrefab;
+    public float minDuration = 10f;
 
+    public float duration { get; set; }
     private List<Vector3> currPath; // NOTE: Stores offset from prevCoord
     private List<bool> currInteractions;
     private List<int> currAnimations;
@@ -21,6 +23,7 @@ public class GhostManager : MonoBehaviour
     PlayerState PS;
 
     private Vector3 prevCoord, startCoord;
+    private float _startTime;
 
     // Start is called before the first frame update
     void Start()
@@ -31,31 +34,42 @@ public class GhostManager : MonoBehaviour
         player = GetComponent<Rigidbody>();
         PS = GetComponent<PlayerState>();
         isRecording = false;
+        duration = minDuration;
     }
 
     void FixedUpdate()
     {
         if (isRecording)
         {
-            currPath.Add(player.position - prevCoord);
-            prevCoord = player.position;
-            currInteractions.Add(PS.isInteracting);
-            currAnimations.Add(PS.currAnimation);
+            if (Time.time - _startTime >= duration)
+            {
+                PS.onWilt.Invoke();
+            }
+            else
+            {
+                //Debug.Log("GM::Time Remaining: " + (10f - (Time.time - _startTime)));
+                currPath.Add(player.position - prevCoord);
+                prevCoord = player.position;
+                currInteractions.Add(PS.isInteracting);
+                currAnimations.Add(PS.currAnimation);
+            }
         }
     }
 
     public void StartRecording()
     {
-        Debug.Log("Started Recording Ghost\n");
+        Debug.Log("GM::Started Recording Ghost\n");
         isRecording = true;
+        PS.isRecording = true;
         currPath = new List<Vector3>();
         currInteractions = new List<bool>();
         currAnimations = new List<int>();
         prevCoord = player.position;
         startCoord = player.position;
+        _startTime = Time.time;
     }
 
-    public void CancelRecording()
+    public void PauseRecording()
     {
         isRecording = false;
     }
@@ -63,8 +77,9 @@ public class GhostManager : MonoBehaviour
     // Stops recording and returns ghost
     public Ghost StopRecording()
     {
-        Debug.Log("Stopped Recording Ghost\n");
+        Debug.Log("GM::Stopped Recording Ghost\n");
         isRecording = false;
+        PS.isRecording = false;
 
         GameObject ghostObject = Instantiate(ghostPrefab, startCoord, Quaternion.identity);
         Ghost ghost = ghostObject.GetComponent<Ghost>();
@@ -72,6 +87,7 @@ public class GhostManager : MonoBehaviour
         ghost.GhostPath = currPath;
         ghost.AnimationState = currAnimations;
         ghost.InteractionState = currInteractions;
+        ghost.duration = this.duration;
 
         return ghost;
     }

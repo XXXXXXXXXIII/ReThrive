@@ -256,8 +256,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rotateRate: 1
   moveRate: 0.05
-  Player: {fileID: 0}
-  PS: {fileID: 0}
+  sprintMultiplier: 1.5
+  jumpMultiplier: 200
 --- !u!114 &2754513134114006514
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,7 +274,8 @@ MonoBehaviour:
   spawnY: -48.212
   spawnZ: 11.76364
   seedCoords: []
-  seed: {fileID: 2763290920348985721, guid: 8c8868548e297b4448e27d87f3e25e29, type: 3}
+  seedPrefab: {fileID: 2763290920348985721, guid: 8c8868548e297b4448e27d87f3e25e29,
+    type: 3}
 --- !u!114 &2754513134114006512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,3 +290,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ghostPrefab: {fileID: 1162243334171978359, guid: f060abf5e09032f4188772dd3b290633,
     type: 3}
+  minDuration: 10
+  isRecording: 0
