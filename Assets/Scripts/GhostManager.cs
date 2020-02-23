@@ -23,7 +23,7 @@ public class GhostManager : MonoBehaviour
     PlayerState PS;
 
     private Vector3 prevCoord, startCoord;
-    private 
+    private float _startTime;
 
     // Start is called before the first frame update
     void Start()
@@ -41,25 +41,34 @@ public class GhostManager : MonoBehaviour
     {
         if (isRecording)
         {
-            currPath.Add(player.position - prevCoord);
-            prevCoord = player.position;
-            currInteractions.Add(PS.isInteracting);
-            currAnimations.Add(PS.currAnimation);
+            if (Time.time - _startTime >= duration)
+            {
+                PS.onWilt.Invoke();
+            }
+            else
+            {
+                Debug.Log("GM::Time Remaining: " + (10f - (Time.time - _startTime)));
+                currPath.Add(player.position - prevCoord);
+                prevCoord = player.position;
+                currInteractions.Add(PS.isInteracting);
+                currAnimations.Add(PS.currAnimation);
+            }
         }
     }
 
     public void StartRecording()
     {
-        Debug.Log("Started Recording Ghost\n");
+        Debug.Log("GM::Started Recording Ghost\n");
         isRecording = true;
         currPath = new List<Vector3>();
         currInteractions = new List<bool>();
         currAnimations = new List<int>();
         prevCoord = player.position;
         startCoord = player.position;
+        _startTime = Time.time;
     }
 
-    public void CancelRecording()
+    public void PauseRecording()
     {
         isRecording = false;
     }
@@ -67,7 +76,7 @@ public class GhostManager : MonoBehaviour
     // Stops recording and returns ghost
     public Ghost StopRecording()
     {
-        Debug.Log("Stopped Recording Ghost\n");
+        Debug.Log("GM::Stopped Recording Ghost\n");
         isRecording = false;
 
         GameObject ghostObject = Instantiate(ghostPrefab, startCoord, Quaternion.identity);
