@@ -22,7 +22,7 @@ public class PlayerState : MonoBehaviour
     private Puzzle currPuzzle;
 
     // Initial spawn coordinates
-    public float spawnX, spawnY, spawnZ;
+    public Vector3 spawnCoord;
     public List<Vector3> seedCoords;
 
     // Append functions to these actions
@@ -130,13 +130,6 @@ public class PlayerState : MonoBehaviour
         isJumping = jumping;
     }
 
-    public void SetSpawn(float newX, float newY, float newZ)
-    {
-        spawnX = newX;
-        spawnY = newY;
-        spawnZ = newZ;
-    }
-
     private void PlantSeed()
     {
         if (onDirt)
@@ -169,7 +162,7 @@ public class PlayerState : MonoBehaviour
     private void OnSpawn()
     {
         Debug.Log("PlayerState::Player spawned");
-        player.transform.position = new Vector3(spawnX, spawnY, spawnZ);
+        player.transform.position = spawnCoord;
         foreach (Seed s in seeds)
         {
             s.ghost.Animate();
