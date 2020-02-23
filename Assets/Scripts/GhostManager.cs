@@ -17,7 +17,7 @@ public class GhostManager : MonoBehaviour
     private List<Vector3> currPath; // NOTE: Stores offset from prevCoord
     private List<bool> currInteractions;
     private List<int> currAnimations;
-    public bool isRecording;
+    public bool isRecording { get; set; }
     
     Rigidbody player;
     PlayerState PS;

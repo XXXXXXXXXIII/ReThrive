@@ -63,23 +63,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\BridgeTrigger.cs" />
     <Compile Include="Assets\Scripts\ButtonScripts\ButtonEvents.cs" />
-    <Compile Include="Assets\Scripts\ButtonScripts\InteractButton.cs" />
+    <Compile Include="Assets\Scripts\ButtonScripts\PressureButton.cs" />
     <Compile Include="Assets\Scripts\ButtonScripts\PushButton.cs" />
     <Compile Include="Assets\Scripts\CameraControl.cs" />
-    <Compile Include="Assets\Scripts\Collectable.cs" />
-    <Compile Include="Assets\Scripts\CollectorPuzzle.cs" />
-    <Compile Include="Assets\Scripts\DoorControl.cs" />
-    <Compile Include="Assets\Scripts\DoorTrigger.cs" />
+    <Compile Include="Assets\Scripts\Checkpoint.cs" />
+    <Compile Include="Assets\Scripts\CustomPuzzleScripts\BridgeTrigger.cs" />
+    <Compile Include="Assets\Scripts\CustomPuzzleScripts\Collectable.cs" />
+    <Compile Include="Assets\Scripts\CustomPuzzleScripts\CollectorPuzzle.cs" />
+    <Compile Include="Assets\Scripts\CustomPuzzleScripts\DoorControl.cs" />
+    <Compile Include="Assets\Scripts\CustomPuzzleScripts\DoorTrigger.cs" />
+    <Compile Include="Assets\Scripts\Dirt.cs" />
     <Compile Include="Assets\Scripts\Ghost.cs" />
-    <Compile Include="Assets\Scripts\GhostController.cs" />
     <Compile Include="Assets\Scripts\GhostManager.cs" />
-    <Compile Include="Assets\Scripts\Manager.cs" />
     <Compile Include="Assets\Scripts\PlayerControl.cs" />
     <Compile Include="Assets\Scripts\PlayerState.cs" />
-    <Compile Include="Assets\Scripts\Puzzle.cs" />
-    <Compile Include="Assets\Scripts\RestartLevelOnCollision.cs" />
+    <Compile Include="Assets\Scripts\Seed.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/CSC404/ReThrive/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

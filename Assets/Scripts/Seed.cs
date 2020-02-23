@@ -40,7 +40,9 @@ public class Seed : MonoBehaviour
 
     public void OnInteract()
     {
-        Destroy(ghost.gameObject);
+        ghost.Reset();
+        ghost.gameObject.GetComponent<Renderer>().enabled = false;
+        Destroy(ghost.gameObject, 0.5f);
         ghost = null;
         PS.currSeed = this;
     }

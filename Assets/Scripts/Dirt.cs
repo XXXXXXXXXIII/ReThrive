@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class Dirt : MonoBehaviour
 {
-    public int currwaterCount = 0;
-    public int currSeedCount = 0;
+    private int currwaterCount = 0;
+    private int currSeedCount = 0;
     public int maxWaterCount = 3;
     public int maxSeedCount = 5;
+    public float defaultGhostDuration = 10f;
 
     public List<Seed> seeds { get; set; }
 
     PlayerState PS;
     GhostManager GM;
 
-    private float _ghostDuration = 10f;
+    private float _ghostDuration;
 
     private void Start()
     {
         seeds = new List<Seed>();
+        _ghostDuration = defaultGhostDuration;
     }
 
 

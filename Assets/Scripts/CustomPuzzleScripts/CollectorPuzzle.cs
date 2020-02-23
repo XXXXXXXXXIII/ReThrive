@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Defines a collector puzzle
-public class CollectorPuzzle : MonoBehaviour, Puzzle
+public class CollectorPuzzle : MonoBehaviour
 {
     // Any child object is a collectable
     List<Collectable> collectables;

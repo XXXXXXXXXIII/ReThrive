@@ -19,11 +19,10 @@ public class PlayerState : MonoBehaviour
     public Seed currSeed { get; set; }
     private List<Seed> seeds;
     
-    private Puzzle currPuzzle;
-
     // Initial spawn coordinates
     public Vector3 spawnCoord;
-    public List<Vector3> seedCoords;
+    public Vector3 spawnRot;
+    List<Vector3> seedCoords;
 
     // Append functions to these actions
     // NOTE: Directly invoke these for the approperiate action
@@ -50,7 +49,7 @@ public class PlayerState : MonoBehaviour
         //GameObject puzzleObject = GameObject.Find("Puzzle");
         //currPuzzle = puzzleObject.GetComponent<Puzzle>();
 
-        onDie += onDie;
+        onDie += OnDie;
 
         onWilt += OnWilt;
 
@@ -169,6 +168,7 @@ public class PlayerState : MonoBehaviour
     {
         Debug.Log("PS::Player spawned");
         player.transform.position = spawnCoord;
+        player.transform.rotation = Quaternion.Euler(spawnRot);
         foreach (Seed s in seeds)
         {
             s.ghost?.Animate();
