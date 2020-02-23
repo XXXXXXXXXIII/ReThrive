@@ -10,7 +10,10 @@ public class PlayerState : MonoBehaviour
     public int currAnimation { get; set; }
     public bool isActive { get; set; }
     public bool isJumping { get; set; }
-    public bool canPlant { get; set; }    
+
+    public bool onDirt { get; set; }
+    public Dirt currDirt { get; set; }
+
     public bool isInteracting { get; set; }
 
     private List<Ghost> ghosts;
@@ -56,7 +59,8 @@ public class PlayerState : MonoBehaviour
         ghosts = new List<Ghost>();
         seedCoords = new List<Vector3>();
         isJumping = false;
-        canPlant = false;
+        onDirt = false;
+        currDirt = null;
         isActive = false;
         isInteracting = false;
     }
@@ -73,18 +77,14 @@ public class PlayerState : MonoBehaviour
 
     // When player collides with object
     // Only put common collisions such as "Death" or "Dirt" here, don't add puzzle specific detectors.
+    // TODO: Remove this function
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("PlayerState:: Collision Detected");
         if (collision.collider.tag == "Platform")
         {
             player.velocity = Vector3.zero;
             player.angularVelocity = Vector3.zero;
             isJumping = false;
-        }
-        if (collision.collider.tag == "Dirt")
-        {
-            canPlant = true;
         }
         if (collision.collider.tag == "Death")
         {
@@ -94,8 +94,10 @@ public class PlayerState : MonoBehaviour
 
     private void OnWilt()
     {
-        Debug.Log("Player wilted");
-        ghosts.Add(GM.StopRecording());
+        Debug.Log("PlayerState::Player wilted");
+        Ghost newGhost = GM.StopRecording();
+        ghosts.Add(newGhost);
+        currDirt.ghosts.Add(newGhost);
         foreach (Ghost g in ghosts)
         {
             g.Reset();
@@ -105,7 +107,7 @@ public class PlayerState : MonoBehaviour
 
     private void OnDie()
     {
-        Debug.Log("Player died");
+        Debug.Log("PlayerState::Player died");
         GM.CancelRecording();
         foreach (Ghost g in ghosts)
         {
@@ -134,20 +136,32 @@ public class PlayerState : MonoBehaviour
 
     private void PlantSeed()
     {
-        if (canPlant)
+        if (onDirt)
         {
-            Debug.Log("I can plant");
-            GameObject newSeed = Instantiate(seed, player.position, Quaternion.identity);
-            SetSpawn(player.position[0], player.position[1], player.position[2]);
-            seedCoords.Add(player.position);
-            GM.StartRecording();
+            if (GM.isRecording)
+            {
+                Debug.Log("PlayerState::Cannot plant: Currently Recording Ghost!");
+            }
+            else if (currDirt.CanPlant())
+            {
+                Debug.Log("I can plant");
+                GameObject newSeed = Instantiate(seed, player.position, Quaternion.identity);
+                newSeed.transform.SetParent(currDirt.transform);
+                //SetSpawn(player.position[0], player.position[1], player.position[2]);
+                //seedCoords.Add(player.position);
+                GM.StartRecording();
+            }
+            else
+            {
+                Debug.Log("PlayerState::Cannot plant: Max seed reached!");
+            }
         }
-        else Debug.Log("CANNOT plant!");
+        else Debug.Log("PlayerState::Cannot plant: Not on Dirt!");
     }
 
     private void OnSpawn()
     {
-        Debug.Log("Player spawned");
+        Debug.Log("PlayerState::Player spawned");
         player.transform.position = new Vector3(spawnX, spawnY, spawnZ);
         foreach (Ghost g in ghosts)
         {
@@ -155,7 +169,7 @@ public class PlayerState : MonoBehaviour
         }
 
         
-        currPuzzle.StartPuzzle();
+        //currPuzzle.StartPuzzle();
         // if (GM.allGhost.Count > 0)
         // {
         //     foreach (List<Vector3> list in GM.allGhost)

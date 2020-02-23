@@ -11,7 +11,9 @@ using Unity.Mathematics;
 public class GhostManager : MonoBehaviour
 {
     public GameObject ghostPrefab;
+    public float minDuration = 10f;
 
+    public float duration { get; set; }
     private List<Vector3> currPath; // NOTE: Stores offset from prevCoord
     private List<bool> currInteractions;
     private List<int> currAnimations;
@@ -21,6 +23,7 @@ public class GhostManager : MonoBehaviour
     PlayerState PS;
 
     private Vector3 prevCoord, startCoord;
+    private 
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +34,7 @@ public class GhostManager : MonoBehaviour
         player = GetComponent<Rigidbody>();
         PS = GetComponent<PlayerState>();
         isRecording = false;
+        duration = minDuration;
     }
 
     void FixedUpdate()
@@ -72,6 +76,7 @@ public class GhostManager : MonoBehaviour
         ghost.GhostPath = currPath;
         ghost.AnimationState = currAnimations;
         ghost.InteractionState = currInteractions;
+        ghost.duration = this.duration;
 
         return ghost;
     }
