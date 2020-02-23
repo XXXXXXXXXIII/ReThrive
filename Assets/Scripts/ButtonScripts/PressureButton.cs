@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class InteractButton : MonoBehaviour
+public class PressureButton : MonoBehaviour
 {
     public UnityEvent OnButtonPress;
     public UnityEvent OnButtonRelease;

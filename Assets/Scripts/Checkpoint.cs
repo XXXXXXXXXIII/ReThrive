@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
-    public Vector3 rotation;
+    public Vector3 spawnRot;
     public float offsetY = 0.1f;
 
     private Vector3 spawnCoord;
@@ -20,9 +20,13 @@ public class Checkpoint : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("CheckPoint::New Spawn Coord: " + this.spawnCoord.ToString());
             PS = other.gameObject.GetComponent<PlayerState>();
-            PS.spawnCoord = spawnCoord;
+            if (!PS.isRecording)
+            {
+                Debug.Log("CheckPoint::New Spawn Coord: " + this.spawnCoord.ToString());
+                PS.spawnCoord = spawnCoord;
+                PS.spawnRot = spawnRot;
+            }
         }
     }
 }
