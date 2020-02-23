@@ -47,7 +47,7 @@ public class GhostManager : MonoBehaviour
             }
             else
             {
-                Debug.Log("GM::Time Remaining: " + (10f - (Time.time - _startTime)));
+                //Debug.Log("GM::Time Remaining: " + (10f - (Time.time - _startTime)));
                 currPath.Add(player.position - prevCoord);
                 prevCoord = player.position;
                 currInteractions.Add(PS.isInteracting);
@@ -60,6 +60,7 @@ public class GhostManager : MonoBehaviour
     {
         Debug.Log("GM::Started Recording Ghost\n");
         isRecording = true;
+        PS.isRecording = true;
         currPath = new List<Vector3>();
         currInteractions = new List<bool>();
         currAnimations = new List<int>();
@@ -78,6 +79,7 @@ public class GhostManager : MonoBehaviour
     {
         Debug.Log("GM::Stopped Recording Ghost\n");
         isRecording = false;
+        PS.isRecording = false;
 
         GameObject ghostObject = Instantiate(ghostPrefab, startCoord, Quaternion.identity);
         Ghost ghost = ghostObject.GetComponent<Ghost>();

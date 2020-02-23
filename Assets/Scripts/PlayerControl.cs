@@ -9,12 +9,16 @@ public class PlayerControl : MonoBehaviour
     private string MouseMoveHorizontal = "Mouse Y";
     private string MouseMoveVertical = "Mouse X";
 
-    public float rotateRate = 1;
-    public float moveRate = 1;
+    public float rotateRate = 1f;
+    public float moveRate = 1f;
+    public float sprintMultiplier = 1.5f;
+    public float jumpMultiplier = 200f;
 
     Rigidbody Player;
     PlayerState PS;
     GhostManager GM;
+
+    private Vector3 moveDirection;
 
     // Start is called before the first frame update
     void Start()
@@ -31,30 +35,24 @@ public class PlayerControl : MonoBehaviour
         float moveAxisZ = -Input.GetAxis(KeyMoveHorizontal);
         float turnAxisX = Input.GetAxis(MouseMoveHorizontal);
         float turnAxisY = Input.GetAxis(MouseMoveVertical);
-
-        ApplyMoveInput(moveAxisX, moveAxisZ);
-        ApplyTurnInput(turnAxisX, turnAxisY);
-    }
-
-    private void ApplyMoveInput(float moveX, float moveZ)
-    {
-        transform.Translate(Vector3.forward * moveX * moveRate, Space.Self);
-        transform.Translate(Vector3.right * moveZ * moveRate / 3, Space.Self);
-
+       
         // Press shift to run
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            moveRate *= 1.5f;
-        }
+            moveRate *= sprintMultiplier;
+        } 
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            moveRate /= 1.5f;
+            moveRate /= sprintMultiplier;
         }
 
-        if ((Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.Space)) && !PS.GetState()) // X button
+        if ((Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.Space))) // X button
         {
-            PS.SetState(true);
-            Player.AddForce(transform.up * 200, ForceMode.Force);
+            // TODO: Fix this
+            if (Player.velocity.y == 0)
+            {
+                Player.AddForce(transform.up * jumpMultiplier, ForceMode.Acceleration);
+            }
         }
 
         if ((Input.GetKeyDown(KeyCode.JoystickButton2) || Input.GetKeyDown(KeyCode.Q))) // Circle button
@@ -69,8 +67,37 @@ public class PlayerControl : MonoBehaviour
             {
                 PS.onWilt.Invoke();
             }
+            else
+            {
+                Debug.Log("PC::Not recording chost atm!");
+            }
         }
 
+        if ((Input.GetKeyDown(KeyCode.F)))
+        {
+            PS.isInteracting = true;
+        }
+
+        if ((Input.GetKeyUp(KeyCode.F)))
+        {
+            PS.isInteracting = false;
+            PS.onInteract.Invoke();
+        }
+
+        moveDirection = new Vector3(moveAxisZ, 0, moveAxisX).normalized;
+        ApplyTurnInput(turnAxisX, turnAxisY);
+        ApplyMoveInput(moveAxisX, moveAxisZ);
+    }
+
+    private void FixedUpdate()
+    {
+        //Player.AddForce(moveDirection * moveRate, ForceMode.Acceleration);
+    }
+
+    private void ApplyMoveInput(float moveX, float moveZ)
+    {
+        transform.Translate(Vector3.forward * moveX * moveRate, Space.Self);
+        transform.Translate(Vector3.right * moveZ * moveRate / 3, Space.Self);
         //Player.AddForce(transform.forward * moveX * moveRate / 2, ForceMode.Force);
         //Player.AddForce(transform.right * moveZ * moveRate / 2, ForceMode.Force);
     }

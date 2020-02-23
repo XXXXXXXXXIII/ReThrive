@@ -24,16 +24,16 @@ public class Dirt : MonoBehaviour
 
     public void PlantSeed()
     {
-        if (currSeedCount == maxSeedCount)
+        if (seeds.Count == maxSeedCount)
         {
         }
         else
         {
-            currSeedCount++;
+            currSeedCount = seeds.Count;
         }
     }
 
-    public void WaterSoil()
+    public void WaterSoil() //TODO: Decide if we want this
     {
         if (currwaterCount == maxWaterCount)
         {
@@ -47,7 +47,7 @@ public class Dirt : MonoBehaviour
 
     public bool CanPlant()
     {
-        return currSeedCount < maxSeedCount;
+        return seeds.Count < maxSeedCount;
     }
 
     public bool CanWater()
@@ -62,9 +62,9 @@ public class Dirt : MonoBehaviour
             Debug.Log("Dirt::Player stepped on dirt");
             PS = collider.gameObject.GetComponent<PlayerState>();
             GM = collider.gameObject.GetComponent<GhostManager>();
-            if (currSeedCount < maxSeedCount)
+            PS.onDirt = true;
+            if (seeds.Count < maxSeedCount)
             {
-                PS.onDirt = true;
                 GM.duration = _ghostDuration;
                 PS.onPlant += PlantSeed;
                 PS.currDirt = this;

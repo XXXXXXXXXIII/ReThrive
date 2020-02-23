@@ -8,15 +8,15 @@ public class PlayerState : MonoBehaviour
 {
     public int health { get; set; }
     public int currAnimation { get; set; }
-    public bool isActive { get; set; }
+    public bool isActive { get; private set; }
     public bool isJumping { get; set; }
-
-    public bool onDirt { get; set; }
-    public Dirt currDirt { get; set; }
-
     public bool isInteracting { get; set; }
+    public bool isRecording { get; set; }
+    public bool onDirt { get; set; }
+    public bool onSeed { get; set; }
 
-    private Seed currSeed;
+    public Dirt currDirt { get; set; }
+    public Seed currSeed { get; set; }
     private List<Seed> seeds;
     
     private Puzzle currPuzzle;
@@ -58,6 +58,8 @@ public class PlayerState : MonoBehaviour
 
         onPlant += PlantSeed;
 
+        onInteract += OnInteract;
+
         seeds = new List<Seed>();
         seedCoords = new List<Vector3>();
         isJumping = false;
@@ -96,25 +98,25 @@ public class PlayerState : MonoBehaviour
 
     private void OnWilt()
     {
-        Debug.Log("PlayerState::Player wilted");
+        Debug.Log("PS::Player wilted");
         currSeed.ghost = GM.StopRecording();
         foreach (Seed s in seeds)
         {
-            s.ghost.Reset();
+            s.ghost?.Reset();
         }
         onSpawn.Invoke();
     }
 
     private void OnDie()
     {
-        Debug.Log("PlayerState::Player died");
+        Debug.Log("PS::Player died");
         if (GM.isRecording)
         {
             currSeed.ghost = GM.StopRecording();
         }
         foreach (Seed s in seeds)
         {
-            s.ghost.Reset();
+            s.ghost?.Reset();
         }
         onSpawn.Invoke();
     }
@@ -132,15 +134,19 @@ public class PlayerState : MonoBehaviour
 
     private void PlantSeed()
     {
-        if (onDirt)
+        if (onSeed)
+        {
+            GM.StartRecording();
+        }
+        else if (onDirt)
         {
             if (GM.isRecording)
             {
-                Debug.Log("PlayerState::Cannot plant: Currently Recording Ghost!");
+                Debug.Log("PS::Cannot plant: Currently Recording Ghost!");
             }
             else if (currDirt.CanPlant())
             {
-                Debug.Log("I can plant");
+                Debug.Log("PS::I can plant");
                 GameObject newSeed = Instantiate(seedPrefab, player.position, Quaternion.identity);
                 newSeed.transform.SetParent(currDirt.transform);
                 Seed seed = newSeed.GetComponent<Seed>();
@@ -153,19 +159,19 @@ public class PlayerState : MonoBehaviour
             }
             else
             {
-                Debug.Log("PlayerState::Cannot plant: Max seed reached!");
+                Debug.Log("PS::Cannot plant: Max seed reached!");
             }
         }
-        else Debug.Log("PlayerState::Cannot plant: Not on Dirt!");
+        else Debug.Log("PS::Cannot plant: Not on Dirt!");
     }
 
     private void OnSpawn()
     {
-        Debug.Log("PlayerState::Player spawned");
+        Debug.Log("PS::Player spawned");
         player.transform.position = spawnCoord;
         foreach (Seed s in seeds)
         {
-            s.ghost.Animate();
+            s.ghost?.Animate();
         }
 
         
@@ -179,5 +185,10 @@ public class PlayerState : MonoBehaviour
         //         newGhost.GetComponent<GhostController>().SetRoute(list);
         //     }
         // }
+    }
+
+    private void OnInteract()
+    {
+        Debug.Log("PS::Interact Triggered!");
     }
 }
