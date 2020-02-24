@@ -6,34 +6,23 @@ public class Collectable : MonoBehaviour
 {
     GameObject collectable;
     public bool isActive;
+    public CollectorPuzzle CP { get; set; }
 
     // Start is called before the first frame update
     void Start()
     {
-        collectable = this.transform.gameObject;
-        Debug.Log(collectable);
+        collectable = gameObject;
         isActive = true;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter(Collider collider)
     {
-        
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.tag == "Player")
+        if (collider.CompareTag("Player") || collider.CompareTag("Ghost"))
         {
             collectable.SetActive(false);
             this.isActive = false;
-            Debug.Log("Collectable collected!");
-        }
-        if (collision.collider.tag == "Ghost")
-        {
-            collectable.SetActive(false);
-            this.isActive = false;
-            Debug.Log("Collectable collected!");
+            CP.Collect();
+            Debug.Log("Collectable::Collectable collected!");
         }
     }
 
@@ -41,5 +30,11 @@ public class Collectable : MonoBehaviour
     {
         this.isActive = true;
         collectable.SetActive(true);
+    }
+
+    public void DisableCollectable()
+    {
+        this.isActive = false;
+        collectable.SetActive(false);
     }
 }
