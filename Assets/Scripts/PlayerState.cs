@@ -29,6 +29,7 @@ public class PlayerState : MonoBehaviour
     public UnityAction onDie;
     public UnityAction onSpawn;
     public UnityAction onInteract;
+    public UnityAction onInteractRelease;
     public UnityAction onPlant;
     public UnityAction onWilt;
 
@@ -76,6 +77,19 @@ public class PlayerState : MonoBehaviour
             isActive = true;
             onSpawn.Invoke();
         }
+    }
+
+    void FixedUpdate()
+    {
+        /*if (isInteracting)
+        {
+            onInteract.Invoke();
+        }
+        else
+        {
+            onInteractRelease.Invoke();
+        }
+        */
     }
 
     // When player collides with object

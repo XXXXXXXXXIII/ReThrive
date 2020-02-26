@@ -22,6 +22,10 @@ public class ButtonEvents : MonoBehaviour
     public uint requiredTriggerCount = 1;
     //public GameObject spawnObject;
 
+    public bool useAnimator = false;
+    public string animatorTrigger;
+    private Animator _animator;
+
     private Vector3 defaultCoord;
     private Quaternion defaultRot;
     private Vector3 defaultScale;
@@ -44,6 +48,11 @@ public class ButtonEvents : MonoBehaviour
 
         _translationTime = 0;
         _rotationTime = 0;
+
+        if (useAnimator)
+        {
+            _animator = gameObject.GetComponent<Animator>();
+        }
     }
 
     private void FixedUpdate()
@@ -158,5 +167,15 @@ public class ButtonEvents : MonoBehaviour
     public void StopRotate()
     {
         isRotating = false;
+    }
+
+    public void SetAnimatorTrigger()
+    {
+        _animator.SetTrigger(animatorTrigger);
+    }
+
+    public void UnsetAnimatorTrigger()
+    {
+        _animator.SetTrigger(animatorTrigger);
     }
 }
