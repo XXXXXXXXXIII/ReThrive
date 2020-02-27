@@ -66,6 +66,7 @@ public class PlayerState : MonoBehaviour
         currDirt = null;
         isActive = false;
         isInteracting = false;
+        //spawnCoord = transform.position;
     }
 
     // Update is called once per frame
@@ -91,6 +92,7 @@ public class PlayerState : MonoBehaviour
         }
         if (collision.collider.CompareTag("Death"))
         {
+            Debug.Log("PS::Player Died");
             onDie.Invoke();
         }
     }
