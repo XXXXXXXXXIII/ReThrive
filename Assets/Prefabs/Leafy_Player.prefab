@@ -2321,7 +2321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8afd07685e7b1da44b86a847ad4883c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ghostPrefab: {fileID: 1162243334171978359, guid: f060abf5e09032f4188772dd3b290633,
+  ghostPrefab: {fileID: 2237554384988992368, guid: 409052b05952b634bb67f73f1fb9131e,
     type: 3}
   minDuration: 10
 --- !u!114 &1729422887572314693
