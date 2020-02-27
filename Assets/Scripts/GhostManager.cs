@@ -19,7 +19,6 @@ public class GhostManager : MonoBehaviour
     private List<int> currAnimations;
     public bool isRecording { get; set; }
     
-    Rigidbody player;
     PlayerState PS;
 
     private Vector3 prevCoord, startCoord;
@@ -31,7 +30,6 @@ public class GhostManager : MonoBehaviour
         currPath = new List<Vector3>();
         currInteractions = new List<bool>();
         currAnimations = new List<int>();
-        player = GetComponent<Rigidbody>();
         PS = GetComponent<PlayerState>();
         isRecording = false;
         duration = minDuration;
@@ -48,8 +46,8 @@ public class GhostManager : MonoBehaviour
             else
             {
                 //Debug.Log("GM::Time Remaining: " + (10f - (Time.time - _startTime)));
-                currPath.Add(player.position - prevCoord);
-                prevCoord = player.position;
+                currPath.Add(transform.position - prevCoord);
+                prevCoord = transform.position;
                 currInteractions.Add(PS.isInteracting);
                 currAnimations.Add(PS.currAnimation);
             }
@@ -64,8 +62,8 @@ public class GhostManager : MonoBehaviour
         currPath = new List<Vector3>();
         currInteractions = new List<bool>();
         currAnimations = new List<int>();
-        prevCoord = player.position;
-        startCoord = player.position;
+        prevCoord = transform.position;
+        startCoord = transform.position;
         _startTime = Time.time;
     }
 

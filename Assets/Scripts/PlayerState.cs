@@ -15,6 +15,8 @@ public class PlayerState : MonoBehaviour
     public bool onDirt { get; set; }
     public bool onSeed { get; set; }
 
+    public bool spawnAtCurrCoord = false;
+
     public Dirt currDirt { get; set; }
     public Seed currSeed { get; set; }
     private List<Seed> seeds;
@@ -35,7 +37,8 @@ public class PlayerState : MonoBehaviour
 
     GhostManager GM;
     PlayerControl PC;
-    Rigidbody player;
+    //Rigidbody RB;
+    CharacterController CC;
 
     // Prefabs for ghost and seed
     public GameObject seedPrefab;
@@ -45,7 +48,12 @@ public class PlayerState : MonoBehaviour
     {
         GM = GetComponent<GhostManager>();
         PC = GetComponent<PlayerControl>();
-        player = GetComponent<Rigidbody>();
+        CC = GetComponent<CharacterController>();
+
+        if (spawnAtCurrCoord)
+        {
+            spawnCoord = transform.position;
+        }
 
         //GameObject puzzleObject = GameObject.Find("Puzzle");
         //currPuzzle = puzzleObject.GetComponent<Puzzle>();
@@ -93,24 +101,6 @@ public class PlayerState : MonoBehaviour
         */
     }
 
-    // When player collides with object
-    // Only put common collisions such as "Death" or "Dirt" here, don't add puzzle specific detectors.
-    // TODO: Remove this function
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.CompareTag("Platform"))
-        {
-            player.velocity = Vector3.zero;
-            player.angularVelocity = Vector3.zero;
-            isJumping = false;
-        }
-        if (collision.collider.CompareTag("Death"))
-        {
-            Debug.Log("PS::Player Died");
-            onDie.Invoke();
-        }
-    }
-
     private void OnWilt()
     {
         Debug.Log("PS::Player wilted");
@@ -145,12 +135,18 @@ public class PlayerState : MonoBehaviour
     public void SetState(bool jumping)
     {
         isJumping = jumping;
+
     }
 
     private void PlantSeed()
     {
         if (onSeed)
         {
+            foreach (Seed s in seeds)
+            {
+                s.ghost?.Reset();
+                s.ghost?.Animate();
+            }
             GM.StartRecording();
         }
         else if (onDirt)
@@ -162,7 +158,12 @@ public class PlayerState : MonoBehaviour
             else if (currDirt.CanPlant())
             {
                 Debug.Log("PS::I can plant");
-                GameObject newSeed = Instantiate(seedPrefab, player.position, Quaternion.identity);
+                foreach (Seed s in seeds)
+                {
+                    s.ghost?.Reset();
+                    s.ghost?.Animate();
+                }
+                GameObject newSeed = Instantiate(seedPrefab, transform.position, Quaternion.identity);
                 newSeed.transform.SetParent(currDirt.transform);
                 Seed seed = newSeed.GetComponent<Seed>();
                 seeds.Add(seed);
@@ -182,9 +183,9 @@ public class PlayerState : MonoBehaviour
 
     private void OnSpawn()
     {
-        Debug.Log("PS::Player spawned");
-        player.transform.position = spawnCoord;
-        player.transform.rotation = Quaternion.Euler(spawnRot);
+        Debug.Log("PS::Player spawned at " + spawnCoord);
+        transform.position = spawnCoord;
+        transform.rotation = Quaternion.Euler(spawnRot);
         foreach (Seed s in seeds)
         {
             s.ghost?.Animate();

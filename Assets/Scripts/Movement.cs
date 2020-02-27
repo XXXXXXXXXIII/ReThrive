@@ -7,20 +7,19 @@ public class Movement : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
     public float hopForce;
-    // public Rigidbody rigidbody;
-    public Transform player;
-    public CharacterController controller;
+    // Rigidbody rigidbody;
+    // Transform player;
+    CharacterController controller;
     private Vector3 moveDirection;
     public float gravityScale;
 
-    private float rotateRate = 1f;
 
     private string KeyMoveVertical = "Vertical";
     private string KeyMoveHorizontal = "Horizontal";
     private string MouseMoveHorizontal = "Mouse Y";
     private string MouseMoveVertical = "Mouse X";
 
-    public float moveRate = 1f;
+    public float rotateRate = 1f;
     public float sprintMultiplier = 1.5f;
     public float jumpMultiplier = 200f;
 
@@ -44,25 +43,7 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // rigidbody.velocity = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, rigidbody.velocity.y, Input.GetAxis("Vertical") * moveSpeed);
-
-        // if (Input.GetButtonDown("Jump")) {
-        //     rigidbody.velocity = new Vector3(rigidbody.velocity.x, jumpForce, rigidbody.velocity.z);
-
-        // }
-
-        //Debug.Log("Controller enabled: " + controller.enabled);
-
-        moveDirection = -Input.GetAxis("Horizontal") * moveSpeed * transform.right + new Vector3(0f, moveDirection.y, 0f) + -Input.GetAxis("Vertical") * moveSpeed * transform.forward;
-
-        if ((Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.Space))) // X button
-        {
-            // TODO: Fix this
-            if (Player.velocity.y == 0)
-            {
-                Player.AddForce(transform.up * jumpMultiplier, ForceMode.Acceleration);
-            }
-        }
+        moveDirection = Input.GetAxis("Horizontal") * moveSpeed * transform.right + new Vector3(0f, moveDirection.y, 0f) + Input.GetAxis("Vertical") * moveSpeed * transform.forward;
 
         if ((Input.GetKeyDown(KeyCode.JoystickButton2) || Input.GetKeyDown(KeyCode.Q))) // Circle button
         {
