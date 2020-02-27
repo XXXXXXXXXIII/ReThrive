@@ -168,7 +168,7 @@ public class PlayerState : MonoBehaviour
                     s.ghost?.Reset();
                     s.ghost?.Animate();
                 }
-                GameObject newSeed = Instantiate(seedPrefab, transform.position, Quaternion.identity);
+                GameObject newSeed = Instantiate(seedPrefab, transform.position + Vector3.up * 0.1f, Quaternion.identity);
                 newSeed.transform.SetParent(currDirt.transform);
                 Seed seed = newSeed.GetComponent<Seed>();
                 seeds.Add(seed);

@@ -40,8 +40,8 @@ public class Seed : MonoBehaviour
 
     public void OnInteract()
     {
-        ghost.Reset();
-        ghost.gameObject.GetComponent<Renderer>().enabled = false;
+        ghost.gameObject.transform.position = new Vector3(10000, 10000, 10000);
+        //ghost.gameObject.GetComponent<Renderer>().enabled = false;
         Destroy(ghost.gameObject, 0.5f);
         ghost = null;
         PS.currSeed = this;

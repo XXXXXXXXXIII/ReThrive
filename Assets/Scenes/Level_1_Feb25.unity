@@ -731,6 +731,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dirt
       objectReference: {fileID: 0}
+    - target: {fileID: 1445361139084110959, guid: fadc0cdcc81384e42bbe56d748bfb5ee,
+        type: 3}
+      propertyPath: maxSeedCount
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fadc0cdcc81384e42bbe56d748bfb5ee, type: 3}
 --- !u!1001 &1247251506
@@ -2446,35 +2451,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Leafy_Player
       objectReference: {fileID: 0}
-    - target: {fileID: 1729422887572314691, guid: fe09de1c1d6aea34baaba5bf21df6937,
-        type: 3}
-      propertyPath: m_StepOffset
-      value: 0.15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1729422887572314691, guid: fe09de1c1d6aea34baaba5bf21df6937,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1729422887572314692, guid: fe09de1c1d6aea34baaba5bf21df6937,
-        type: 3}
-      propertyPath: ghostPrefab
-      value: 
-      objectReference: {fileID: 1162243334171978359, guid: f060abf5e09032f4188772dd3b290633,
-        type: 3}
-    - target: {fileID: 1729422887572314693, guid: fe09de1c1d6aea34baaba5bf21df6937,
-        type: 3}
-      propertyPath: seedPrefab
-      value: 
-      objectReference: {fileID: 2763290920348985721, guid: 8c8868548e297b4448e27d87f3e25e29,
-        type: 3}
-    - target: {fileID: 1729422887572314693, guid: fe09de1c1d6aea34baaba5bf21df6937,
-        type: 3}
-      propertyPath: spawnAtCurrCoord
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1729422887572314694, guid: fe09de1c1d6aea34baaba5bf21df6937, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe09de1c1d6aea34baaba5bf21df6937, type: 3}
 --- !u!4 &2066667505082969663
 Transform:
