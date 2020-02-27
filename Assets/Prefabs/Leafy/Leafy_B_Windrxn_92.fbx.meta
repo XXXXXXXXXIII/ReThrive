@@ -1,11 +1,163 @@
 fileFormatVersion: 2
 guid: 061a2d89c195b244aa4cec0d006fdce7
 ModelImporter:
-  serializedVersion: 26
-  internalIDToNameTable:
-  - first:
-      74: 1827226128182048838
-    second: Leafy_Idle_2
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: ikHandle_tip
+    100002: joint1
+    100004: joint10
+    100006: joint11
+    100008: joint12
+    100010: joint2
+    100012: joint3
+    100014: joint4
+    100016: joint41
+    100018: joint42
+    100020: joint43
+    100022: joint44
+    100024: joint45
+    100026: joint46
+    100028: joint47
+    100030: joint48
+    100032: joint49
+    100034: joint5
+    100036: joint50
+    100038: joint51
+    100040: joint52
+    100042: joint53
+    100044: joint54
+    100046: joint55
+    100048: joint56
+    100050: joint57
+    100052: joint58
+    100054: joint59
+    100056: joint6
+    100058: joint60
+    100060: joint61
+    100062: joint62
+    100064: joint63
+    100066: joint64
+    100068: joint65
+    100070: joint66
+    100072: joint67
+    100074: joint68
+    100076: joint69
+    100078: joint7
+    100080: joint70
+    100082: joint71
+    100084: joint72
+    100086: joint73
+    100088: joint74
+    100090: joint75
+    100092: joint76
+    100094: joint77
+    100096: joint78
+    100098: joint79
+    100100: joint8
+    100102: joint80
+    100104: joint81
+    100106: joint82
+    100108: joint83
+    100110: joint84
+    100112: joint85
+    100114: joint86
+    100116: joint87
+    100118: joint88
+    100120: joint89
+    100122: joint9
+    100124: joint90
+    100126: joint91
+    100128: joint92
+    100130: joint93
+    100132: joint94
+    100134: //RootNode
+    100136: Leafy_Base
+    100138: Leafy_Mesh
+    100140: Leafy_Rig
+    100142: Leafy_Shoulders
+    100144: Leafy_Tip
+    100146: Leafy_Top
+    100148: transform1
+    400000: ikHandle_tip
+    400002: joint1
+    400004: joint10
+    400006: joint11
+    400008: joint12
+    400010: joint2
+    400012: joint3
+    400014: joint4
+    400016: joint41
+    400018: joint42
+    400020: joint43
+    400022: joint44
+    400024: joint45
+    400026: joint46
+    400028: joint47
+    400030: joint48
+    400032: joint49
+    400034: joint5
+    400036: joint50
+    400038: joint51
+    400040: joint52
+    400042: joint53
+    400044: joint54
+    400046: joint55
+    400048: joint56
+    400050: joint57
+    400052: joint58
+    400054: joint59
+    400056: joint6
+    400058: joint60
+    400060: joint61
+    400062: joint62
+    400064: joint63
+    400066: joint64
+    400068: joint65
+    400070: joint66
+    400072: joint67
+    400074: joint68
+    400076: joint69
+    400078: joint7
+    400080: joint70
+    400082: joint71
+    400084: joint72
+    400086: joint73
+    400088: joint74
+    400090: joint75
+    400092: joint76
+    400094: joint77
+    400096: joint78
+    400098: joint79
+    400100: joint8
+    400102: joint80
+    400104: joint81
+    400106: joint82
+    400108: joint83
+    400110: joint84
+    400112: joint85
+    400114: joint86
+    400116: joint87
+    400118: joint88
+    400120: joint89
+    400122: joint9
+    400124: joint90
+    400126: joint91
+    400128: joint92
+    400130: joint93
+    400132: joint94
+    400134: //RootNode
+    400136: Leafy_Base
+    400138: Leafy_Mesh
+    400140: Leafy_Rig
+    400142: Leafy_Shoulders
+    400144: Leafy_Tip
+    400146: Leafy_Top
+    400148: transform1
+    2100000: lambert1
+    4300000: Leafy_Mesh
+    7400000: Leafy_Idle_2
+    9500000: //RootNode
+    13700000: Leafy_Mesh
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -37,7 +189,6 @@ ModelImporter:
     - serializedVersion: 16
       name: Leafy_Idle_2
       takeName: Take 001
-      internalID: 0
       firstFrame: 1
       lastFrame: 92
       wrapMode: 0
@@ -70,7 +221,6 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
-    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -78,19 +228,18 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
+    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
-    skinWeightsMode: 0
-    maxBonesPerVertex: 4
-    minBoneWeight: 0.001
-    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -99,11 +248,10 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
-  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 3
+    serializedVersion: 2
     human: []
     skeleton: []
     armTwist: 0.5
@@ -113,7 +261,6 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
-    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
