@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useTranslation: 1
+  isStepped: 0
   translationOffset: {x: 14, y: 0, z: 0}
   translationSpeed: 0.5
   translationCurve:
@@ -341,8 +342,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2054547, y: 0.07002634, z: 0.2388562}
-  m_Center: {x: 0.0097652795, y: 0.05091365, z: 0.0043022274}
+  m_Size: {x: 0.1842045, y: 0.02621994, z: 0.2080595}
+  m_Center: {x: 0.0108934315, y: 0.064834595, z: 0.0064293863}
 --- !u!1 &5745680158115581029
 GameObject:
   m_ObjectHideFlags: 0
@@ -570,6 +571,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useTranslation: 1
+  isStepped: 0
   translationOffset: {x: -3.4, y: 0, z: -14}
   translationSpeed: 0.3
   translationCurve:
@@ -630,8 +632,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.42976698, y: 0.27673647, z: 0.19568267}
-  m_Center: {x: 0.15939088, y: -0.044327166, z: -0.018849868}
+  m_Size: {x: 0.40205818, y: 0.04330601, z: 0.16834615}
+  m_Center: {x: 0.15469553, y: 0.05271399, z: -0.015630253}
 --- !u!1001 &1260896054935469776
 PrefabInstance:
   m_ObjectHideFlags: 0
