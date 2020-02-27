@@ -63,6 +63,7 @@
      <Compile Include="Assets\Scripts\PlayerControl.cs" />
      <Compile Include="Assets\Scripts\PlayerState.cs" />
      <Compile Include="Assets\Scripts\Seed.cs" />
+     <Compile Include="Assets\Scripts\ShowContextPrompt.cs" />
      <Compile Include="Assets\Scripts\StreamVideo.cs" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
