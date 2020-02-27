@@ -792,7 +792,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 2.3510604e-38, z: 7.9639e-41, w: 1.55152e-40}
+  m_BoundingSphereOverride: {x: 0.109375, y: 0.0390625, z: 0.03125, w: -0.0390625}
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
@@ -1047,7 +1047,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "press O to plant seed\npress \u25B2 to wilt "
+  m_Text: "press O to plant seed\npress \u25B2 to wilt \nstanding on mushrooms move
+    platforms\nwhite circles are checkpoints"
 --- !u!222 &376109790
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1055,7 +1056,7 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 376109787}
-  m_CullTransparentMesh: 0
+  m_CullTransparentMesh: 1
 --- !u!1001 &392018680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -44371,6 +44372,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Leafy_Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 1729422887572314690, guid: fe09de1c1d6aea34baaba5bf21df6937,
+        type: 3}
+      propertyPath: rotateRate
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 1729422887585878496, guid: fe09de1c1d6aea34baaba5bf21df6937,
         type: 3}
