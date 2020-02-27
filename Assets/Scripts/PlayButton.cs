@@ -10,7 +10,8 @@ public class PlayButton : MonoBehaviour
     {
         if (Input.anyKey)
         {
-            SceneManager. LoadScene("Level_1_Feb25"); // whatever our first scene is falled
+            // whatever our first scene is called
+            SceneManager. LoadScene("Level1Tester"); 
         }
     }
 }

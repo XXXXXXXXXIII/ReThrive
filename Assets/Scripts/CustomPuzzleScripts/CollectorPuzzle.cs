@@ -9,8 +9,10 @@ public class CollectorPuzzle : MonoBehaviour
     List<Collectable> collectables;
 
     private float startTime;
-    private bool isRunning;
-    private int totalObjects;
+    private bool _isRunning;
+    public bool isSolved { get; private set; }
+    private int _totalObjects;
+    private int _collected;
 
     // Max allowed time
     public float allottedTime = 30f;
@@ -18,14 +20,22 @@ public class CollectorPuzzle : MonoBehaviour
     void Start()
     {
         collectables = new List<Collectable>(GetComponentsInChildren<Collectable>());
+        foreach (Collectable c in collectables)
+        {
+            c.CP = this;
+            c.DisableCollectable();
+        }
         startTime = -allottedTime;
-        isRunning = false;
+        _isRunning = false;
+        isSolved = false;
+        _totalObjects = collectables.Count;
+        _collected = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!isRunning)
+        if (!_isRunning)
         {
             return;
         }
@@ -33,57 +43,65 @@ public class CollectorPuzzle : MonoBehaviour
         if (startTime + allottedTime < Time.time)
         {
             StopPuzzle();
-            isRunning = false;
-            Debug.Log("Mission Failed");
+            Debug.Log("CollectorPuzzle::Puzzle Failed");
         }
-        else
+        else if(_collected == _totalObjects)
         {
-            totalObjects = collectables.Count;
-            foreach (Collectable o in collectables)
-            {
-                if (o.isActive == false)
-                {
-                    totalObjects--;
-                    if (totalObjects == 0)
-                    {
-                        Debug.Log("Mission Complete!");
-                        StopPuzzle();
-                        return;
-                    }
-                }
-            }
+            Debug.Log("CollectorPuzzle::Puzzle Complete!");
+            StopPuzzle();
+            isSolved = true;
         }
     }
 
-    public void InitPuzzle()
+    public void Collect()
     {
+        _collected++;
+    }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            StartPuzzle();
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            ResetPuzzle();
+        }
     }
 
     public void StartPuzzle()
     {
-        Debug.Log("Mission Start!");
-        Debug.Log("Total objects: " + totalObjects);
+        Debug.Log("CollectorPuzzle::Puzzle Start!");
+        Debug.Log("CollectorPuzzle::Total objects: " + _totalObjects);
+        foreach (Collectable c in collectables)
+        {
+            c.EnableCollectable();
+        }
         startTime = Time.time;
-        totalObjects = collectables.Count;
-        isRunning = true;
+        _isRunning = true;
+        _collected = 0;
     }
 
     public void ResetPuzzle()
     {
-        Debug.Log("Puzzle Reset!");
-        isRunning = false;
+        Debug.Log("CollectorPuzzle::Puzzle Reset!");
+        _isRunning = false;
         startTime = Time.time;
-        totalObjects = collectables.Count;
+        _collected = 0;
         foreach (Collectable o in collectables)
         {
-            o.EnableCollectable();
+            o.DisableCollectable();
         }
     }
 
     public void StopPuzzle()
     {
-        isRunning = false;
+        _isRunning = false;
     }
 
     public void DestroyPuzzle()
