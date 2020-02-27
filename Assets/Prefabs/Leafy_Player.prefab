@@ -2225,7 +2225,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1729422887572177224}
   - component: {fileID: 1729422887581740832}
-  - component: {fileID: 1729422887572314694}
   - component: {fileID: 1729422887572314691}
   - component: {fileID: 1729422887572314690}
   - component: {fileID: 1729422887572314692}
@@ -2264,7 +2263,7 @@ Animator:
   m_GameObject: {fileID: 1729422887572217192}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b801479b8ab62c04eb1180f6b6a62571, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ed14bc49d561c6249b9ba73b812e10d0, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -2273,22 +2272,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!54 &1729422887572314694
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1729422887572217192}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 1
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 0
 --- !u!143 &1729422887572314691
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2303,7 +2286,7 @@ CharacterController:
   m_Height: 0.7
   m_Radius: 0.2
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
+  m_StepOffset: 0.15
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.42, z: 0}
@@ -2338,7 +2321,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8afd07685e7b1da44b86a847ad4883c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ghostPrefab: {fileID: 100136, guid: b801479b8ab62c04eb1180f6b6a62571, type: 3}
+  ghostPrefab: {fileID: 1162243334171978359, guid: f060abf5e09032f4188772dd3b290633,
+    type: 3}
   minDuration: 10
 --- !u!114 &1729422887572314693
 MonoBehaviour:
@@ -2352,9 +2336,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f36426ffce4774093ee40c6c018c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnAtCurrCoord: 0
   spawnCoord: {x: 3.35, y: 20.34, z: 15.6}
   spawnRot: {x: 0, y: 180, z: 0}
-  seedPrefab: {fileID: 100000, guid: eb9bcdaa294e75841aae9715f1768f35, type: 3}
+  seedPrefab: {fileID: 2763290920348985721, guid: 8c8868548e297b4448e27d87f3e25e29,
+    type: 3}
 --- !u!1 &1729422887572217194
 GameObject:
   m_ObjectHideFlags: 0
