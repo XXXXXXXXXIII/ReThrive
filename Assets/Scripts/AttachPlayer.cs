@@ -6,16 +6,18 @@ public class AttachPlayer : MonoBehaviour
 {
     void OnTriggerEnter (Collider collider)
     {
-        if (collider.CompareTag("Player"))
+        if (collider.CompareTag("Player") || collider.CompareTag("Ghost1"))
         {
+            Debug.Log("AP::Attached player");
             collider.gameObject.transform.parent = transform;
         }
     }
 
     void OnTriggerExit(Collider collider)
     {
-        if (collider.CompareTag("Player"))
+        if (collider.CompareTag("Player") || collider.CompareTag("Ghost1"))
         {
+            Debug.Log("AP::Disattached player");
             collider.gameObject.transform.parent = null;
         }
     }

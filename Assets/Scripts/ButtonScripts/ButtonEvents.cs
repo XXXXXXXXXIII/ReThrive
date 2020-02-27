@@ -5,6 +5,7 @@ using UnityEngine;
 public class ButtonEvents : MonoBehaviour
 {
     public bool useTranslation = false;
+    public bool isStepped = false;
     public Vector3 translationOffset;
     public float translationSpeed = 1f;
     public AnimationCurve translationCurve;
@@ -70,16 +71,41 @@ public class ButtonEvents : MonoBehaviour
 
     private void UpdateTranslation()
     {
-        if (isTranslating && (requiredTriggerCount <= 1 || triggerCount >= requiredTriggerCount))
+        if (isTranslating)
         {
-            if (Vector3.Distance(defaultCoord, gameObject.transform.position) < Vector3.Distance(defaultCoord, defaultCoord + translationOffset))
+            if (requiredTriggerCount <= 1 || triggerCount >= requiredTriggerCount)
             {
-                transform.Translate(translationOffset.normalized * Mathf.Lerp(0.00f, translationSpeed, translationCurve.Evaluate(_translationTime)), Space.World);
-                _translationTime += Time.fixedDeltaTime;
+                if (Vector3.Distance(defaultCoord, defaultCoord + translationOffset) - Vector3.Distance(defaultCoord, gameObject.transform.position) > 0.2)
+                {
+                    transform.Translate(translationOffset.normalized * Mathf.Lerp(0.00f, translationSpeed, translationCurve.Evaluate(_translationTime)), Space.World);
+                    _translationTime += Time.fixedDeltaTime;
+                }
+                else if (Vector3.Distance(defaultCoord, gameObject.transform.position) -  Vector3.Distance(defaultCoord, defaultCoord + translationOffset) > 0.2)
+                {
+                    transform.Translate(-translationOffset.normalized * Mathf.Lerp(0.00f, translationSpeed, translationCurve.Evaluate(_translationTime)), Space.World);
+                    _translationTime -= Time.fixedDeltaTime;
+                }
+                else
+                {
+                    transform.position = defaultCoord + translationOffset; //TODO: I hope the translate won't overshoot the dest coord too much
+                }
             }
-            else
+            else if (isStepped)
             {
-                transform.position = defaultCoord + translationOffset; //TODO: I hope the translate won't overshoot the dest coord too much
+                if ((Vector3.Distance(defaultCoord, defaultCoord + translationOffset) / (triggerCount + 1)) - Vector3.Distance(defaultCoord, gameObject.transform.position) > 0.2)
+                {
+                    transform.Translate(translationOffset.normalized * Mathf.Lerp(0.00f, translationSpeed, translationCurve.Evaluate(_translationTime)), Space.World);
+                    _translationTime += Time.fixedDeltaTime;
+                }
+                else if (Vector3.Distance(defaultCoord, gameObject.transform.position) - Vector3.Distance(defaultCoord, defaultCoord + translationOffset) / (triggerCount + 1) > 0.2)
+                {
+                    transform.Translate(-translationOffset.normalized * Mathf.Lerp(0.00f, translationSpeed, translationCurve.Evaluate(_translationTime)), Space.World);
+                    _translationTime -= Time.fixedDeltaTime;
+                }
+                else
+                {
+                    transform.position = defaultCoord + (translationOffset / (triggerCount + 1)); //TODO: I hope the translate won't overshoot the dest coord too much
+                }
             }
         }
         else if (resetOnRelease) //TODO: Prevent running once set in place
@@ -152,11 +178,16 @@ public class ButtonEvents : MonoBehaviour
     public void StartTranslate()
     {
         isTranslating = true;
+        triggerCount++;
     }
 
     public void StopTranslate()
     {
-        isTranslating = false;
+        triggerCount--;
+        if (triggerCount <= 0)
+        {
+            isTranslating = false;
+        }
     }
 
     public void StartRotate()
