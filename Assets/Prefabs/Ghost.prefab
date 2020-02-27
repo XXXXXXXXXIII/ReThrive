@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1162243334171978352}
   - component: {fileID: -8559156199829630439}
   - component: {fileID: -7464337389448505545}
+  - component: {fileID: 8042710605830142787}
   m_Layer: 0
   m_Name: Ghost
   m_TagString: Ghost
@@ -89,7 +90,7 @@ CapsuleCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1162243334171978359}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   m_Radius: 0.5
   m_Height: 2
@@ -106,11 +107,11 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 1
   m_AngularDrag: 0
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
-  m_Interpolate: 1
+  m_Interpolate: 0
   m_Constraints: 112
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &-7464337389448505545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,7 +124,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 419a0ed2dc3efc84f9255a4d9949f17f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 5
   health: 0
   isLoop: 1
   isInteracting: 1
+--- !u!143 &8042710605830142787
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1162243334171978359}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 0.5
+  m_SlopeLimit: 45
+  m_StepOffset: 0.15
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 0, z: 0}
