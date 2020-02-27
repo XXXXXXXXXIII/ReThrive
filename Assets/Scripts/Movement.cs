@@ -26,6 +26,7 @@ public class Movement : MonoBehaviour
     Rigidbody Player;
     PlayerState PS;
     GhostManager GM;
+    Animator AC;
 
     
     // Start is called before the first frame update
@@ -36,6 +37,8 @@ public class Movement : MonoBehaviour
         Player = GetComponent<Rigidbody>();
         PS = GetComponent<PlayerState>();
         GM = GetComponent<GhostManager>();
+        AC = GetComponent<Animator>();
+        AC.SetBool("isMoving", false);
     }
 
     private bool wasGrounded;
@@ -88,10 +91,14 @@ public class Movement : MonoBehaviour
 
         if (controller.isGrounded) {
             moveDirection.y = 0f;
-            if (Input.GetButtonDown("Jump")) {
+            AC.SetBool("isMoving", false);
+            if (Input.GetButtonDown("Jump"))
+            {
                 moveDirection.y = jumpForce;
-            } else if (Input.GetAxis("Horizontal") != 0f || Input.GetAxis("Vertical") != 0f) {
+            }
+            else if (Input.GetAxis("Horizontal") != 0f || Input.GetAxis("Vertical") != 0f) {
                 moveDirection.y = hopForce;
+                AC.SetBool("isMoving", true);
             }
         }
         

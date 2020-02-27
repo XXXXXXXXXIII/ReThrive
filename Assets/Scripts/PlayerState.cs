@@ -39,6 +39,7 @@ public class PlayerState : MonoBehaviour
     PlayerControl PC;
     //Rigidbody RB;
     CharacterController CC;
+    Animator AC;
 
     // Prefabs for ghost and seed
     public GameObject seedPrefab;
@@ -49,6 +50,7 @@ public class PlayerState : MonoBehaviour
         GM = GetComponent<GhostManager>();
         PC = GetComponent<PlayerControl>();
         CC = GetComponent<CharacterController>();
+        AC = GetComponent<Animator>();
 
         if (spawnAtCurrCoord)
         {
@@ -109,6 +111,7 @@ public class PlayerState : MonoBehaviour
         {
             s.ghost?.Reset();
         }
+        AC.SetTrigger("OnWilt");
         onSpawn.Invoke();
     }
 
@@ -123,6 +126,8 @@ public class PlayerState : MonoBehaviour
         {
             s.ghost?.Reset();
         }
+        AC.SetTrigger("OnWilt");
+
         onSpawn.Invoke();
     }
 
@@ -163,7 +168,7 @@ public class PlayerState : MonoBehaviour
                     s.ghost?.Reset();
                     s.ghost?.Animate();
                 }
-                GameObject newSeed = Instantiate(seedPrefab, transform.position, Quaternion.identity);
+                GameObject newSeed = Instantiate(seedPrefab, transform.position + Vector3.up * 0.1f, Quaternion.identity);
                 newSeed.transform.SetParent(currDirt.transform);
                 Seed seed = newSeed.GetComponent<Seed>();
                 seeds.Add(seed);
@@ -190,8 +195,9 @@ public class PlayerState : MonoBehaviour
         {
             s.ghost?.Animate();
         }
+        AC.SetTrigger("OnSpawn");
 
-        
+
         //currPuzzle.StartPuzzle();
         // if (GM.allGhost.Count > 0)
         // {

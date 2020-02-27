@@ -17,6 +17,7 @@ public class PlayerControl : MonoBehaviour
     Rigidbody Player;
     PlayerState PS;
     GhostManager GM;
+    Animator AC;
 
     private Vector3 moveDirection;
 
@@ -26,6 +27,7 @@ public class PlayerControl : MonoBehaviour
         Player = GetComponent<Rigidbody>();
         PS = GetComponent<PlayerState>();
         GM = GetComponent<GhostManager>();
+        AC = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -44,15 +46,6 @@ public class PlayerControl : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             moveRate /= sprintMultiplier;
-        }
-
-        if ((Input.GetKeyDown(KeyCode.JoystickButton1) || Input.GetKeyDown(KeyCode.Space))) // X button
-        {
-            // TODO: Fix this
-            if (Player.velocity.y == 0)
-            {
-                Player.AddForce(transform.up * jumpMultiplier, ForceMode.Acceleration);
-            }
         }
 
         if ((Input.GetKeyDown(KeyCode.JoystickButton2) || Input.GetKeyDown(KeyCode.Q))) // Circle button
