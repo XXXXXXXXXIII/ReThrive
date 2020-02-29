@@ -7,6 +7,9 @@ using UnityEngine.Events;
 public class PlayerState : MonoBehaviour
 {
     public int health { get; set; }
+    public float sunMeter { get; set; }
+    public float waterMeter { get; set; }
+    public float wiltMeter { get; set; }
     public int currAnimation { get; set; }
     public bool isActive { get; private set; }
     public bool isJumping { get; set; }
@@ -14,9 +17,12 @@ public class PlayerState : MonoBehaviour
     public bool isRecording { get; set; }
     public bool onDirt { get; set; }
     public bool onSeed { get; set; }
+    public bool inSun { get; set; }
+    public bool inWater { get; set; }
 
     public bool spawnAtCurrCoord = false;
 
+    public float plantCost = 0.2f;
     public Dirt currDirt { get; set; }
     public Seed currSeed { get; set; }
     private List<Seed> seeds;
@@ -78,6 +84,9 @@ public class PlayerState : MonoBehaviour
         isActive = false;
         isInteracting = false;
         //spawnCoord = transform.position;
+        sunMeter = 1f;
+        waterMeter = 1f;
+        wiltMeter = 1f;
     }
 
     // Update is called once per frame
@@ -166,6 +175,8 @@ public class PlayerState : MonoBehaviour
             else if (currDirt.CanPlant())
             {
                 Debug.Log("PS::I can plant");
+                waterMeter -= plantCost;
+                sunMeter -= plantCost;
                 foreach (Seed s in seeds)
                 {
                     s.ghost?.Reset();

@@ -25,7 +25,7 @@ public class GhostManager : MonoBehaviour
 
     private Vector3 prevCoord, startCoord;
     private Quaternion prevRot, startRot;
-    private float _startTime;
+    public float startTime { get; private set; }
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +44,7 @@ public class GhostManager : MonoBehaviour
     {
         if (isRecording)
         {
-            if (Time.time - _startTime >= duration)
+            if (Time.time - startTime >= duration)
             {
                 PS.onWilt.Invoke();
             }
@@ -75,7 +75,7 @@ public class GhostManager : MonoBehaviour
         prevRot = transform.rotation;
         startCoord = transform.position;
         startRot = transform.rotation;
-        _startTime = Time.time;
+        startTime = Time.time;
     }
 
     public void PauseRecording()
