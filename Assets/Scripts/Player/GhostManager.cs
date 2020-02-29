@@ -64,7 +64,8 @@ public class GhostManager : MonoBehaviour
     public void StartRecording()
     {
         Debug.Log("GM::Started Recording Ghost\n");
-        HUD.SetText("InteractionPrompt", "Press Q to wilt");
+        HUD.ClearPrompt();
+        HUD.PushPrompt("Press Q to wilt");
         isRecording = true;
         PS.isRecording = true;
         currPath = new List<Vector3>();
@@ -87,7 +88,7 @@ public class GhostManager : MonoBehaviour
     public Ghost StopRecording()
     {
         Debug.Log("GM::Stopped Recording Ghost\n");
-        HUD.SetText("InteractionPrompt", "");
+        HUD.ClearPrompt();
         isRecording = false;
         PS.isRecording = false;
 

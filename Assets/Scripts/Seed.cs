@@ -6,6 +6,8 @@ public class Seed : MonoBehaviour
 {
     public Ghost ghost { get; set; }
 
+    public string PromptText = "Press X or E to replant seed";
+
     private PlayerState PS;
     private HeadsUpDisplay HUD;
 
@@ -24,7 +26,7 @@ public class Seed : MonoBehaviour
             if (!PS.isRecording)
             {
                 Debug.Log("Seed::Player touching seed");
-                HUD.SetText("InteractionPrompt", "Press X or E to replant seed");
+                HUD.PushPrompt(PromptText);
                 PS.onPlant += OnInteract;
                 PS.onSeed = true;
             }
@@ -35,7 +37,7 @@ public class Seed : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            HUD.SetText("InteractionPrompt", "");
+            HUD.PopPromptOnMatch(PromptText);
             Debug.Log("Seed::Player not touching seed");
             PS.onSeed = false;
             PS.onPlant -= OnInteract;
