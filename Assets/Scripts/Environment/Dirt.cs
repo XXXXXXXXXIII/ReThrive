@@ -10,6 +10,8 @@ public class Dirt : MonoBehaviour
     public int maxSeedCount = 5;
     public float defaultGhostDuration = 10f;
 
+    public string PromptText = "Press X or E to plant Seed";
+
     public List<Seed> seeds { get; set; }
 
     PlayerState PS;
@@ -53,11 +55,6 @@ public class Dirt : MonoBehaviour
         return seeds.Count < maxSeedCount;
     }
 
-    public bool CanWater()
-    {
-        return currwaterCount < maxWaterCount;
-    }
-
     private void OnTriggerEnter(Collider collider)
     {
         if (collider.CompareTag("Player"))
@@ -66,13 +63,13 @@ public class Dirt : MonoBehaviour
             PS = collider.gameObject.GetComponent<PlayerState>();
             GM = collider.gameObject.GetComponent<GhostManager>();
             HUD = collider.gameObject.GetComponent<HeadsUpDisplay>();
-            HUD.SetText("InteractionPrompt", "Press X or E to plant Seed");
             PS.onDirt = true;
-            if (seeds.Count < maxSeedCount)
+            PS.onPlant += PlantSeed;
+            if(!GM.isRecording)
             {
-                GM.duration = _ghostDuration;
-                PS.onPlant += PlantSeed;
+                HUD.PushPrompt(PromptText);
                 PS.currDirt = this;
+                GM.duration = _ghostDuration;
             }
         }
     }
@@ -82,7 +79,7 @@ public class Dirt : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             Debug.Log("Dirt::Player left dirt");
-            HUD.SetText("InteractionPrompt", "");
+            HUD.PopPromptOnMatch(PromptText);
             PS.onDirt = false;
             GM.duration = GM.minDuration;
             PS.onPlant -= PlantSeed;

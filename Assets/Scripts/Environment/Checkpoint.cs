@@ -9,6 +9,7 @@ public class Checkpoint : MonoBehaviour
 
     private Vector3 spawnCoord;
     private PlayerState PS;
+    private GhostManager GM;
 
     private void Start()
     {
@@ -21,7 +22,8 @@ public class Checkpoint : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PS = other.gameObject.GetComponent<PlayerState>();
-            if (!PS.isRecording)
+            GM = other.gameObject.GetComponent<GhostManager>();
+            if (!GM.isRecording)
             {
                 Debug.Log("CheckPoint::New Spawn Coord: " + this.spawnCoord.ToString());
                 PS.spawnCoord = spawnCoord;

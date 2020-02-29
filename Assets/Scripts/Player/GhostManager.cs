@@ -25,7 +25,7 @@ public class GhostManager : MonoBehaviour
 
     private Vector3 prevCoord, startCoord;
     private Quaternion prevRot, startRot;
-    private float _startTime;
+    public float startTime { get; private set; }
 
     // Start is called before the first frame update
     void Start()
@@ -44,7 +44,7 @@ public class GhostManager : MonoBehaviour
     {
         if (isRecording)
         {
-            if (Time.time - _startTime >= duration)
+            if (Time.time - startTime >= duration)
             {
                 PS.onWilt.Invoke();
             }
@@ -64,9 +64,9 @@ public class GhostManager : MonoBehaviour
     public void StartRecording()
     {
         Debug.Log("GM::Started Recording Ghost\n");
-        HUD.SetText("InteractionPrompt", "Press Q to wilt");
+        HUD.ClearPrompt();
+        HUD.PushPrompt("Press Q to wilt");
         isRecording = true;
-        PS.isRecording = true;
         currPath = new List<Vector3>();
         currInteractions = new List<bool>();
         currAnimations = new List<int>();
@@ -75,7 +75,7 @@ public class GhostManager : MonoBehaviour
         prevRot = transform.rotation;
         startCoord = transform.position;
         startRot = transform.rotation;
-        _startTime = Time.time;
+        startTime = Time.time;
     }
 
     public void PauseRecording()
@@ -87,9 +87,8 @@ public class GhostManager : MonoBehaviour
     public Ghost StopRecording()
     {
         Debug.Log("GM::Stopped Recording Ghost\n");
-        HUD.SetText("InteractionPrompt", "");
+        HUD.ClearPrompt();
         isRecording = false;
-        PS.isRecording = false;
 
         GameObject ghostObject = Instantiate(ghostPrefab, startCoord, startRot);
         Ghost ghost = ghostObject.GetComponent<Ghost>();

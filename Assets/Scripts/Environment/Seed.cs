@@ -6,8 +6,11 @@ public class Seed : MonoBehaviour
 {
     public Ghost ghost { get; set; }
 
+    public string PromptText = "Press X or E to replant seed";
+
     private PlayerState PS;
     private HeadsUpDisplay HUD;
+    private GhostManager GM;
 
     private void Start()
     {
@@ -21,10 +24,11 @@ public class Seed : MonoBehaviour
             //TODO: Prompt player that they can modify the ghost in seed
             PS = other.GetComponent<PlayerState>();
             HUD = other.GetComponent<HeadsUpDisplay>();
-            if (!PS.isRecording)
+            GM = other.GetComponent<GhostManager>();
+            if (!GM.isRecording)
             {
                 Debug.Log("Seed::Player touching seed");
-                HUD.SetText("InteractionPrompt", "Press X or E to replant seed");
+                HUD.PushPrompt(PromptText);
                 PS.onPlant += OnInteract;
                 PS.onSeed = true;
             }
@@ -35,7 +39,7 @@ public class Seed : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            HUD.SetText("InteractionPrompt", "");
+            HUD.PopPromptOnMatch(PromptText);
             Debug.Log("Seed::Player not touching seed");
             PS.onSeed = false;
             PS.onPlant -= OnInteract;

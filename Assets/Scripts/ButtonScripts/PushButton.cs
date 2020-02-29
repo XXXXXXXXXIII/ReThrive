@@ -8,7 +8,11 @@ public class PushButton : MonoBehaviour
     public UnityEvent OnButtonPress;
     public UnityEvent OnButtonRelease;
 
+    PlayerState PS;
+    HeadsUpDisplay HUD;
+    
     private int triggerCount;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -18,11 +22,16 @@ public class PushButton : MonoBehaviour
 
     private void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag("Player") || collider.CompareTag("Ghost"))
+        if (collider.CompareTag("Player"))
         {
-            PlayerState PS = collider.gameObject.GetComponent<PlayerState>();
+            PS = collider.gameObject.GetComponent<PlayerState>();
+            HUD = collider.gameObject.GetComponent<HeadsUpDisplay>();
             PS.onInteract += OnButtonPress.Invoke;
             PS.onInteractRelease += OnButtonRelease.Invoke;
+        }
+        else if (collider.CompareTag("Ghost"))
+        {
+
         }
     }
 
@@ -30,7 +39,7 @@ public class PushButton : MonoBehaviour
     {
         if (collider.CompareTag("Player") || collider.CompareTag("Ghost"))
         {
-            PlayerState PS = collider.gameObject.GetComponent<PlayerState>();
+            PS = collider.gameObject.GetComponent<PlayerState>();
             PS.onInteract -= OnButtonPress.Invoke;
             PS.onInteractRelease -= OnButtonRelease.Invoke;
         }
