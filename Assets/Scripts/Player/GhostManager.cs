@@ -20,6 +20,7 @@ public class GhostManager : MonoBehaviour
     public bool isRecording { get; set; }
     
     PlayerState PS;
+    HeadsUpDisplay HUD;
 
     private Vector3 prevCoord, startCoord;
     private float _startTime;
@@ -31,6 +32,7 @@ public class GhostManager : MonoBehaviour
         currInteractions = new List<bool>();
         currAnimations = new List<int>();
         PS = GetComponent<PlayerState>();
+        HUD = GetComponent<HeadsUpDisplay>();
         isRecording = false;
         duration = minDuration;
     }
@@ -57,6 +59,7 @@ public class GhostManager : MonoBehaviour
     public void StartRecording()
     {
         Debug.Log("GM::Started Recording Ghost\n");
+        HUD.SetText("InteractionPrompt", "Press X/E to wilt");
         isRecording = true;
         PS.isRecording = true;
         currPath = new List<Vector3>();
@@ -76,6 +79,7 @@ public class GhostManager : MonoBehaviour
     public Ghost StopRecording()
     {
         Debug.Log("GM::Stopped Recording Ghost\n");
+        HUD.SetText("InteractionPrompt", "");
         isRecording = false;
         PS.isRecording = false;
 

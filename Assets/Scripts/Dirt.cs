@@ -14,6 +14,7 @@ public class Dirt : MonoBehaviour
 
     PlayerState PS;
     GhostManager GM;
+    HeadsUpDisplay HUD;
 
     private float _ghostDuration;
 
@@ -64,6 +65,8 @@ public class Dirt : MonoBehaviour
             Debug.Log("Dirt::Player stepped on dirt");
             PS = collider.gameObject.GetComponent<PlayerState>();
             GM = collider.gameObject.GetComponent<GhostManager>();
+            HUD = collider.gameObject.GetComponent<HeadsUpDisplay>();
+            HUD.SetText("InteractionPrompt", "Press X or E to plant Seed");
             PS.onDirt = true;
             if (seeds.Count < maxSeedCount)
             {
@@ -79,6 +82,7 @@ public class Dirt : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             Debug.Log("Dirt::Player left dirt");
+            HUD.SetText("InteractionPrompt", "");
             PS.onDirt = false;
             GM.duration = GM.minDuration;
             PS.onPlant -= PlantSeed;

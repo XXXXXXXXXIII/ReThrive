@@ -48,7 +48,7 @@ public class Movement : MonoBehaviour
     {
         moveDirection = Input.GetAxis("Horizontal") * moveSpeed * transform.right + new Vector3(0f, moveDirection.y, 0f) + Input.GetAxis("Vertical") * moveSpeed * transform.forward;
 
-        if ((Input.GetButtonDown("Fire3") || Input.GetKeyDown(KeyCode.Q))) // Circle button
+        if ((Input.GetButtonDown("Fire3") || Input.GetKeyDown(KeyCode.E))) // Circle button
         {
             PS.onPlant.Invoke();
         }
@@ -92,7 +92,7 @@ public class Movement : MonoBehaviour
         if (controller.isGrounded) {
             moveDirection.y = 0f;
             AC.SetBool("isMoving", false);
-            if (Input.GetButtonDown("Fire2"))
+            if (Input.GetButtonDown("Fire2") || Input.GetKeyDown(KeyCode.Space))
             {
                 moveDirection.y = jumpForce;
             }
@@ -105,7 +105,7 @@ public class Movement : MonoBehaviour
         moveDirection.y += Physics.gravity.y * gravityScale * Time.deltaTime;
 
         float turnAxisX = Input.GetAxis("Vertical2");
-        float turnAxisY = Input.GetAxis("Horizontal2");
+        float turnAxisY = Input.GetAxis("Mouse X"); ;
         ApplyTurnInput(turnAxisX, turnAxisY);
         controller.Move(moveDirection * Time.deltaTime);
     }

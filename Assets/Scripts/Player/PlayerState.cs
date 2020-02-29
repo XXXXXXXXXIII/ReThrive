@@ -37,7 +37,7 @@ public class PlayerState : MonoBehaviour
 
     GhostManager GM;
     PlayerControl PC;
-    //Rigidbody RB;
+    HeadsUpDisplay HUD;
     CharacterController CC;
     Animator AC;
 
