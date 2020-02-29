@@ -14,7 +14,6 @@ public class PlayerState : MonoBehaviour
     public bool isActive { get; private set; }
     public bool isJumping { get; set; }
     public bool isInteracting { get; set; }
-    public bool isRecording { get; set; }
     public bool onDirt { get; set; }
     public bool onSeed { get; set; }
     public bool inSun { get; set; }
@@ -101,15 +100,17 @@ public class PlayerState : MonoBehaviour
 
     void FixedUpdate()
     {
-        /*if (isInteracting)
+        if (!GM.isRecording)
         {
-            onInteract.Invoke();
+            if (inWater && waterMeter < 1f)
+            {
+                waterMeter += 0.01f;
+            }
+            if (inSun && sunMeter < 1f)
+            {
+                sunMeter += 0.01f;
+            }
         }
-        else
-        {
-            onInteractRelease.Invoke();
-        }
-        */
     }
 
     private void OnWilt()

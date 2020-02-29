@@ -10,6 +10,7 @@ public class Seed : MonoBehaviour
 
     private PlayerState PS;
     private HeadsUpDisplay HUD;
+    private GhostManager GM;
 
     private void Start()
     {
@@ -23,7 +24,8 @@ public class Seed : MonoBehaviour
             //TODO: Prompt player that they can modify the ghost in seed
             PS = other.GetComponent<PlayerState>();
             HUD = other.GetComponent<HeadsUpDisplay>();
-            if (!PS.isRecording)
+            GM = other.GetComponent<GhostManager>();
+            if (!GM.isRecording)
             {
                 Debug.Log("Seed::Player touching seed");
                 HUD.PushPrompt(PromptText);

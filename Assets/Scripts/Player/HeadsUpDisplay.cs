@@ -36,17 +36,11 @@ public class HeadsUpDisplay : MonoBehaviour
     private void FixedUpdate()
     {
         if (PS.waterMeter - waterBar.fillAmount > BarFillRate)
-        {
             waterBar.fillAmount += BarFillRate;
-        }
         else if (PS.waterMeter - waterBar.fillAmount < -BarFillRate)
-        {
             waterBar.fillAmount -= BarFillRate;
-        }
         else
-        {
             waterBar.fillAmount = PS.waterMeter;
-        }
 
         if (PS.sunMeter - sunBar.fillAmount > BarFillRate)
             sunBar.fillAmount += BarFillRate;

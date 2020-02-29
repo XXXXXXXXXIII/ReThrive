@@ -67,7 +67,6 @@ public class GhostManager : MonoBehaviour
         HUD.ClearPrompt();
         HUD.PushPrompt("Press Q to wilt");
         isRecording = true;
-        PS.isRecording = true;
         currPath = new List<Vector3>();
         currInteractions = new List<bool>();
         currAnimations = new List<int>();
@@ -90,7 +89,6 @@ public class GhostManager : MonoBehaviour
         Debug.Log("GM::Stopped Recording Ghost\n");
         HUD.ClearPrompt();
         isRecording = false;
-        PS.isRecording = false;
 
         GameObject ghostObject = Instantiate(ghostPrefab, startCoord, startRot);
         Ghost ghost = ghostObject.GetComponent<Ghost>();
