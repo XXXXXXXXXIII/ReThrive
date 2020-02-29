@@ -2025,8 +2025,8 @@ GameObject:
   - component: {fileID: 2237554384989155152}
   - component: {fileID: 2237554384981688632}
   - component: {fileID: 2237554384988992373}
-  - component: {fileID: 2237554384988992371}
   - component: {fileID: -310400564130838232}
+  - component: {fileID: -2087681185470544145}
   m_Layer: 0
   m_Name: Leafy_Ghost
   m_TagString: Ghost
@@ -2084,7 +2084,23 @@ MonoBehaviour:
   health: 0
   isLoop: 1
   isInteracting: 1
---- !u!136 &2237554384988992371
+--- !u!54 &-310400564130838232
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2237554384988992368}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 1
+  m_Constraints: 112
+  m_CollisionDetection: 0
+--- !u!136 &-2087681185470544145
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2094,26 +2110,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.13977051
-  m_Height: 0.5910187
+  m_Radius: 0.2
+  m_Height: 1
   m_Direction: 1
-  m_Center: {x: 0, y: 0.2878723, z: -0.010925293}
---- !u!54 &-310400564130838232
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2237554384988992368}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 126
-  m_CollisionDetection: 0
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &2237554384988992370
 GameObject:
   m_ObjectHideFlags: 0

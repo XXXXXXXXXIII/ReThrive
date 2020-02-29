@@ -106,7 +106,10 @@ public class PlayerState : MonoBehaviour
     private void OnWilt()
     {
         Debug.Log("PS::Player wilted");
-        currSeed.ghost = GM.StopRecording();
+        if (GM.isRecording)
+        {
+            currSeed.ghost = GM.StopRecording();
+        }
         foreach (Seed s in seeds)
         {
             s.ghost?.Reset();

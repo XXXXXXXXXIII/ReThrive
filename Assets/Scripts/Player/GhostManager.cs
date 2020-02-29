@@ -15,6 +15,7 @@ public class GhostManager : MonoBehaviour
 
     public float duration { get; set; }
     private List<Vector3> currPath; // NOTE: Stores offset from prevCoord
+    private List<Vector3> currRot; // NOTE: Stores offset from prevCoord
     private List<bool> currInteractions;
     private List<int> currAnimations;
     public bool isRecording { get; set; }
@@ -23,6 +24,7 @@ public class GhostManager : MonoBehaviour
     HeadsUpDisplay HUD;
 
     private Vector3 prevCoord, startCoord;
+    private Quaternion prevRot, startRot;
     private float _startTime;
 
     // Start is called before the first frame update
@@ -31,6 +33,7 @@ public class GhostManager : MonoBehaviour
         currPath = new List<Vector3>();
         currInteractions = new List<bool>();
         currAnimations = new List<int>();
+        currRot = new List<Vector3>();
         PS = GetComponent<PlayerState>();
         HUD = GetComponent<HeadsUpDisplay>();
         isRecording = false;
@@ -49,7 +52,9 @@ public class GhostManager : MonoBehaviour
             {
                 //Debug.Log("GM::Time Remaining: " + (10f - (Time.time - _startTime)));
                 currPath.Add(transform.position - prevCoord);
+                currRot.Add(transform.rotation.eulerAngles - prevRot.eulerAngles);
                 prevCoord = transform.position;
+                prevRot = transform.rotation;
                 currInteractions.Add(PS.isInteracting);
                 currAnimations.Add(PS.currAnimation);
             }
@@ -59,14 +64,17 @@ public class GhostManager : MonoBehaviour
     public void StartRecording()
     {
         Debug.Log("GM::Started Recording Ghost\n");
-        HUD.SetText("InteractionPrompt", "Press X/E to wilt");
+        HUD.SetText("InteractionPrompt", "Press Q to wilt");
         isRecording = true;
         PS.isRecording = true;
         currPath = new List<Vector3>();
         currInteractions = new List<bool>();
         currAnimations = new List<int>();
+        currRot = new List<Vector3>();
         prevCoord = transform.position;
+        prevRot = transform.rotation;
         startCoord = transform.position;
+        startRot = transform.rotation;
         _startTime = Time.time;
     }
 
@@ -83,10 +91,12 @@ public class GhostManager : MonoBehaviour
         isRecording = false;
         PS.isRecording = false;
 
-        GameObject ghostObject = Instantiate(ghostPrefab, startCoord, Quaternion.identity);
+        GameObject ghostObject = Instantiate(ghostPrefab, startCoord, startRot);
         Ghost ghost = ghostObject.GetComponent<Ghost>();
         ghost.SeedCoord = startCoord;
+        ghost.SeedRot = startRot;
         ghost.GhostPath = currPath;
+        ghost.GhostRotation = currRot;
         ghost.AnimationState = currAnimations;
         ghost.InteractionState = currInteractions;
         ghost.duration = this.duration;

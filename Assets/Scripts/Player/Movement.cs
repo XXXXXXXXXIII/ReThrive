@@ -53,17 +53,17 @@ public class Movement : MonoBehaviour
             PS.onPlant.Invoke();
         }
 
-        if ((Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.E))) // Triangle button
+        if (Input.GetKeyDown(KeyCode.Q)) // Triangle button
         {
             // Wilt/suicide only if a seed has been planted.
-            if (GM.isRecording)
-            {
+            //if (GM.isRecording)
+            //{
                 PS.onWilt.Invoke();
-            }
-            else
-            {
-                Debug.Log("PC::Not recording chost atm!");
-            }
+            //}
+            //else
+            //{
+            //    Debug.Log("PC::Not recording chost atm!");
+            //}
         }
 
         if ((Input.GetKeyDown(KeyCode.F)))
@@ -92,7 +92,7 @@ public class Movement : MonoBehaviour
         if (controller.isGrounded) {
             moveDirection.y = 0f;
             AC.SetBool("isMoving", false);
-            if (Input.GetButtonDown("Fire2") || Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Space))
             {
                 moveDirection.y = jumpForce;
             }
