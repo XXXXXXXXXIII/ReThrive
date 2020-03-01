@@ -74,7 +74,7 @@ public class PlayerControl : MonoBehaviour
         if ((Input.GetKeyUp(KeyCode.F)))
         {
             PS.isInteracting = false;
-            PS.onInteract.Invoke();
+            PS.onInteractEnd.Invoke();
         }
 
         moveDirection = new Vector3(moveAxisZ, 0, moveAxisX).normalized;

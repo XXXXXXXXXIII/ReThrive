@@ -5,14 +5,17 @@ using UnityEngine.Events;
 
 public class PushButton : MonoBehaviour
 {
+    public string PromptText = "Press F to Interact";
+
     public UnityEvent OnButtonPress;
     public UnityEvent OnButtonRelease;
 
     PlayerState PS;
     HeadsUpDisplay HUD;
+
+    Ghost ghost;
     
-    private int triggerCount;
-    
+    private int triggerCount;    
 
     // Start is called before the first frame update
     void Start()
@@ -26,22 +29,33 @@ public class PushButton : MonoBehaviour
         {
             PS = collider.gameObject.GetComponent<PlayerState>();
             HUD = collider.gameObject.GetComponent<HeadsUpDisplay>();
-            PS.onInteract += OnButtonPress.Invoke;
-            PS.onInteractRelease += OnButtonRelease.Invoke;
+            HUD.PushPrompt(PromptText);
+            PS.onInteractStart += OnButtonPress.Invoke;
+            PS.onInteractEnd += OnButtonRelease.Invoke;
         }
         else if (collider.CompareTag("Ghost"))
         {
-
+            ghost = collider.gameObject.GetComponent<Ghost>();
+            ghost.onInteractStart += OnButtonPress.Invoke;
+            ghost.onInteractEnd += OnButtonRelease.Invoke;
         }
     }
 
     private void OnTriggerExit(Collider collider)
     {
-        if (collider.CompareTag("Player") || collider.CompareTag("Ghost"))
+        if (collider.CompareTag("Player"))
         {
-            PS = collider.gameObject.GetComponent<PlayerState>();
-            PS.onInteract -= OnButtonPress.Invoke;
-            PS.onInteractRelease -= OnButtonRelease.Invoke;
+            HUD.PopPromptOnMatch(PromptText);
+            PS.onInteractStart -= OnButtonPress.Invoke;
+            PS.onInteractEnd -= OnButtonRelease.Invoke;
+            OnButtonRelease?.Invoke();
+        }
+        else if (collider.CompareTag("Ghost"))
+        {
+            ghost = collider.gameObject.GetComponent<Ghost>();
+            ghost.onInteractStart -= OnButtonPress.Invoke;
+            ghost.onInteractEnd -= OnButtonRelease.Invoke;
+            OnButtonRelease?.Invoke();
         }
     }
 }

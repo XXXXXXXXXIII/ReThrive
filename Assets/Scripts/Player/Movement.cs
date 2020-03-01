@@ -69,12 +69,13 @@ public class Movement : MonoBehaviour
         if ((Input.GetKeyDown(KeyCode.F)))
         {
             PS.isInteracting = true;
+            PS.onInteractStart?.Invoke();
         }
 
         if ((Input.GetKeyUp(KeyCode.F)))
         {
             PS.isInteracting = false;
-            PS.onInteract.Invoke();
+            PS.onInteractEnd?.Invoke();
         }
 
         // RaycastHit hit = new RaycastHit();

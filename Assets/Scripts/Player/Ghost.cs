@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 // This replaces GhostController
 public class Ghost : MonoBehaviour
@@ -8,7 +9,9 @@ public class Ghost : MonoBehaviour
     public float duration { get; set; } // Duration of ghost in seconds, after which it will reset and loop
     public float health;
     public bool isLoop = true;
-    public bool isInteracting = true;
+    public bool isInteracting = false;
+
+    public UnityAction onInteractStart, onInteractEnd, onInteractHold;
 
     GameObject ghost;
 
@@ -69,7 +72,27 @@ public class Ghost : MonoBehaviour
             {
                 transform.Translate(GhostPath[index], Space.World);
                 transform.Rotate(GhostRotation[index], Space.Self);
-                this.isInteracting = InteractionState[index];
+                if (isInteracting)
+                {
+                    if (InteractionState[index])
+                    {
+                        onInteractHold?.Invoke();
+                        isInteracting = true;
+                    }
+                    else
+                    {
+                        onInteractEnd?.Invoke();
+                        isInteracting = false;
+                    }
+                }
+                else
+                {
+                    if (InteractionState[index])
+                    {
+                        onInteractStart?.Invoke();
+                        isInteracting = true;
+                    }
+                }
                 index++;
             }
         }
@@ -77,6 +100,7 @@ public class Ghost : MonoBehaviour
 
     public void Reset()
     {
+        onInteractEnd?.Invoke();
         ghost.transform.position = this.SeedCoord;
         ghost.transform.rotation = this.SeedRot;
         isActive = false;

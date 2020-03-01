@@ -36,8 +36,8 @@ public class PlayerState : MonoBehaviour
     // NOTE: Directly invoke these for the approperiate action
     public UnityAction onDie;
     public UnityAction onSpawn;
-    public UnityAction onInteract;
-    public UnityAction onInteractRelease;
+    public UnityAction onInteractStart;
+    public UnityAction onInteractEnd;
     public UnityAction onPlant;
     public UnityAction onWilt;
 
@@ -75,7 +75,7 @@ public class PlayerState : MonoBehaviour
 
         onPlant += PlantSeed;
 
-        onInteract += OnInteract;
+        //onInteractStart += OnInteract;
 
         seeds = new List<Seed>();
         seedCoords = new List<Vector3>();
