@@ -187,7 +187,22 @@ public class PlayerState : MonoBehaviour
                 Debug.Log("PS::Cannot plant: Currently Recording Ghost!");
                 HUD.SetWarning("You are recording a clone!");
             }
-            else if (currDirt.CanPlant())
+            else if (!currDirt.CanPlant())
+            {
+                HUD.SetWarning("You can't spawn any more clones on this dirt patch!");
+                Debug.Log("PS::Cannot plant: Max seed reached!");
+            }
+            else if (sunMeter < plantCost)
+            {
+                HUD.SetWarning("Not enough sunlight!");
+                Debug.Log("PS::Not enough sun!");
+            }
+            else if (waterMeter < plantCost)
+            {
+                HUD.SetWarning("Not enough water!");
+                Debug.Log("PS::Not enough water!");
+            }
+            else
             {
                 Debug.Log("PS::I can plant");
                 waterMeter -= plantCost;
@@ -204,11 +219,6 @@ public class PlayerState : MonoBehaviour
                 currDirt.seeds.Add(seed);
                 currSeed = seed;
                 GM.StartRecording();
-            }
-            else
-            {
-                HUD.SetWarning("You can't spawn any more clones on this dirt patch!");
-                Debug.Log("PS::Cannot plant: Max seed reached!");
             }
         }
         else
