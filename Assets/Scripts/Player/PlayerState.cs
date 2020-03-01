@@ -38,7 +38,7 @@ public class PlayerState : MonoBehaviour
     public UnityAction onSpawn;
     public UnityAction onInteractStart;
     public UnityAction onInteractEnd;
-    public UnityAction onPlant;
+    //public UnityAction onPlant;
     public UnityAction onWilt;
 
     GhostManager GM;
@@ -73,7 +73,7 @@ public class PlayerState : MonoBehaviour
 
         onSpawn += OnSpawn;
 
-        onPlant += PlantSeed;
+        onInteractStart += OnInteract;
 
         //onInteractStart += OnInteract;
 
@@ -114,6 +114,69 @@ public class PlayerState : MonoBehaviour
             }
         }
     }
+    private void OnInteract()
+    {
+        if (onSeed)
+        {
+            ReplantSeed();
+        }
+        else if (onDirt)
+        {
+            PlantSeed();
+        }
+    }
+
+    private void ReplantSeed()
+    {
+        foreach (Seed s in seeds)
+        {
+            s.ghost?.Reset();
+            s.ghost?.Animate();
+        }
+        GM.StartRecording();
+    }
+
+    private void PlantSeed()
+    {
+        if (GM.isRecording)
+        {
+            Debug.Log("PS::Cannot plant: Currently Recording Ghost!");
+            HUD.SetWarning("You are recording a clone!");
+        }
+        else if (!currDirt.CanPlant())
+        {
+            HUD.SetWarning("You can't spawn any more clones on this dirt patch!");
+            Debug.Log("PS::Cannot plant: Max seed reached!");
+        }
+        else if (sunMeter < plantCost)
+        {
+            HUD.SetWarning("Not enough sunlight!");
+            Debug.Log("PS::Not enough sun!");
+        }
+        else if (waterMeter < plantCost)
+        {
+            HUD.SetWarning("Not enough water!");
+            Debug.Log("PS::Not enough water!");
+        }
+        else
+        {
+            Debug.Log("PS::I can plant");
+            waterMeter -= plantCost;
+            sunMeter -= plantCost;
+            foreach (Seed s in seeds)
+            {
+                s.ghost?.Reset();
+                s.ghost?.Animate();
+            }
+            GameObject newSeed = Instantiate(seedPrefab, transform.position + Vector3.up * 0.1f, Quaternion.identity);
+            newSeed.transform.SetParent(currDirt.transform);
+            Seed seed = newSeed.GetComponent<Seed>();
+            seeds.Add(seed);
+            currDirt.seeds.Add(seed);
+            currSeed = seed;
+            GM.StartRecording();
+        }
+    }
 
     private void OnWilt()
     {
@@ -130,6 +193,7 @@ public class PlayerState : MonoBehaviour
         }
         foreach (Seed s in seeds)
         {
+
             s.ghost?.Reset();
         }
         AC.SetTrigger("OnWilt");
@@ -157,76 +221,6 @@ public class PlayerState : MonoBehaviour
         onSpawn.Invoke();
     }
 
-    public bool GetState()
-    {
-        // Returns only the jumping state for now.
-        return isJumping;
-    }
-
-    public void SetState(bool jumping)
-    {
-        isJumping = jumping;
-
-    }
-
-    private void PlantSeed()
-    {
-        if (onSeed)
-        {
-            foreach (Seed s in seeds)
-            {
-                s.ghost?.Reset();
-                s.ghost?.Animate();
-            }
-            GM.StartRecording();
-        }
-        else if (onDirt)
-        {
-            if (GM.isRecording)
-            {
-                Debug.Log("PS::Cannot plant: Currently Recording Ghost!");
-                HUD.SetWarning("You are recording a clone!");
-            }
-            else if (!currDirt.CanPlant())
-            {
-                HUD.SetWarning("You can't spawn any more clones on this dirt patch!");
-                Debug.Log("PS::Cannot plant: Max seed reached!");
-            }
-            else if (sunMeter < plantCost)
-            {
-                HUD.SetWarning("Not enough sunlight!");
-                Debug.Log("PS::Not enough sun!");
-            }
-            else if (waterMeter < plantCost)
-            {
-                HUD.SetWarning("Not enough water!");
-                Debug.Log("PS::Not enough water!");
-            }
-            else
-            {
-                Debug.Log("PS::I can plant");
-                waterMeter -= plantCost;
-                sunMeter -= plantCost;
-                foreach (Seed s in seeds)
-                {
-                    s.ghost?.Reset();
-                    s.ghost?.Animate();
-                }
-                GameObject newSeed = Instantiate(seedPrefab, transform.position + Vector3.up * 0.1f, Quaternion.identity);
-                newSeed.transform.SetParent(currDirt.transform);
-                Seed seed = newSeed.GetComponent<Seed>();
-                seeds.Add(seed);
-                currDirt.seeds.Add(seed);
-                currSeed = seed;
-                GM.StartRecording();
-            }
-        }
-        else
-        {
-            HUD.SetWarning("You are not on a dirt patch!");
-            Debug.Log("PS::Cannot plant: Not on Dirt!");
-        }
-    }
 
     private void OnSpawn()
     {
@@ -237,23 +231,6 @@ public class PlayerState : MonoBehaviour
         {
             s.ghost?.Animate();
         }
-        AC.SetTrigger("OnSpawn");
-
-
-        //currPuzzle.StartPuzzle();
-        // if (GM.allGhost.Count > 0)
-        // {
-        //     foreach (List<Vector3> list in GM.allGhost)
-        //     {
-        //         Debug.Log("Spawning Ghost");
-        //         GameObject newGhost = Instantiate(ghost, new Vector3(-0.73f, 39.84f, 93.49f), Quaternion.identity);
-        //         newGhost.GetComponent<GhostController>().SetRoute(list);
-        //     }
-        // }
-    }
-
-    private void OnInteract()
-    {
-        Debug.Log("PS::Interact Triggered!");
+        AC.SetTrigger("OnSpawn");   
     }
 }

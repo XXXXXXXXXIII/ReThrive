@@ -64,7 +64,7 @@ public class Dirt : MonoBehaviour
             GM = collider.gameObject.GetComponent<GhostManager>();
             HUD = collider.gameObject.GetComponent<HeadsUpDisplay>();
             PS.onDirt = true;
-            PS.onPlant += PlantSeed;
+            PS.onInteractStart += PlantSeed;
             if(!GM.isRecording)
             {
                 HUD.PushPrompt(PromptText);
@@ -82,7 +82,7 @@ public class Dirt : MonoBehaviour
             HUD.PopPromptOnMatch(PromptText);
             PS.onDirt = false;
             GM.duration = GM.minDuration;
-            PS.onPlant -= PlantSeed;
+            PS.onInteractStart -= PlantSeed;
             //PS.currDirt = null;
         }
     }

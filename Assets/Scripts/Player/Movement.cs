@@ -50,7 +50,13 @@ public class Movement : MonoBehaviour
 
         if ((Input.GetButtonDown("Fire3") || Input.GetKeyDown(KeyCode.E))) // Circle button
         {
-            PS.onPlant.Invoke();
+            PS.isInteracting = true;
+            PS.onInteractStart?.Invoke();
+        }
+        else if ((Input.GetButtonUp("Fire3") || Input.GetKeyUp(KeyCode.E))) // Circle button
+        {
+            PS.isInteracting = false;
+            PS.onInteractEnd?.Invoke();
         }
 
         if (Input.GetKeyDown(KeyCode.Q)) // Triangle button
@@ -66,6 +72,7 @@ public class Movement : MonoBehaviour
             //}
         }
 
+        /*
         if ((Input.GetKeyDown(KeyCode.F)))
         {
             PS.isInteracting = true;
@@ -77,6 +84,7 @@ public class Movement : MonoBehaviour
             PS.isInteracting = false;
             PS.onInteractEnd?.Invoke();
         }
+        */
 
         // RaycastHit hit = new RaycastHit();
         // if (Physics.Raycast (player.position, -Vector3.up, out hit)) {

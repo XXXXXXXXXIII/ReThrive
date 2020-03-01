@@ -50,7 +50,7 @@ public class PlayerControl : MonoBehaviour
 
         if ((Input.GetKeyDown(KeyCode.JoystickButton2) || Input.GetKeyDown(KeyCode.Q))) // Circle button
         {
-            PS.onPlant.Invoke();
+            PS.onInteractStart.Invoke();
         }
 
         if ((Input.GetKeyDown(KeyCode.JoystickButton3) || Input.GetKeyDown(KeyCode.E))) // Triangle button
