@@ -22,6 +22,7 @@ public class PlayerState : MonoBehaviour
     public bool spawnAtCurrCoord = false;
 
     public float plantCost = 0.2f;
+    public float deathCost = 0.01f;
     public Dirt currDirt { get; set; }
     public Seed currSeed { get; set; }
     private List<Seed> seeds;
@@ -56,6 +57,7 @@ public class PlayerState : MonoBehaviour
         PC = GetComponent<PlayerControl>();
         CC = GetComponent<CharacterController>();
         AC = GetComponent<Animator>();
+        HUD = GetComponent<HeadsUpDisplay>();
 
         if (spawnAtCurrCoord)
         {
@@ -115,10 +117,16 @@ public class PlayerState : MonoBehaviour
 
     private void OnWilt()
     {
+        HUD.SetWarning("You wilted!");
         Debug.Log("PS::Player wilted");
         if (GM.isRecording)
         {
             currSeed.ghost = GM.StopRecording();
+        }
+        else
+        {
+            sunMeter -= deathCost;
+            waterMeter -= deathCost;
         }
         foreach (Seed s in seeds)
         {
@@ -130,17 +138,22 @@ public class PlayerState : MonoBehaviour
 
     private void OnDie()
     {
+        HUD.SetWarning("You died!");
         Debug.Log("PS::Player died");
         if (GM.isRecording)
         {
             currSeed.ghost = GM.StopRecording();
+        }
+        else
+        {
+            sunMeter -= deathCost;
+            waterMeter -= deathCost;
         }
         foreach (Seed s in seeds)
         {
             s.ghost?.Reset();
         }
         AC.SetTrigger("OnWilt");
-
         onSpawn.Invoke();
     }
 
@@ -172,6 +185,7 @@ public class PlayerState : MonoBehaviour
             if (GM.isRecording)
             {
                 Debug.Log("PS::Cannot plant: Currently Recording Ghost!");
+                HUD.SetWarning("You are recording a clone!");
             }
             else if (currDirt.CanPlant())
             {
@@ -189,16 +203,19 @@ public class PlayerState : MonoBehaviour
                 seeds.Add(seed);
                 currDirt.seeds.Add(seed);
                 currSeed = seed;
-                //SetSpawn(player.position[0], player.position[1], player.position[2]);
-                //seedCoords.Add(player.position);
                 GM.StartRecording();
             }
             else
             {
+                HUD.SetWarning("You can't spawn any more clones on this dirt patch!");
                 Debug.Log("PS::Cannot plant: Max seed reached!");
             }
         }
-        else Debug.Log("PS::Cannot plant: Not on Dirt!");
+        else
+        {
+            HUD.SetWarning("You are not on a dirt patch!");
+            Debug.Log("PS::Cannot plant: Not on Dirt!");
+        }
     }
 
     private void OnSpawn()
