@@ -9,6 +9,7 @@ public class HeadsUpDisplay : MonoBehaviour
     public float BarFillRate = 0.05f;
     public string InteractionText = "InteractionPrompt";
     public string WarningText = "WarningText";
+    public string TutorialText = "TutorialText";
 
     private float warningResetTime;
 
@@ -75,6 +76,11 @@ public class HeadsUpDisplay : MonoBehaviour
         {
             texts[WarningText].text = "";
         }
+    }
+
+    public void SetTutorial(string text)
+    {
+        texts[TutorialText].text = text;
     }
 
     public void SetWarning(string text)

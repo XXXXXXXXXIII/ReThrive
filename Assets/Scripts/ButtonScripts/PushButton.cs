@@ -30,14 +30,14 @@ public class PushButton : MonoBehaviour
             PS = collider.gameObject.GetComponent<PlayerState>();
             HUD = collider.gameObject.GetComponent<HeadsUpDisplay>();
             HUD.PushPrompt(PromptText);
-            PS.onInteractStart += OnButtonPress.Invoke;
-            PS.onInteractEnd += OnButtonRelease.Invoke;
+            PS.onInteractStart += ButtonPress;
+            PS.onInteractEnd += ButtonRelease;
         }
         else if (collider.CompareTag("Ghost"))
         {
             ghost = collider.gameObject.GetComponent<Ghost>();
-            ghost.onInteractStart += OnButtonPress.Invoke;
-            ghost.onInteractEnd += OnButtonRelease.Invoke;
+            ghost.onInteractStart += ButtonPress;
+            ghost.onInteractEnd += ButtonRelease;
         }
     }
 
@@ -46,16 +46,39 @@ public class PushButton : MonoBehaviour
         if (collider.CompareTag("Player"))
         {
             HUD.PopPromptOnMatch(PromptText);
-            PS.onInteractStart -= OnButtonPress.Invoke;
-            PS.onInteractEnd -= OnButtonRelease.Invoke;
-            OnButtonRelease?.Invoke();
+            PS.onInteractStart -= ButtonPress;
+            PS.onInteractEnd -= ButtonRelease;
+            if (PS.isInteracting)
+            {
+                ButtonRelease();
+            }
         }
         else if (collider.CompareTag("Ghost"))
         {
             ghost = collider.gameObject.GetComponent<Ghost>();
-            ghost.onInteractStart -= OnButtonPress.Invoke;
-            ghost.onInteractEnd -= OnButtonRelease.Invoke;
-            OnButtonRelease?.Invoke();
+            ghost.onInteractStart -= ButtonPress;
+            ghost.onInteractEnd -= ButtonRelease;
+            if (ghost.isInteracting)
+            {
+                ButtonRelease();
+            }
+        }
+    }
+
+    private void ButtonPress()
+    {
+        if (++triggerCount == 1)
+        {
+            OnButtonPress.Invoke();
+        }
+    }
+
+    private void ButtonRelease()
+    {
+        if (--triggerCount <= 0)
+        {
+            OnButtonRelease.Invoke();
+            triggerCount = 0;
         }
     }
 }

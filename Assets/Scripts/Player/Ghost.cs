@@ -100,7 +100,10 @@ public class Ghost : MonoBehaviour
 
     public void Reset()
     {
-        onInteractEnd?.Invoke();
+        if (isInteracting)
+        {
+            onInteractEnd?.Invoke();
+        }
         ghost.transform.position = this.SeedCoord;
         ghost.transform.rotation = this.SeedRot;
         isActive = false;

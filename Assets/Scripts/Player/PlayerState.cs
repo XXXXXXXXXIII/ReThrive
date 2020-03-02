@@ -14,6 +14,7 @@ public class PlayerState : MonoBehaviour
     public bool isActive { get; private set; }
     public bool isJumping { get; set; }
     public bool isInteracting { get; set; }
+    public bool isPressing { get; set; }
     public bool onDirt { get; set; }
     public bool onSeed { get; set; }
     public bool inSun { get; set; }
