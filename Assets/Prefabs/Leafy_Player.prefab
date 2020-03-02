@@ -3244,7 +3244,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729422887572217192}
-  m_LocalRotation: {x: 0, y: -1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 22, y: 36.8, z: 77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3338,9 +3338,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3f36426ffce4774093ee40c6c018c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnAtCurrCoord: 0
+  status: 0
+  spawnAtCurrCoord: 1
   plantCost: 0.2
-  deathCost: 0.01
+  deathCost: 0
   spawnCoord: {x: 22, y: 38, z: 77}
   spawnRot: {x: 0, y: 180, z: 0}
   seedPrefab: {fileID: 2763290920348985721, guid: 8c8868548e297b4448e27d87f3e25e29,
@@ -3639,7 +3640,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4016306974006675342}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 6}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1439108366}
@@ -3647,8 +3648,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 377.2, y: -140.8}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchoredPosition: {x: 382.8, y: -132.6}
+  m_SizeDelta: {x: 263.33, y: 137.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4737028328101513828
 CanvasRenderer:
@@ -3686,7 +3687,7 @@ MonoBehaviour:
     m_Alignment: 1
     m_AlignByGeometry: 1
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: Display Tutorial Text Here

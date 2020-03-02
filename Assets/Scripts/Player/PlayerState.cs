@@ -6,15 +6,22 @@ using UnityEngine.Events;
 // Keeps track of player's state and status
 public class PlayerState : MonoBehaviour
 {
+    public enum Player_Status
+    {
+        idle = 0,
+        spawning,
+        active, 
+        wilting,
+        dead
+    }
+
+    public Player_Status status = Player_Status.idle; 
     public int health { get; set; }
     public float sunMeter { get; set; }
     public float waterMeter { get; set; }
     public float wiltMeter { get; set; }
     public int currAnimation { get; set; }
-    public bool isActive { get; private set; }
-    public bool isJumping { get; set; }
     public bool isInteracting { get; set; }
-    public bool isPressing { get; set; }
     public bool onDirt { get; set; }
     public bool onSeed { get; set; }
     public bool inSun { get; set; }
@@ -43,9 +50,8 @@ public class PlayerState : MonoBehaviour
     public UnityAction onWilt;
 
     GhostManager GM;
-    PlayerControl PC;
+    PlayerController PC;
     HeadsUpDisplay HUD;
-    CharacterController CC;
     Animator AC;
 
     // Prefabs for ghost and seed
@@ -55,8 +61,7 @@ public class PlayerState : MonoBehaviour
     void Start()
     {
         GM = GetComponent<GhostManager>();
-        PC = GetComponent<PlayerControl>();
-        CC = GetComponent<CharacterController>();
+        PC = GetComponent<PlayerController>();
         AC = GetComponent<Animator>();
         HUD = GetComponent<HeadsUpDisplay>();
 
@@ -80,10 +85,8 @@ public class PlayerState : MonoBehaviour
 
         seeds = new List<Seed>();
         seedCoords = new List<Vector3>();
-        isJumping = false;
         onDirt = false;
         currDirt = null;
-        isActive = false;
         isInteracting = false;
         //spawnCoord = transform.position;
         sunMeter = 1f;
@@ -94,15 +97,38 @@ public class PlayerState : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!isActive)
-        {
-            isActive = true;
-            onSpawn.Invoke();
-        }
+        
     }
 
     void FixedUpdate()
     {
+        switch (status)
+        {
+            case Player_Status.idle:
+                PC.FreezePlayer();
+                onSpawn.Invoke();
+                break;
+            case Player_Status.spawning:
+                if (AC.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                {
+                    status = Player_Status.active;
+                    PC.UnfreezePlayer();
+                }
+                break;
+            case Player_Status.wilting:
+                if (AC.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                {
+                    status = Player_Status.idle;
+                }
+                break;
+            case Player_Status.dead:
+                status = Player_Status.idle;
+                break;
+            case Player_Status.active:
+                break;
+        }
+
+
         if (!GM.isRecording)
         {
             if (inWater && waterMeter < 1f)
@@ -183,6 +209,7 @@ public class PlayerState : MonoBehaviour
     {
         HUD.SetWarning("You wilted!");
         Debug.Log("PS::Player wilted");
+        PC.FreezePlayer();
         if (GM.isRecording)
         {
             currSeed.ghost = GM.StopRecording();
@@ -198,13 +225,14 @@ public class PlayerState : MonoBehaviour
             s.ghost?.Reset();
         }
         AC.SetTrigger("OnWilt");
-        onSpawn.Invoke();
+        status = Player_Status.wilting;
     }
 
     private void OnDie()
     {
         HUD.SetWarning("You died!");
         Debug.Log("PS::Player died");
+        PC.FreezePlayer();
         if (GM.isRecording)
         {
             currSeed.ghost = GM.StopRecording();
@@ -219,19 +247,20 @@ public class PlayerState : MonoBehaviour
             s.ghost?.Reset();
         }
         AC.SetTrigger("OnWilt");
-        onSpawn.Invoke();
+        status = Player_Status.dead;
     }
-
 
     private void OnSpawn()
     {
         Debug.Log("PS::Player spawned at " + spawnCoord);
+        PC.FreezePlayer();
         transform.position = spawnCoord;
         transform.rotation = Quaternion.Euler(spawnRot);
         foreach (Seed s in seeds)
         {
             s.ghost?.Animate();
         }
-        AC.SetTrigger("OnSpawn");   
+        AC.SetTrigger("OnSpawn");
+        status = Player_Status.spawning;
     }
 }

@@ -2,22 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Movement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
     public float jumpForce;
     public float hopForce;
     // Rigidbody rigidbody;
     // Transform player;
-    CharacterController controller;
     private Vector3 moveDirection;
     public float gravityScale;
-
 
     private string KeyMoveVertical = "Vertical";
     private string KeyMoveHorizontal = "Horizontal";
     private string MouseMoveHorizontal = "Mouse Y";
     private string MouseMoveVertical = "Mouse X";
+
+    private bool freezePlayer = false;
 
     public float rotateRate = 1f;
     public float sprintMultiplier = 1.5f;
@@ -27,21 +27,20 @@ public class Movement : MonoBehaviour
     PlayerState PS;
     GhostManager GM;
     Animator AC;
+    CharacterController CC;
 
     
     // Start is called before the first frame update
     void Start()
     {
         // rigidbody = GetComponent<Rigidbody>();
-        controller = GetComponent<CharacterController>();
+        CC = GetComponent<CharacterController>();
         Player = GetComponent<Rigidbody>();
         PS = GetComponent<PlayerState>();
         GM = GetComponent<GhostManager>();
         AC = GetComponent<Animator>();
         AC.SetBool("isMoving", false);
     }
-
-    private bool wasGrounded;
 
     // Update is called once per frame
     void Update()
@@ -92,13 +91,13 @@ public class Movement : MonoBehaviour
         //     Debug.Log(distanceToGround);
         // }
 
-        // if (!controller.isGrounded) {
+        // if (!CC.isGrounded) {
         //     if (Physics.Raycast(player.position, Vector3.down, 1.15f)) {
         //         Debug.Log("ground below!");
         //     };
         // }
 
-        if (controller.isGrounded) {
+        if (CC.isGrounded) {
             moveDirection.y = 0f;
             AC.SetBool("isMoving", false);
             if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Space))
@@ -115,8 +114,23 @@ public class Movement : MonoBehaviour
 
         float turnAxisX = Input.GetAxis("Vertical2");
         float turnAxisY = Input.GetAxis("Mouse X"); ;
-        ApplyTurnInput(turnAxisX, turnAxisY);
-        controller.Move(moveDirection * Time.deltaTime);
+        if (!freezePlayer)
+        {
+            ApplyTurnInput(turnAxisX, turnAxisY);
+            CC.Move(moveDirection * Time.deltaTime); 
+        }
+    }
+
+    public void FreezePlayer()
+    {
+        Debug.Log("PC::Freezing Player");
+        freezePlayer = true;
+    }
+
+    public void UnfreezePlayer()
+    {
+        Debug.Log("PC::Unfreezing Player");
+        freezePlayer = false;
     }
 
     private void ApplyTurnInput(float turnX, float turnY)
@@ -124,18 +138,3 @@ public class Movement : MonoBehaviour
         transform.Rotate(0, turnY * rotateRate, 0);
     }
 }
-
-
-// bool wasGrounded;
-//  void Update()
-//  {
-  
-//      isGrounded = Physics2D.Linecast (.........);
-  
-//      if (isGrounded && !wasGrounded)
-//          // is grounded but wasn't last time -> landed
-//      else if (!isGrounded && wasGrounded)
-//          // not grounded but was last Update() -> jump occurred
- 
-//      wasGrounded = isGrounded;
-//  }
