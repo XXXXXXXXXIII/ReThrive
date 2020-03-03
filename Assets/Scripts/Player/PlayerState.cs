@@ -3,18 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum Player_Status
+{ 
+    idle = 0, 
+    spawning, 
+    active, 
+    wilting, 
+    dead
+}
+
 // Keeps track of player's state and status
 public class PlayerState : MonoBehaviour
 {
-    public enum Player_Status
-    {
-        idle = 0,
-        spawning,
-        active, 
-        wilting,
-        dead
-    }
-
     public Player_Status status = Player_Status.idle; 
     public int health { get; set; }
     public float sunMeter { get; set; }
@@ -38,7 +38,6 @@ public class PlayerState : MonoBehaviour
     // Initial spawn coordinates
     public Vector3 spawnCoord;
     public Vector3 spawnRot;
-    List<Vector3> seedCoords;
 
     // Append functions to these actions
     // NOTE: Directly invoke these for the approperiate action
@@ -50,12 +49,14 @@ public class PlayerState : MonoBehaviour
     public UnityAction onWilt;
 
     GhostManager GM;
-    PlayerController PC;
-    HeadsUpDisplay HUD;
-    Animator AC;
+    public PlayerController PC { get; private set; }
+    public HeadsUpDisplay HUD { get; private set; }
+    public Animator AC { get; private set; }
+    public CharacterController CC { get; private set; }
 
     // Prefabs for ghost and seed
     public GameObject seedPrefab;
+    public GameObject ghostPrefab;
 
     // Start is called before the first frame update
     void Start()
@@ -64,27 +65,24 @@ public class PlayerState : MonoBehaviour
         PC = GetComponent<PlayerController>();
         AC = GetComponent<Animator>();
         HUD = GetComponent<HeadsUpDisplay>();
+        CC = GetComponent<CharacterController>();
 
         if (spawnAtCurrCoord)
         {
             spawnCoord = transform.position;
         }
 
-        //GameObject puzzleObject = GameObject.Find("Puzzle");
-        //currPuzzle = puzzleObject.GetComponent<Puzzle>();
-
         onDie += OnDie;
-
         onWilt += OnWilt;
-
         onSpawn += OnSpawn;
+        onInteractStart += OnInteractStart;
+        onInteractEnd += OnInteractEnd;
 
-        onInteractStart += OnInteract;
-
-        //onInteractStart += OnInteract;
+        PC.onWilt += onWilt.Invoke;
+        PC.onInteractionStart += onInteractStart.Invoke;
+        PC.onInteractionEnd += onInteractEnd.Invoke;
 
         seeds = new List<Seed>();
-        seedCoords = new List<Vector3>();
         onDirt = false;
         currDirt = null;
         isInteracting = false;
@@ -141,7 +139,8 @@ public class PlayerState : MonoBehaviour
             }
         }
     }
-    private void OnInteract()
+
+    private void OnInteractStart()
     {
         if (onSeed)
         {
@@ -153,6 +152,11 @@ public class PlayerState : MonoBehaviour
         }
     }
 
+    private void OnInteractEnd()
+    {
+
+    }
+
     private void ReplantSeed()
     {
         foreach (Seed s in seeds)
@@ -160,7 +164,8 @@ public class PlayerState : MonoBehaviour
             s.ghost?.Reset();
             s.ghost?.Animate();
         }
-        GM.StartRecording();
+        PC.SwitchToGhost(currSeed.ghost, currSeed.ghost.AC, currSeed.ghost.CC);
+        GM.StartRecording(currSeed.ghost);
     }
 
     private void PlantSeed()
@@ -195,37 +200,54 @@ public class PlayerState : MonoBehaviour
                 s.ghost?.Reset();
                 s.ghost?.Animate();
             }
-            GameObject newSeed = Instantiate(seedPrefab, transform.position + Vector3.up * 0.1f, Quaternion.identity);
+            //TODO: Let dirt decide where to plant the seed
+            GameObject newSeed = Instantiate(seedPrefab, transform.position + Vector3.up * 0.1f + Vector3.forward * 0.3f, Quaternion.identity);
             newSeed.transform.SetParent(currDirt.transform);
             Seed seed = newSeed.GetComponent<Seed>();
-            seeds.Add(seed);
             currDirt.seeds.Add(seed);
             currSeed = seed;
-            GM.StartRecording();
+            seeds.Add(seed);
+
+            GameObject newGhost = Instantiate(ghostPrefab, newSeed.transform.position, newSeed.transform.rotation);
+            newGhost.transform.parent = null;
+            Ghost ghost = newGhost.GetComponent<Ghost>();
+            seed.ghost = ghost;
+            ghost.SeedCoord = seed.transform.position;
+            ghost.SeedRot = seed.transform.rotation;
+
+            PC.SwitchToGhost(ghost, ghost.AC, ghost.CC);
+            GM.StartRecording(ghost);
         }
     }
 
     private void OnWilt()
     {
         HUD.SetWarning("You wilted!");
-        Debug.Log("PS::Player wilted");
-        PC.FreezePlayer();
+
         if (GM.isRecording)
         {
-            currSeed.ghost = GM.StopRecording();
+            GM.StopRecording();
+            PC.SwitchToPlayer(this, AC, CC);
+            Debug.Log("PS::Player wilted");
+            foreach (Seed s in seeds)
+            {
+                s.ghost.Reset();
+                s.ghost.Animate();
+            }
         }
         else
         {
+            PC.FreezePlayer();
             sunMeter -= deathCost;
             waterMeter -= deathCost;
+            AC.SetTrigger("OnWilt");
+            status = Player_Status.wilting;
+            foreach (Seed s in seeds)
+            {
+                s.ghost?.Reset();
+            }
         }
-        foreach (Seed s in seeds)
-        {
 
-            s.ghost?.Reset();
-        }
-        AC.SetTrigger("OnWilt");
-        status = Player_Status.wilting;
     }
 
     private void OnDie()
@@ -235,19 +257,26 @@ public class PlayerState : MonoBehaviour
         PC.FreezePlayer();
         if (GM.isRecording)
         {
-            currSeed.ghost = GM.StopRecording();
+            GM.StopRecording();
+            PC.SwitchToPlayer(this, AC, CC);
+            foreach (Seed s in seeds)
+            {
+                s.ghost?.Reset();
+                s.ghost?.Animate();
+            }
         }
         else
         {
             sunMeter -= deathCost;
             waterMeter -= deathCost;
+            foreach (Seed s in seeds)
+            {
+                s.ghost?.Reset();
+            }
+            AC.SetTrigger("OnWilt");
+            status = Player_Status.dead;
         }
-        foreach (Seed s in seeds)
-        {
-            s.ghost?.Reset();
-        }
-        AC.SetTrigger("OnWilt");
-        status = Player_Status.dead;
+
     }
 
     private void OnSpawn()

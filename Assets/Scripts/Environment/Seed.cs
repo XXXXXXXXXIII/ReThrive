@@ -14,7 +14,6 @@ public class Seed : MonoBehaviour
 
     private void Start()
     {
-        ghost = null;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -48,10 +47,11 @@ public class Seed : MonoBehaviour
 
     public void OnInteract()
     {
-        ghost.gameObject.transform.position = new Vector3(10000, 10000, 10000);
+        //ghost.gameObject.transform.position = new Vector3(10000, 10000, 10000);
         //ghost.gameObject.GetComponent<Renderer>().enabled = false;
-        Destroy(ghost.gameObject, 0.5f);
-        ghost = null;
+        //Destroy(ghost.gameObject, 0.5f);
+        //ghost = null;
+        ghost.Reset();
         PS.currSeed = this;
     }
 }

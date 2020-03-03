@@ -1,12 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
     public float jumpForce;
     public float hopForce;
+    private Vector3 defaultCameraCoord;
+    private Quaternion defaultCameraRot;
     // Rigidbody rigidbody;
     // Transform player;
     private Vector3 moveDirection;
@@ -23,79 +26,48 @@ public class PlayerController : MonoBehaviour
     public float sprintMultiplier = 1.5f;
     public float jumpMultiplier = 200f;
 
-    Rigidbody Player;
-    PlayerState PS;
-    GhostManager GM;
     Animator AC;
     CharacterController CC;
+    GameObject Main;
+    GameObject CameraCenter;
 
-    
+    public UnityAction onWilt { get; set; }
+    public UnityAction onInteractionStart { get; set; }
+    public UnityAction onInteractionEnd { get; set; }
+
+    public bool isInteracting { get; private set; }
+
+
     // Start is called before the first frame update
     void Start()
     {
-        // rigidbody = GetComponent<Rigidbody>();
         CC = GetComponent<CharacterController>();
-        Player = GetComponent<Rigidbody>();
-        PS = GetComponent<PlayerState>();
-        GM = GetComponent<GhostManager>();
         AC = GetComponent<Animator>();
-        AC.SetBool("isMoving", false);
+        CameraCenter = GameObject.Find("CameraCenter");
+        defaultCameraCoord = CameraCenter.transform.localPosition;
+        defaultCameraRot = CameraCenter.transform.localRotation;
+        Main = gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        moveDirection = Input.GetAxis("Horizontal") * moveSpeed * transform.right + new Vector3(0f, moveDirection.y, 0f) + Input.GetAxis("Vertical") * moveSpeed * transform.forward;
 
         if ((Input.GetButtonDown("Fire3") || Input.GetKeyDown(KeyCode.E))) // Circle button
         {
-            PS.isInteracting = true;
-            PS.onInteractStart?.Invoke();
+            onInteractionStart?.Invoke();
+            isInteracting = true;
         }
         else if ((Input.GetButtonUp("Fire3") || Input.GetKeyUp(KeyCode.E))) // Circle button
         {
-            PS.isInteracting = false;
-            PS.onInteractEnd?.Invoke();
+            onInteractionEnd?.Invoke();
+            isInteracting = false;
         }
 
         if (Input.GetKeyDown(KeyCode.Q)) // Triangle button
         {
-            // Wilt/suicide only if a seed has been planted.
-            //if (GM.isRecording)
-            //{
-                PS.onWilt.Invoke();
-            //}
-            //else
-            //{
-            //    Debug.Log("PC::Not recording chost atm!");
-            //}
+            onWilt?.Invoke();
         }
-
-        /*
-        if ((Input.GetKeyDown(KeyCode.F)))
-        {
-            PS.isInteracting = true;
-            PS.onInteractStart?.Invoke();
-        }
-
-        if ((Input.GetKeyUp(KeyCode.F)))
-        {
-            PS.isInteracting = false;
-            PS.onInteractEnd?.Invoke();
-        }
-        */
-
-        // RaycastHit hit = new RaycastHit();
-        // if (Physics.Raycast (player.position, -Vector3.up, out hit)) {
-        //     var distanceToGround = hit.distance;
-        //     Debug.Log(distanceToGround);
-        // }
-
-        // if (!CC.isGrounded) {
-        //     if (Physics.Raycast(player.position, Vector3.down, 1.15f)) {
-        //         Debug.Log("ground below!");
-        //     };
-        // }
 
         if (CC.isGrounded) {
             moveDirection.y = 0f;
@@ -110,15 +82,54 @@ public class PlayerController : MonoBehaviour
             }
         }
         
+        moveDirection = Input.GetAxis("Horizontal") * moveSpeed * Main.transform.right + new Vector3(0f, moveDirection.y, 0f) + Input.GetAxis("Vertical") * moveSpeed * Main.transform.forward;
         moveDirection.y += Physics.gravity.y * gravityScale * Time.deltaTime;
 
-        float turnAxisX = Input.GetAxis("Vertical2");
+        float turnAxisX = Input.GetAxis("Mouse Y");
         float turnAxisY = Input.GetAxis("Mouse X"); ;
         if (!freezePlayer)
         {
-            ApplyTurnInput(turnAxisX, turnAxisY);
+            TurnPlayer(turnAxisX, turnAxisY);
             CC.Move(moveDirection * Time.deltaTime); 
         }
+        TurnCamera(turnAxisX, turnAxisY);
+    }
+    private void TurnCamera(float turnX, float turnY)
+    {
+        CameraCenter.transform.Rotate(turnX * rotateRate * -1, 0, 0);
+    }
+
+    private void TurnPlayer(float turnX, float turnY)
+    {
+        Main.transform.Rotate(0, turnY * rotateRate, 0);
+    }
+
+    public void SwitchToGhost(Ghost ghost, Animator animator, CharacterController charCon)
+    {
+        Debug.Log("PC::Switch control to ghost");
+        onInteractionStart = ghost.onInteractStart;
+        onInteractionEnd = ghost.onInteractEnd;
+        onWilt += ghost.onWilt;
+        CC = charCon;
+        AC = animator;
+        CameraCenter.transform.parent = ghost.transform;
+        CameraCenter.transform.localPosition = defaultCameraCoord;
+        CameraCenter.transform.localRotation = defaultCameraRot;
+        Main = ghost.gameObject;
+    }
+
+    public void SwitchToPlayer(PlayerState PS, Animator animator, CharacterController charCon)
+    {
+        Debug.Log("PC::Switch control to player");
+        onInteractionStart = PS.onInteractStart;
+        onInteractionEnd = PS.onInteractEnd;
+        onWilt = PS.onWilt;
+        CC = charCon;
+        AC = animator;
+        CameraCenter.transform.parent = PS.transform;
+        CameraCenter.transform.localPosition = defaultCameraCoord;
+        CameraCenter.transform.localRotation = defaultCameraRot;
+        Main = PS.gameObject;
     }
 
     public void FreezePlayer()
@@ -131,10 +142,5 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("PC::Unfreezing Player");
         freezePlayer = false;
-    }
-
-    private void ApplyTurnInput(float turnX, float turnY)
-    {
-        transform.Rotate(0, turnY * rotateRate, 0);
     }
 }

@@ -6,14 +6,17 @@ using UnityEngine.Events;
 // This replaces GhostController
 public class Ghost : MonoBehaviour
 {
+    public Player_Status status = Player_Status.idle; 
     public float duration { get; set; } // Duration of ghost in seconds, after which it will reset and loop
     public float health;
     public bool isLoop = true;
     public bool isInteracting = false;
+    public bool isControlling = false;
 
-    public UnityAction onInteractStart, onInteractEnd, onInteractHold;
+    public UnityAction onInteractStart, onInteractEnd, onInteractHold, onWilt;
 
-    GameObject ghost;
+    public Animator AC { get; private set; }
+    public CharacterController CC { get; private set; }
 
     public Vector3 SeedCoord { get; set; }
     public Quaternion SeedRot { get; set; }
@@ -32,11 +35,13 @@ public class Ghost : MonoBehaviour
     void Awake()
     {
         Debug.Log("Spawned new ghost");
-        ghost = this.transform.gameObject;
+        AC = GetComponent<Animator>();
+        CC = GetComponent<CharacterController>();
         isActive = false;
         isInteracting = false;
-        ghost.SetActive(false);
+        //gameObject.SetActive(false);
         index = 0;
+        onWilt += OnWilt;
 
         SeedCoord = new Vector3();
         SeedRot = new Quaternion();
@@ -44,11 +49,16 @@ public class Ghost : MonoBehaviour
         GhostRotation = new List<Vector3>();
         AnimationState = new List<int>();
         InteractionState = new List<bool>();
+        AC.SetTrigger("OnSpawn");
     }
 
     void FixedUpdate()
     {
-        if (isActive)
+        if (isControlling)
+        {
+            //Debug.Log("Ghost::Controlling");
+        }
+        else if (isActive && !AC.GetCurrentAnimatorStateInfo(0).IsName("Spawning"))
         {
             if (index >= GhostPath.Count)
             {
@@ -72,6 +82,15 @@ public class Ghost : MonoBehaviour
             {
                 transform.Translate(GhostPath[index], Space.World);
                 transform.Rotate(GhostRotation[index], Space.Self);
+                if (GhostPath[index].magnitude != 0)
+                {
+                    AC.SetBool("isMoving", true);
+                }
+                else
+                {
+                    AC.SetBool("isMoving", false);
+                }
+
                 if (isInteracting)
                 {
                     if (InteractionState[index])
@@ -104,8 +123,8 @@ public class Ghost : MonoBehaviour
         {
             onInteractEnd?.Invoke();
         }
-        ghost.transform.position = this.SeedCoord;
-        ghost.transform.rotation = this.SeedRot;
+        transform.position = this.SeedCoord;
+        transform.rotation = this.SeedRot;
         isActive = false;
         index = 0;
         isInteracting = false;
@@ -115,15 +134,21 @@ public class Ghost : MonoBehaviour
     public void Animate()
     {
         isActive = true;
-        ghost.SetActive(true);
+        //gameObject.SetActive(true);
         maxIndex = (int)(duration * (1 / Time.fixedDeltaTime));
         finalAction = GhostPath[GhostPath.Count - 1];
         finalAction.y = 0; // Prevent ghost from jumping up forever
         finalRotation = GhostRotation[GhostRotation.Count - 1];
+        AC.SetTrigger("OnSpawn");
     }
 
     public void Halt()
     {
         isActive = false;
+    }
+
+    private void OnWilt()
+    {
+        AC.SetTrigger("OnWilt");
     }
 }
