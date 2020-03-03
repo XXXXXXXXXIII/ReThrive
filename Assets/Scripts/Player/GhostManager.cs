@@ -37,20 +37,28 @@ public class GhostManager : MonoBehaviour
     {
         if (isRecording)
         {
-            if (Time.time - startTime >= duration)
+            if (ghost.status != Player_Status.active)
             {
-                ghost.onWilt?.Invoke();
+                PC.FreezePlayer();
             }
             else
             {
-                //Debug.Log("GM::Time Remaining: " + (10f - (Time.time - startTime)));
-                //Debug.Log(ghost.transform.position);
-                ghost.GhostPath.Add(ghost.transform.position - prevCoord);
-                ghost.GhostRotation.Add(ghost.transform.rotation.eulerAngles - prevRot.eulerAngles);
-                prevCoord = ghost.transform.position;
-                prevRot = ghost.transform.rotation;
-                ghost.InteractionState.Add(PC.isInteracting);
-                //ghost.AnimationState.Add(ghost.currAnimation);
+                PC.UnfreezePlayer();
+                if (Time.time - startTime >= duration)
+                {
+                    ghost.onWilt?.Invoke();
+                }
+                else
+                {
+                    //Debug.Log("GM::Time Remaining: " + (10f - (Time.time - startTime)));
+                    //Debug.Log(ghost.transform.position);
+                    ghost.GhostPath.Add(ghost.transform.position - prevCoord);
+                    ghost.GhostRotation.Add(ghost.transform.rotation.eulerAngles - prevRot.eulerAngles);
+                    prevCoord = ghost.transform.position;
+                    prevRot = ghost.transform.rotation;
+                    ghost.InteractionState.Add(PC.isInteracting);
+                    //ghost.AnimationState.Add(ghost.currAnimation);
+                }
             }
         }
     }

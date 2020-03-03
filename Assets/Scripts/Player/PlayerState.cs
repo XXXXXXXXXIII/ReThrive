@@ -114,7 +114,7 @@ public class PlayerState : MonoBehaviour
                 }
                 break;
             case Player_Status.wilting:
-                if (AC.GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+                if (AC.GetCurrentAnimatorStateInfo(0).IsName("Void"))
                 {
                     status = Player_Status.idle;
                 }
@@ -142,6 +142,7 @@ public class PlayerState : MonoBehaviour
 
     private void OnInteractStart()
     {
+        Debug.Log("PS::Interaction Start");
         if (onSeed)
         {
             ReplantSeed();
@@ -154,7 +155,7 @@ public class PlayerState : MonoBehaviour
 
     private void OnInteractEnd()
     {
-
+        Debug.Log("PS::Interaction End");
     }
 
     private void ReplantSeed()
@@ -201,7 +202,7 @@ public class PlayerState : MonoBehaviour
                 s.ghost?.Animate();
             }
             //TODO: Let dirt decide where to plant the seed
-            GameObject newSeed = Instantiate(seedPrefab, transform.position + Vector3.up * 0.1f + Vector3.forward * 0.3f, Quaternion.identity);
+            GameObject newSeed = Instantiate(seedPrefab, transform.position + Vector3.up * 0.1f + Vector3.forward * -0.3f, transform.rotation);
             newSeed.transform.SetParent(currDirt.transform);
             Seed seed = newSeed.GetComponent<Seed>();
             currDirt.seeds.Add(seed);
@@ -228,24 +229,17 @@ public class PlayerState : MonoBehaviour
         {
             GM.StopRecording();
             PC.SwitchToPlayer(this, AC, CC);
-            Debug.Log("PS::Player wilted");
-            foreach (Seed s in seeds)
-            {
-                s.ghost.Reset();
-                s.ghost.Animate();
-            }
+            ResetGhosts();
+            AnimateGhosts();
         }
         else
         {
+            Debug.Log("PS::Player wilted");
             PC.FreezePlayer();
             sunMeter -= deathCost;
             waterMeter -= deathCost;
             AC.SetTrigger("OnWilt");
             status = Player_Status.wilting;
-            foreach (Seed s in seeds)
-            {
-                s.ghost?.Reset();
-            }
         }
 
     }
@@ -259,20 +253,13 @@ public class PlayerState : MonoBehaviour
         {
             GM.StopRecording();
             PC.SwitchToPlayer(this, AC, CC);
-            foreach (Seed s in seeds)
-            {
-                s.ghost?.Reset();
-                s.ghost?.Animate();
-            }
+            ResetGhosts();
+            AnimateGhosts();
         }
         else
         {
             sunMeter -= deathCost;
             waterMeter -= deathCost;
-            foreach (Seed s in seeds)
-            {
-                s.ghost?.Reset();
-            }
             AC.SetTrigger("OnWilt");
             status = Player_Status.dead;
         }
@@ -285,11 +272,25 @@ public class PlayerState : MonoBehaviour
         PC.FreezePlayer();
         transform.position = spawnCoord;
         transform.rotation = Quaternion.Euler(spawnRot);
+        ResetGhosts();
+        AnimateGhosts();
+        AC.SetTrigger("OnSpawn");
+        status = Player_Status.spawning;
+    }
+
+    public void ResetGhosts()
+    {
+        foreach (Seed s in seeds)
+        {
+            s.ghost?.Reset();
+        }
+    }
+
+    public void AnimateGhosts()
+    {
         foreach (Seed s in seeds)
         {
             s.ghost?.Animate();
         }
-        AC.SetTrigger("OnSpawn");
-        status = Player_Status.spawning;
     }
 }

@@ -49,24 +49,33 @@ public class Ghost : MonoBehaviour
         GhostRotation = new List<Vector3>();
         AnimationState = new List<int>();
         InteractionState = new List<bool>();
+        status = Player_Status.spawning;
         AC.SetTrigger("OnSpawn");
     }
 
     void FixedUpdate()
     {
-        if (isControlling)
+        if (isControlling && !AC.GetCurrentAnimatorStateInfo(0).IsName("Respawn"))
         {
             //Debug.Log("Ghost::Controlling");
+            status = Player_Status.active;
         }
-        else if (isActive && !AC.GetCurrentAnimatorStateInfo(0).IsName("Spawning"))
+        else if (isActive && !AC.GetCurrentAnimatorStateInfo(0).IsName("Respawn") && !AC.GetCurrentAnimatorStateInfo(0).IsName("Wilt"))
         {
+            status = Player_Status.active;
             if (index >= GhostPath.Count)
             {
                 if (index < maxIndex)
                 {
                     transform.Translate(finalAction, Space.World); // Repeat last step 
-                    //transform.Rotate(finalRotation, Space.Self);
-                    // this.isInteracting = false;
+                    if (finalAction.magnitude > 0)
+                    {
+                        AC.SetBool("isMoving", true);
+                    }
+                    else
+                    {
+                        AC.SetBool("isMoving", false);
+                    }
                     index++;
                 }
                 else
@@ -128,6 +137,7 @@ public class Ghost : MonoBehaviour
         isActive = false;
         index = 0;
         isInteracting = false;
+        status = Player_Status.idle;
         //ghost.SetActive(false); //TODO: Removing this cuz it disables collider as well
     }
 
@@ -139,6 +149,7 @@ public class Ghost : MonoBehaviour
         finalAction = GhostPath[GhostPath.Count - 1];
         finalAction.y = 0; // Prevent ghost from jumping up forever
         finalRotation = GhostRotation[GhostRotation.Count - 1];
+        status = Player_Status.spawning;
         AC.SetTrigger("OnSpawn");
     }
 
@@ -149,6 +160,7 @@ public class Ghost : MonoBehaviour
 
     private void OnWilt()
     {
+        status = Player_Status.wilting;
         AC.SetTrigger("OnWilt");
     }
 }

@@ -27,6 +27,7 @@ public class PushButton : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
+            Debug.Log("Button::Player stepping on button");
             PS = collider.gameObject.GetComponent<PlayerState>();
             HUD = collider.gameObject.GetComponent<HeadsUpDisplay>();
             HUD.PushPrompt(PromptText);
@@ -45,6 +46,7 @@ public class PushButton : MonoBehaviour
     {
         if (collider.CompareTag("Player"))
         {
+            Debug.Log("Button::Player left button");
             HUD.PopPromptOnMatch(PromptText);
             PS.onInteractStart -= ButtonPress;
             PS.onInteractEnd -= ButtonRelease;
@@ -67,6 +69,7 @@ public class PushButton : MonoBehaviour
 
     private void ButtonPress()
     {
+        Debug.Log("Button::Player pressed button");
         if (++triggerCount == 1)
         {
             OnButtonPress.Invoke();
@@ -75,6 +78,7 @@ public class PushButton : MonoBehaviour
 
     private void ButtonRelease()
     {
+        Debug.Log("Button::Player unpressed button");
         if (--triggerCount <= 0)
         {
             OnButtonRelease.Invoke();

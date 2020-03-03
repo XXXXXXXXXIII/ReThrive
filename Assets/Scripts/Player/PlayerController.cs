@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -8,11 +9,11 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
     public float jumpForce;
     public float hopForce;
-    private Vector3 defaultCameraCoord;
-    private Quaternion defaultCameraRot;
     // Rigidbody rigidbody;
     // Transform player;
     private Vector3 moveDirection;
+    private Vector3 defaultCameraCoord;
+    private Quaternion defaultCameraRot;
     public float gravityScale;
 
     private string KeyMoveVertical = "Vertical";
@@ -21,6 +22,7 @@ public class PlayerController : MonoBehaviour
     private string MouseMoveVertical = "Mouse X";
 
     private bool freezePlayer = false;
+    private bool inCameraTransition = false;
 
     public float rotateRate = 1f;
     public float sprintMultiplier = 1.5f;
@@ -53,47 +55,64 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
 
-        if ((Input.GetButtonDown("Fire3") || Input.GetKeyDown(KeyCode.E))) // Circle button
-        {
-            onInteractionStart?.Invoke();
-            isInteracting = true;
-        }
-        else if ((Input.GetButtonUp("Fire3") || Input.GetKeyUp(KeyCode.E))) // Circle button
-        {
-            onInteractionEnd?.Invoke();
-            isInteracting = false;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Q)) // Triangle button
-        {
-            onWilt?.Invoke();
-        }
-
-        if (CC.isGrounded) {
-            moveDirection.y = 0f;
-            AC.SetBool("isMoving", false);
-            if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Space))
-            {
-                moveDirection.y = jumpForce;
-            }
-            else if (Input.GetAxis("Horizontal") != 0f || Input.GetAxis("Vertical") != 0f) {
-                moveDirection.y = hopForce;
-                AC.SetBool("isMoving", true);
-            }
-        }
-        
-        moveDirection = Input.GetAxis("Horizontal") * moveSpeed * Main.transform.right + new Vector3(0f, moveDirection.y, 0f) + Input.GetAxis("Vertical") * moveSpeed * Main.transform.forward;
-        moveDirection.y += Physics.gravity.y * gravityScale * Time.deltaTime;
 
         float turnAxisX = Input.GetAxis("Mouse Y");
         float turnAxisY = Input.GetAxis("Mouse X"); ;
+        moveDirection = Input.GetAxis("Horizontal") * moveSpeed * Main.transform.right + new Vector3(0f, moveDirection.y, 0f) + Input.GetAxis("Vertical") * moveSpeed * Main.transform.forward;
+        moveDirection.y += Physics.gravity.y * gravityScale * Time.deltaTime;
+
         if (!freezePlayer)
         {
+            if ((Input.GetButtonDown("Fire3") || Input.GetKeyDown(KeyCode.E))) // Circle button
+            {
+                onInteractionStart?.Invoke();
+                isInteracting = true;
+            }
+            else if ((Input.GetButtonUp("Fire3") || Input.GetKeyUp(KeyCode.E))) // Circle button
+            {
+                onInteractionEnd?.Invoke();
+                isInteracting = false;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Q)) // Triangle button
+            {
+                onWilt?.Invoke();
+            }
+
+            if (CC.isGrounded) {
+                moveDirection.y = 0f;
+                AC.SetBool("isMoving", false);
+                if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Space))
+                {
+                    moveDirection.y = jumpForce;
+                }
+                else if (Input.GetAxis("Horizontal") != 0f || Input.GetAxis("Vertical") != 0f) {
+                    moveDirection.y = hopForce;
+                    AC.SetBool("isMoving", true);
+                }
+            }
+        
             TurnPlayer(turnAxisX, turnAxisY);
             CC.Move(moveDirection * Time.deltaTime); 
         }
         TurnCamera(turnAxisX, turnAxisY);
+
+        if (inCameraTransition && (Vector3.Distance(CameraCenter.transform.localPosition, defaultCameraCoord) > 0.1f))
+        {
+            TransitionCamera();
+        }
+        else
+        {
+            inCameraTransition = false;
+        }
     }
+
+    private void TransitionCamera()
+    {
+        //Debug.Log("Translating");
+        CameraCenter.transform.Translate((defaultCameraCoord - CameraCenter.transform.localPosition) * 3 * Time.deltaTime, Space.Self);
+    }
+
     private void TurnCamera(float turnX, float turnY)
     {
         CameraCenter.transform.Rotate(turnX * rotateRate * -1, 0, 0);
@@ -112,8 +131,9 @@ public class PlayerController : MonoBehaviour
         onWilt += ghost.onWilt;
         CC = charCon;
         AC = animator;
+        inCameraTransition = true;
         CameraCenter.transform.parent = ghost.transform;
-        CameraCenter.transform.localPosition = defaultCameraCoord;
+        //CameraCenter.transform.localPosition = defaultCameraCoord;
         CameraCenter.transform.localRotation = defaultCameraRot;
         Main = ghost.gameObject;
     }
@@ -126,21 +146,22 @@ public class PlayerController : MonoBehaviour
         onWilt = PS.onWilt;
         CC = charCon;
         AC = animator;
+        inCameraTransition = true;
         CameraCenter.transform.parent = PS.transform;
-        CameraCenter.transform.localPosition = defaultCameraCoord;
+        //CameraCenter.transform.localPosition = defaultCameraCoord;
         CameraCenter.transform.localRotation = defaultCameraRot;
         Main = PS.gameObject;
     }
 
     public void FreezePlayer()
     {
-        Debug.Log("PC::Freezing Player");
+        //Debug.Log("PC::Freezing Player");
         freezePlayer = true;
     }
 
     public void UnfreezePlayer()
     {
-        Debug.Log("PC::Unfreezing Player");
+        //Debug.Log("PC::Unfreezing Player");
         freezePlayer = false;
     }
 }
