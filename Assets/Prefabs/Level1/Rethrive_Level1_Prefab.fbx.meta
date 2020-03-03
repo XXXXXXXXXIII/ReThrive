@@ -1,144 +1,8 @@
 fileFormatVersion: 2
 guid: ef770e50dea0f164190e87a64367969c
 ModelImporter:
-  serializedVersion: 23
-  fileIDToRecycleName:
-    100000: Arch
-    100002: Arch1
-    100004: Arch2
-    100006: Arch3
-    100008: Curved_Bridge
-    100010: Gate
-    100012: Gate1
-    100014: Level_Base
-    100016: pasted__FloatingPlatform
-    100018: //RootNode
-    100020: Rocky_Boulder
-    100022: Rocky_Boulder1
-    100024: Rocky_Boulder_2
-    100026: Rocky_Platform_1
-    100028: Rocky_Platform_Disc
-    100030: Stalagmite
-    100032: Stalagmite1
-    100034: Stalagmite2
-    100036: Stalagmite3
-    100038: Stalagmite_Platform
-    100040: Stalagmite_Platform1
-    100042: Stalagmite_Platform2
-    100044: Stalagmite_Platform3
-    100046: Terrain_Rocky
-    100048: Terrain_Rocky1
-    100050: Terrain_Rocky2
-    400000: Arch
-    400002: Arch1
-    400004: Arch2
-    400006: Arch3
-    400008: Curved_Bridge
-    400010: Gate
-    400012: Gate1
-    400014: Level_Base
-    400016: pasted__FloatingPlatform
-    400018: //RootNode
-    400020: Rocky_Boulder
-    400022: Rocky_Boulder1
-    400024: Rocky_Boulder_2
-    400026: Rocky_Platform_1
-    400028: Rocky_Platform_Disc
-    400030: Stalagmite
-    400032: Stalagmite1
-    400034: Stalagmite2
-    400036: Stalagmite3
-    400038: Stalagmite_Platform
-    400040: Stalagmite_Platform1
-    400042: Stalagmite_Platform2
-    400044: Stalagmite_Platform3
-    400046: Terrain_Rocky
-    400048: Terrain_Rocky1
-    400050: Terrain_Rocky2
-    2100000: Material.001
-    2100002: pasted__Material.001
-    2100004: Material
-    2100006: Material.008
-    2100008: Material.002
-    2100010: lambert1
-    2100012: lambert2
-    2100014: lambert3
-    2300000: Arch
-    2300002: Arch1
-    2300004: Arch2
-    2300006: Arch3
-    2300008: Curved_Bridge
-    2300010: Gate
-    2300012: Gate1
-    2300014: Level_Base
-    2300016: pasted__FloatingPlatform
-    2300018: Rocky_Boulder
-    2300020: Rocky_Boulder1
-    2300022: Rocky_Boulder_2
-    2300024: Rocky_Platform_1
-    2300026: Rocky_Platform_Disc
-    2300028: Stalagmite
-    2300030: Stalagmite1
-    2300032: Stalagmite2
-    2300034: Stalagmite3
-    2300036: Stalagmite_Platform
-    2300038: Stalagmite_Platform1
-    2300040: Stalagmite_Platform2
-    2300042: Stalagmite_Platform3
-    2300044: Terrain_Rocky
-    2300046: Terrain_Rocky1
-    2300048: Terrain_Rocky2
-    3300000: Arch
-    3300002: Arch1
-    3300004: Arch2
-    3300006: Arch3
-    3300008: Curved_Bridge
-    3300010: Gate
-    3300012: Gate1
-    3300014: Level_Base
-    3300016: pasted__FloatingPlatform
-    3300018: Rocky_Boulder
-    3300020: Rocky_Boulder1
-    3300022: Rocky_Boulder_2
-    3300024: Rocky_Platform_1
-    3300026: Rocky_Platform_Disc
-    3300028: Stalagmite
-    3300030: Stalagmite1
-    3300032: Stalagmite2
-    3300034: Stalagmite3
-    3300036: Stalagmite_Platform
-    3300038: Stalagmite_Platform1
-    3300040: Stalagmite_Platform2
-    3300042: Stalagmite_Platform3
-    3300044: Terrain_Rocky
-    3300046: Terrain_Rocky1
-    3300048: Terrain_Rocky2
-    4300000: Curved_Bridge
-    4300002: Terrain_Rocky2
-    4300004: pasted__FloatingPlatform
-    4300006: Stalagmite2
-    4300008: Stalagmite_Platform3
-    4300010: Stalagmite_Platform2
-    4300012: Stalagmite
-    4300014: Stalagmite1
-    4300016: Rocky_Boulder1
-    4300018: Stalagmite_Platform1
-    4300020: Stalagmite_Platform
-    4300022: Rocky_Boulder_2
-    4300024: Rocky_Platform_1
-    4300026: Rocky_Platform_Disc
-    4300028: Terrain_Rocky1
-    4300030: Terrain_Rocky
-    4300032: Gate
-    4300034: Gate1
-    4300036: Rocky_Boulder
-    4300038: Arch3
-    4300040: Arch
-    4300042: Arch1
-    4300044: Arch2
-    4300046: Level_Base
-    4300048: Stalagmite3
-    2186277476908879412: ImportLogs
+  serializedVersion: 26
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -174,6 +38,7 @@ ModelImporter:
     meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
     importCameras: 1
@@ -181,18 +46,19 @@ ModelImporter:
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
     preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
-    previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
@@ -201,10 +67,11 @@ ModelImporter:
     legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
     blendShapeNormalImportMode: 1
     normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
   copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -214,6 +81,7 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
     hasTranslationDoF: 0
     hasExtraRoot: 0
