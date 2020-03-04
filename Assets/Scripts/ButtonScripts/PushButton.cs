@@ -50,24 +50,18 @@ public class PushButton : MonoBehaviour
             HUD.PopPromptOnMatch(PromptText);
             PS.onInteractStart -= ButtonPress;
             PS.onInteractEnd -= ButtonRelease;
-            if (PS.isInteracting)
-            {
-                ButtonRelease();
-            }
+            ButtonRelease();
         }
         else if (collider.CompareTag("Ghost"))
         {
             ghost = collider.gameObject.GetComponent<Ghost>();
             ghost.onInteractStart -= ButtonPress;
             ghost.onInteractEnd -= ButtonRelease;
-            if (ghost.isInteracting)
-            {
-                ButtonRelease();
-            }
+            ButtonRelease();
         }
     }
 
-    private void ButtonPress()
+    public void ButtonPress()
     {
         Debug.Log("Button::Player pressed button");
         if (++triggerCount == 1)
@@ -76,7 +70,7 @@ public class PushButton : MonoBehaviour
         }
     }
 
-    private void ButtonRelease()
+    public void ButtonRelease()
     {
         Debug.Log("Button::Player unpressed button");
         if (--triggerCount <= 0)

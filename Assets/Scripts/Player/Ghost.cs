@@ -13,7 +13,7 @@ public class Ghost : MonoBehaviour
     public bool isInteracting = false;
     public bool isControlling = false;
 
-    public UnityAction onInteractStart, onInteractEnd, onInteractHold, onWilt;
+    public UnityAction onInteractStart, onInteractEnd, onInteractHold, onWilt, onActive, onVoid;
 
     public Animator AC { get; private set; }
     public CharacterController CC { get; private set; }
@@ -24,6 +24,7 @@ public class Ghost : MonoBehaviour
     public List<Vector3> GhostRotation { get; set; }
     public List<int> AnimationState { get; set; }
     public List<bool> InteractionState { get; set; }
+    public int pressCounter { get; set; }
 
     private bool isActive;
     private int index;
@@ -50,6 +51,7 @@ public class Ghost : MonoBehaviour
         AnimationState = new List<int>();
         InteractionState = new List<bool>();
         status = Player_Status.spawning;
+        pressCounter = 0;
         AC.SetTrigger("OnSpawn");
     }
 
@@ -57,12 +59,14 @@ public class Ghost : MonoBehaviour
     {
         if (isControlling && !AC.GetCurrentAnimatorStateInfo(0).IsName("Respawn"))
         {
-            //Debug.Log("Ghost::Controlling");
-            status = Player_Status.active;
+            if (status == Player_Status.spawning)
+            {
+                onActive?.Invoke();
+                status = Player_Status.active;
+            }
         }
         else if (isActive && !AC.GetCurrentAnimatorStateInfo(0).IsName("Respawn") && !AC.GetCurrentAnimatorStateInfo(0).IsName("Wilt"))
         {
-            status = Player_Status.active;
             if (index >= GhostPath.Count)
             {
                 if (index < maxIndex)
@@ -162,5 +166,15 @@ public class Ghost : MonoBehaviour
     {
         status = Player_Status.wilting;
         AC.SetTrigger("OnWilt");
+    }
+
+    public void OnInteractStart()
+    {
+        onInteractStart?.Invoke();
+    }
+
+    public void OnInteractEnd()
+    {
+        onInteractEnd?.Invoke();
     }
 }

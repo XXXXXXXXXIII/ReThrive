@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
@@ -26,6 +27,7 @@ public class PlayerState : MonoBehaviour
     public bool onSeed { get; set; }
     public bool inSun { get; set; }
     public bool inWater { get; set; }
+    public int pressCounter { get; set; }
 
     public bool spawnAtCurrCoord = false;
 
@@ -75,12 +77,10 @@ public class PlayerState : MonoBehaviour
         onDie += OnDie;
         onWilt += OnWilt;
         onSpawn += OnSpawn;
-        onInteractStart += OnInteractStart;
-        onInteractEnd += OnInteractEnd;
+        PC.onInteractStart += OnInteractStart;
+        PC.onInteractEnd += OnInteractEnd;
 
         PC.onWilt += onWilt.Invoke;
-        PC.onInteractionStart += onInteractStart.Invoke;
-        PC.onInteractionEnd += onInteractEnd.Invoke;
 
         seeds = new List<Seed>();
         onDirt = false;
@@ -90,6 +90,7 @@ public class PlayerState : MonoBehaviour
         sunMeter = 1f;
         waterMeter = 1f;
         wiltMeter = 1f;
+        pressCounter = 0;
     }
 
     // Update is called once per frame
@@ -140,9 +141,9 @@ public class PlayerState : MonoBehaviour
         }
     }
 
-    private void OnInteractStart()
+    public void OnInteractStart()
     {
-        Debug.Log("PS::Interaction Start");
+        //Debug.Log("PS::Interaction Start"); 
         if (onSeed)
         {
             ReplantSeed();
@@ -151,20 +152,21 @@ public class PlayerState : MonoBehaviour
         {
             PlantSeed();
         }
+
+        onInteractStart?.Invoke();
     }
 
-    private void OnInteractEnd()
+    public void OnInteractEnd()
     {
-        Debug.Log("PS::Interaction End");
+        //Debug.Log("PS::Interaction End");
+        onInteractEnd?.Invoke();
     }
 
     private void ReplantSeed()
     {
-        foreach (Seed s in seeds)
-        {
-            s.ghost?.Reset();
-            s.ghost?.Animate();
-        }
+        ResetGhosts();
+        AnimateGhosts();
+        AC.SetBool("isMoving", false);
         PC.SwitchToGhost(currSeed.ghost, currSeed.ghost.AC, currSeed.ghost.CC);
         GM.StartRecording(currSeed.ghost);
     }
@@ -196,11 +198,9 @@ public class PlayerState : MonoBehaviour
             Debug.Log("PS::I can plant");
             waterMeter -= plantCost;
             sunMeter -= plantCost;
-            foreach (Seed s in seeds)
-            {
-                s.ghost?.Reset();
-                s.ghost?.Animate();
-            }
+            AC.SetBool("isMoving", false);
+            ResetGhosts();
+            AnimateGhosts();
             //TODO: Let dirt decide where to plant the seed
             GameObject newSeed = Instantiate(seedPrefab, transform.position + Vector3.up * 0.1f + Vector3.forward * -0.3f, transform.rotation);
             newSeed.transform.SetParent(currDirt.transform);
@@ -224,6 +224,7 @@ public class PlayerState : MonoBehaviour
     private void OnWilt()
     {
         HUD.SetWarning("You wilted!");
+        AC.SetBool("isMoving", false);
 
         if (GM.isRecording)
         {
@@ -248,6 +249,7 @@ public class PlayerState : MonoBehaviour
     {
         HUD.SetWarning("You died!");
         Debug.Log("PS::Player died");
+        AC.SetBool("isMoving", false);
         PC.FreezePlayer();
         if (GM.isRecording)
         {
@@ -269,6 +271,7 @@ public class PlayerState : MonoBehaviour
     private void OnSpawn()
     {
         Debug.Log("PS::Player spawned at " + spawnCoord);
+        AC.SetBool("isMoving", false);
         PC.FreezePlayer();
         transform.position = spawnCoord;
         transform.rotation = Quaternion.Euler(spawnRot);

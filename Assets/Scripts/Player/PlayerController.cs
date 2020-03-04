@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
 
     private bool freezePlayer = false;
     private bool inCameraTransition = false;
+    private float queueJump;
 
     public float rotateRate = 1f;
     public float sprintMultiplier = 1.5f;
@@ -34,8 +35,8 @@ public class PlayerController : MonoBehaviour
     GameObject CameraCenter;
 
     public UnityAction onWilt { get; set; }
-    public UnityAction onInteractionStart { get; set; }
-    public UnityAction onInteractionEnd { get; set; }
+    public UnityAction onInteractStart { get; set; }
+    public UnityAction onInteractEnd { get; set; }
 
     public bool isInteracting { get; private set; }
 
@@ -65,12 +66,12 @@ public class PlayerController : MonoBehaviour
         {
             if ((Input.GetButtonDown("Fire3") || Input.GetKeyDown(KeyCode.E))) // Circle button
             {
-                onInteractionStart?.Invoke();
+                onInteractStart?.Invoke();                
                 isInteracting = true;
             }
             else if ((Input.GetButtonUp("Fire3") || Input.GetKeyUp(KeyCode.E))) // Circle button
             {
-                onInteractionEnd?.Invoke();
+                onInteractEnd?.Invoke();
                 isInteracting = false;
             }
 
@@ -82,16 +83,25 @@ public class PlayerController : MonoBehaviour
             if (CC.isGrounded) {
                 moveDirection.y = 0f;
                 AC.SetBool("isMoving", false);
-                if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Space))
+                if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Space) || queueJump > 0f)
                 {
                     moveDirection.y = jumpForce;
+                    queueJump = 0f;
                 }
                 else if (Input.GetAxis("Horizontal") != 0f || Input.GetAxis("Vertical") != 0f) {
-                    moveDirection.y = hopForce;
+                    //moveDirection.y = hopForce;
                     AC.SetBool("isMoving", true);
                 }
             }
-        
+            else if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Space))
+            {
+                queueJump = 0.2f;
+            }
+            else if (queueJump > 0f)
+            {
+                queueJump -= Time.deltaTime;
+            }
+
             TurnPlayer(turnAxisX, turnAxisY);
             CC.Move(moveDirection * Time.deltaTime); 
         }
@@ -126,8 +136,8 @@ public class PlayerController : MonoBehaviour
     public void SwitchToGhost(Ghost ghost, Animator animator, CharacterController charCon)
     {
         Debug.Log("PC::Switch control to ghost");
-        onInteractionStart = ghost.onInteractStart;
-        onInteractionEnd = ghost.onInteractEnd;
+        onInteractStart = ghost.OnInteractStart;
+        onInteractEnd = ghost.OnInteractEnd;
         onWilt += ghost.onWilt;
         CC = charCon;
         AC = animator;
@@ -141,8 +151,8 @@ public class PlayerController : MonoBehaviour
     public void SwitchToPlayer(PlayerState PS, Animator animator, CharacterController charCon)
     {
         Debug.Log("PC::Switch control to player");
-        onInteractionStart = PS.onInteractStart;
-        onInteractionEnd = PS.onInteractEnd;
+        onInteractStart = PS.OnInteractStart;
+        onInteractEnd = PS.OnInteractEnd;
         onWilt = PS.onWilt;
         CC = charCon;
         AC = animator;

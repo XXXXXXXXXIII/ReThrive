@@ -37,6 +37,7 @@ public class HeadsUpDisplay : MonoBehaviour
         sunBar = GameObject.Find("SunBarForeground").GetComponent<Image>();
         waterBar = GameObject.Find("WaterBarForeground").GetComponent<Image>();
         wiltBar = GameObject.Find("WiltBarForeground").GetComponent<Image>();
+        HideWiltBar();
         warningResetTime = Time.time;
     }
 
@@ -58,18 +59,7 @@ public class HeadsUpDisplay : MonoBehaviour
 
         if (GM.isRecording)
         {
-            if (!wiltBar.gameObject.activeSelf)
-            {
-                wiltBar.gameObject.SetActive(true);
-            }
             wiltBar.fillAmount = 1f - ((Time.time - GM.startTime) / GM.duration);
-        }
-        else
-        {
-            if (wiltBar.gameObject.activeSelf)
-            {
-                wiltBar.gameObject.SetActive(false);
-            }
         }
 
         if (Time.time - warningResetTime > 1.5f)
@@ -137,11 +127,11 @@ public class HeadsUpDisplay : MonoBehaviour
 
     public void ShowWiltBar()
     {
-        wiltBar.enabled = true;
+        wiltBar.transform.parent.gameObject.SetActive(true);
     }
 
     public void HideWiltBar()
     {
-        wiltBar.enabled = false;
+        wiltBar.transform.parent.gameObject.SetActive(false);
     }
 }
