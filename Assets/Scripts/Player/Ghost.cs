@@ -164,6 +164,12 @@ public class Ghost : MonoBehaviour
 
     private void OnWilt()
     {
+        if (GhostPath.Count < 1)
+        {
+            GhostPath.Add(Vector3.zero);
+            GhostRotation.Add(Vector3.zero);
+            InteractionState.Add(false);
+        }
         status = Player_Status.wilting;
         AC.SetTrigger("OnWilt");
     }

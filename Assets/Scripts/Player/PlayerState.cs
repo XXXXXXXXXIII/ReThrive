@@ -202,7 +202,7 @@ public class PlayerState : MonoBehaviour
             ResetGhosts();
             AnimateGhosts();
             //TODO: Let dirt decide where to plant the seed
-            GameObject newSeed = Instantiate(seedPrefab, transform.position + Vector3.up * 0.1f + Vector3.forward * -0.3f, transform.rotation);
+            GameObject newSeed = Instantiate(seedPrefab, currDirt.transform.position + currDirt.GetNextSeedCoord(), transform.rotation);
             newSeed.transform.SetParent(currDirt.transform);
             Seed seed = newSeed.GetComponent<Seed>();
             currDirt.seeds.Add(seed);

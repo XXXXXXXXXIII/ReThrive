@@ -13,6 +13,7 @@ public class Dirt : MonoBehaviour
     public string PromptText = "Press X or E to plant Seed";
 
     public List<Seed> seeds { get; set; }
+    private List<Vector3> seedCoords;
 
     PlayerState PS;
     GhostManager GM;
@@ -23,7 +24,21 @@ public class Dirt : MonoBehaviour
     private void Start()
     {
         seeds = new List<Seed>();
+        seedCoords = new List<Vector3>();
+        Vector3 direction = new Vector3(0,0,0);
+        float angle = 360f / maxSeedCount;
+        for (int i = 0; i < maxSeedCount; i++)
+        {
+            seedCoords.Add(Quaternion.Euler(direction) * Vector3.right * 1f);
+            direction.y += angle;
+        }
+
         _ghostDuration = defaultGhostDuration;
+    }
+
+    public Vector3 GetNextSeedCoord()
+    {
+        return seedCoords[currSeedCount];
     }
 
 
