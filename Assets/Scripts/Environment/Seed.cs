@@ -14,7 +14,6 @@ public class Seed : MonoBehaviour
 
     private void Start()
     {
-        ghost = null;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -29,7 +28,7 @@ public class Seed : MonoBehaviour
             {
                 Debug.Log("Seed::Player touching seed");
                 HUD.PushPrompt(PromptText);
-                PS.onPlant += OnInteract;
+                PS.onInteractStart += OnInteract;
                 PS.onSeed = true;
             }
         }
@@ -42,16 +41,17 @@ public class Seed : MonoBehaviour
             HUD.PopPromptOnMatch(PromptText);
             Debug.Log("Seed::Player not touching seed");
             PS.onSeed = false;
-            PS.onPlant -= OnInteract;
+            PS.onInteractStart -= OnInteract;
         }
     }
 
     public void OnInteract()
     {
-        ghost.gameObject.transform.position = new Vector3(10000, 10000, 10000);
+        //ghost.gameObject.transform.position = new Vector3(10000, 10000, 10000);
         //ghost.gameObject.GetComponent<Renderer>().enabled = false;
-        Destroy(ghost.gameObject, 0.5f);
-        ghost = null;
+        //Destroy(ghost.gameObject, 0.5f);
+        //ghost = null;
+        ghost.Reset();
         PS.currSeed = this;
     }
 }

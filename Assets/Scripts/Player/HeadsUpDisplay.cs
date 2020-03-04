@@ -7,6 +7,11 @@ using Unity.Mathematics;
 public class HeadsUpDisplay : MonoBehaviour
 {
     public float BarFillRate = 0.05f;
+    public string InteractionText = "InteractionPrompt";
+    public string WarningText = "WarningText";
+    public string TutorialText = "TutorialText";
+
+    private float warningResetTime;
 
     private Dictionary<string, Text> texts; // Dictionary of text contents on HUD
     private Image sunBar, waterBar, wiltBar;
@@ -27,10 +32,13 @@ public class HeadsUpDisplay : MonoBehaviour
         foreach (Text t in children)
         {
             texts.Add(t.name, t);
+            Debug.Log("HUD::Added: " + t.name);
         }
         sunBar = GameObject.Find("SunBarForeground").GetComponent<Image>();
         waterBar = GameObject.Find("WaterBarForeground").GetComponent<Image>();
         wiltBar = GameObject.Find("WiltBarForeground").GetComponent<Image>();
+        HideWiltBar();
+        warningResetTime = Time.time;
     }
 
     private void FixedUpdate()
@@ -51,19 +59,24 @@ public class HeadsUpDisplay : MonoBehaviour
 
         if (GM.isRecording)
         {
-            if (!wiltBar.gameObject.activeSelf)
-            {
-                wiltBar.gameObject.SetActive(true);
-            }
             wiltBar.fillAmount = 1f - ((Time.time - GM.startTime) / GM.duration);
         }
-        else
+
+        if (Time.time - warningResetTime > 1.5f)
         {
-            if (wiltBar.gameObject.activeSelf)
-            {
-                wiltBar.gameObject.SetActive(false);
-            }
+            texts[WarningText].text = "";
         }
+    }
+
+    public void SetTutorial(string text)
+    {
+        texts[TutorialText].text = text;
+    }
+
+    public void SetWarning(string text)
+    {
+        texts[WarningText].text = text;
+        warningResetTime = Time.time;
     }
 
     public string GetText(string key)
@@ -79,13 +92,13 @@ public class HeadsUpDisplay : MonoBehaviour
     public void PushPrompt(string text)
     {
         promptTextStack.Push(text);
-        texts["InteractionPrompt"].text = text;
+        texts[InteractionText].text = text;
     }
 
     public void PopPrompt()
     {
         promptTextStack.Pop();
-        texts["InteractionPrompt"].text = promptTextStack.Peek();
+        texts[InteractionText].text = promptTextStack.Peek();
     }
 
     public void PopPromptOnMatch(string text)
@@ -114,11 +127,11 @@ public class HeadsUpDisplay : MonoBehaviour
 
     public void ShowWiltBar()
     {
-        wiltBar.enabled = true;
+        wiltBar.transform.parent.gameObject.SetActive(true);
     }
 
     public void HideWiltBar()
     {
-        wiltBar.enabled = false;
+        wiltBar.transform.parent.gameObject.SetActive(false);
     }
 }

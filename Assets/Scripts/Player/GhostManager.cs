@@ -10,31 +10,24 @@ using Unity.Mathematics;
  */
 public class GhostManager : MonoBehaviour
 {
-    public GameObject ghostPrefab;
     public float minDuration = 10f;
-
     public float duration { get; set; }
-    private List<Vector3> currPath; // NOTE: Stores offset from prevCoord
-    private List<Vector3> currRot; // NOTE: Stores offset from prevCoord
-    private List<bool> currInteractions;
-    private List<int> currAnimations;
-    public bool isRecording { get; set; }
-    
-    PlayerState PS;
-    HeadsUpDisplay HUD;
-
-    private Vector3 prevCoord, startCoord;
-    private Quaternion prevRot, startRot;
+    public bool isRecording { get; private set; }
     public float startTime { get; private set; }
+
+    PlayerState PS;
+    PlayerController PC;
+    HeadsUpDisplay HUD;
+    Ghost ghost;
+
+    private Vector3 prevCoord;
+    private Quaternion prevRot;
 
     // Start is called before the first frame update
     void Start()
     {
-        currPath = new List<Vector3>();
-        currInteractions = new List<bool>();
-        currAnimations = new List<int>();
-        currRot = new List<Vector3>();
         PS = GetComponent<PlayerState>();
+        PC = GetComponent<PlayerController>();
         HUD = GetComponent<HeadsUpDisplay>();
         isRecording = false;
         duration = minDuration;
@@ -46,60 +39,61 @@ public class GhostManager : MonoBehaviour
         {
             if (Time.time - startTime >= duration)
             {
-                PS.onWilt.Invoke();
+                ghost.onWilt?.Invoke();
+                PS.onWilt?.Invoke();
             }
             else
             {
-                //Debug.Log("GM::Time Remaining: " + (10f - (Time.time - _startTime)));
-                currPath.Add(transform.position - prevCoord);
-                currRot.Add(transform.rotation.eulerAngles - prevRot.eulerAngles);
-                prevCoord = transform.position;
-                prevRot = transform.rotation;
-                currInteractions.Add(PS.isInteracting);
-                currAnimations.Add(PS.currAnimation);
+                //Debug.Log("GM::Time Remaining: " + (10f - (Time.time - startTime)));
+                //Debug.Log(ghost.transform.position);
+                ghost.GhostPath.Add(ghost.transform.position - prevCoord);
+                ghost.GhostRotation.Add(ghost.transform.rotation.eulerAngles - prevRot.eulerAngles);
+                prevCoord = ghost.transform.position;
+                prevRot = ghost.transform.rotation;
+                ghost.InteractionState.Add(PC.isInteracting);
+                //ghost.AnimationState.Add(ghost.currAnimation);
             }
         }
     }
 
-    public void StartRecording()
+    public void StartRecording(Ghost g)
     {
         Debug.Log("GM::Started Recording Ghost\n");
         HUD.ClearPrompt();
         HUD.PushPrompt("Press Q to wilt");
-        isRecording = true;
-        currPath = new List<Vector3>();
-        currInteractions = new List<bool>();
-        currAnimations = new List<int>();
-        currRot = new List<Vector3>();
-        prevCoord = transform.position;
-        prevRot = transform.rotation;
-        startCoord = transform.position;
-        startRot = transform.rotation;
-        startTime = Time.time;
-    }
+        HUD.ShowWiltBar();
 
-    public void PauseRecording()
-    {
-        isRecording = false;
+        this.ghost = g;
+        ghost.isControlling = true;
+        ghost.GhostPath = new List<Vector3>();
+        ghost.GhostRotation = new List<Vector3>();
+        ghost.InteractionState = new List<bool>();
+        ghost.AnimationState = new List<int>();
+        ghost.onActive += ActivateRecorder;
+        ghost.onActive += PC.UnfreezePlayer;
+
+        PC.FreezePlayer();
+
+        prevCoord = ghost.transform.position;
+        prevRot = ghost.transform.rotation;
     }
 
     // Stops recording and returns ghost
-    public Ghost StopRecording()
+    public void StopRecording()
     {
         Debug.Log("GM::Stopped Recording Ghost\n");
+        HUD.HideWiltBar();
         HUD.ClearPrompt();
         isRecording = false;
-
-        GameObject ghostObject = Instantiate(ghostPrefab, startCoord, startRot);
-        Ghost ghost = ghostObject.GetComponent<Ghost>();
-        ghost.SeedCoord = startCoord;
-        ghost.SeedRot = startRot;
-        ghost.GhostPath = currPath;
-        ghost.GhostRotation = currRot;
-        ghost.AnimationState = currAnimations;
-        ghost.InteractionState = currInteractions;
+        ghost.isControlling = false;
         ghost.duration = this.duration;
+        ghost.Reset();
+        ghost.onActive = null;
+    }
 
-        return ghost;
+    private void ActivateRecorder()
+    {
+        isRecording = true;
+        startTime = Time.time;
     }
 }
