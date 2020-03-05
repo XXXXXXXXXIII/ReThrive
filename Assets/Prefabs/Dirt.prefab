@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1445361139084110929}
   - component: {fileID: 1445361139084110958}
   - component: {fileID: 1445361139084110959}
-  - component: {fileID: 1089248398}
   m_Layer: 0
   m_Name: Dirt
   m_TagString: Dirt
@@ -93,8 +92,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 7.025041, z: 1}
-  m_Center: {x: 0, y: 3.0125203, z: 0}
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1445361139084110959
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -107,22 +106,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec1ea813795ebba439001222942eabe4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currwaterCount: 0
+  currSeedCount: 0
   maxWaterCount: 3
-  maxSeedCount: 1
-  defaultGhostDuration: 10
---- !u!65 &1089248398
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1445361139084110956}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 0.99999994, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  maxSeedCount: 5
 --- !u!1 &1445361139427598443
 GameObject:
   m_ObjectHideFlags: 0

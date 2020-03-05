@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\ButtonScripts\ButtonEvents.cs" />
     <Compile Include="Assets\Scripts\ButtonScripts\PressureButton.cs" />
+    <Compile Include="Assets\Scripts\ButtonScripts\Pulley.cs" />
     <Compile Include="Assets\Scripts\ButtonScripts\PushButton.cs" />
     <Compile Include="Assets\Scripts\CustomPuzzleScripts\Collectable.cs" />
     <Compile Include="Assets\Scripts\CustomPuzzleScripts\CollectorPuzzle.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerState.cs" />
     <Compile Include="Assets\Scripts\StreamVideo.cs" />
+    <Compile Include="Assets\SkythianCat\Glowing_Forest\Scripts\WaterGroup.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>D:/CSC404/ReThrive/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
