@@ -136,6 +136,7 @@ public class PlayerController : MonoBehaviour
     public void SwitchToGhost(Ghost ghost, Animator animator, CharacterController charCon)
     {
         Debug.Log("PC::Switch control to ghost");
+        isInteracting = false;
         onInteractStart = ghost.OnInteractStart;
         onInteractEnd = ghost.OnInteractEnd;
         onWilt += ghost.onWilt;
@@ -166,12 +167,14 @@ public class PlayerController : MonoBehaviour
     public void FreezePlayer()
     {
         //Debug.Log("PC::Freezing Player");
+        isInteracting = false;
         freezePlayer = true;
     }
 
     public void UnfreezePlayer()
     {
         //Debug.Log("PC::Unfreezing Player");
+        isInteracting = false;
         freezePlayer = false;
     }
 }

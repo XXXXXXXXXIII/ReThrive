@@ -51,7 +51,7 @@ public class Seed : MonoBehaviour
         //ghost.gameObject.GetComponent<Renderer>().enabled = false;
         //Destroy(ghost.gameObject, 0.5f);
         //ghost = null;
-        ghost.Reset();
+        ghost.ResetGhost();
         PS.currSeed = this;
     }
 }

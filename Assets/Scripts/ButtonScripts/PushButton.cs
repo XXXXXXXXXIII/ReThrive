@@ -20,6 +20,7 @@ public class PushButton : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        HUD = GameObject.Find("Leafy_Player").GetComponent<HeadsUpDisplay>();
         triggerCount = 0;
     }
 
@@ -29,7 +30,6 @@ public class PushButton : MonoBehaviour
         {
             Debug.Log("Button::Player stepping on button");
             PS = collider.gameObject.GetComponent<PlayerState>();
-            HUD = collider.gameObject.GetComponent<HeadsUpDisplay>();
             HUD.PushPrompt(PromptText);
             PS.onInteractStart += ButtonPress;
             PS.onInteractEnd += ButtonRelease;
@@ -37,6 +37,10 @@ public class PushButton : MonoBehaviour
         else if (collider.CompareTag("Ghost"))
         {
             ghost = collider.gameObject.GetComponent<Ghost>();
+            if (ghost.isControlling)
+            {
+                HUD.PushPrompt(PromptText);
+            }
             ghost.onInteractStart += ButtonPress;
             ghost.onInteractEnd += ButtonRelease;
         }
@@ -55,6 +59,10 @@ public class PushButton : MonoBehaviour
         else if (collider.CompareTag("Ghost"))
         {
             ghost = collider.gameObject.GetComponent<Ghost>();
+            if (ghost.isControlling)
+            {
+                HUD.PopPromptOnMatch(PromptText);
+            }
             ghost.onInteractStart -= ButtonPress;
             ghost.onInteractEnd -= ButtonRelease;
             ButtonRelease();
