@@ -61,7 +61,6 @@ public class GhostManager : MonoBehaviour
         Debug.Log("GM::Started Recording Ghost\n");
         HUD.ClearPrompt();
         HUD.PushPrompt("Press Q to wilt");
-        HUD.ShowWiltBar();
 
         this.ghost = g;
         ghost.isControlling = true;
@@ -87,7 +86,7 @@ public class GhostManager : MonoBehaviour
         isRecording = false;
         ghost.isControlling = false;
         ghost.duration = this.duration;
-        ghost.Reset();
+        ghost.ResetGhost();
         ghost.onActive = null;
     }
 
@@ -95,5 +94,6 @@ public class GhostManager : MonoBehaviour
     {
         isRecording = true;
         startTime = Time.time;
+        HUD.ShowWiltBar();
     }
 }
