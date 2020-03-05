@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\Environment\Seed.cs" />
      <Compile Include="Assets\Scripts\Environment\Sunlight.cs" />
      <Compile Include="Assets\Scripts\Environment\Tutorial.cs" />
+     <Compile Include="Assets\Scripts\Environment\TutorialStart.cs" />
      <Compile Include="Assets\Scripts\Environment\Water.cs" />
      <Compile Include="Assets\Scripts\PlayButton.cs" />
      <Compile Include="Assets\Scripts\Player\Ghost.cs" />
