@@ -71,7 +71,9 @@ public class Ghost : MonoBehaviour
             {
                 if (index < maxIndex)
                 {
-                    transform.Translate(finalAction, Space.World); // Repeat last step 
+                    Vector3 moveDirection = finalAction;
+                    moveDirection.y += Physics.gravity.y * 5f;
+                    CC.Move(moveDirection);
                     if (finalAction.magnitude > 0)
                     {
                         AC.SetBool("isMoving", true);
@@ -84,7 +86,7 @@ public class Ghost : MonoBehaviour
                 }
                 else
                 {
-                    Reset();
+                    ResetGhost();
                     if (isLoop)
                     {
                         Animate();
@@ -93,7 +95,8 @@ public class Ghost : MonoBehaviour
             }
             else
             {
-                transform.Translate(GhostPath[index], Space.World);
+                Vector3 moveDirection = GhostPath[index];
+                CC.Move(moveDirection);
                 transform.Rotate(GhostRotation[index], Space.Self);
                 if (GhostPath[index].magnitude != 0)
                 {
@@ -103,7 +106,6 @@ public class Ghost : MonoBehaviour
                 {
                     AC.SetBool("isMoving", false);
                 }
-
                 if (isInteracting)
                 {
                     if (InteractionState[index])
@@ -130,7 +132,7 @@ public class Ghost : MonoBehaviour
         }
     }
 
-    public void Reset()
+    public void ResetGhost()
     {
         if (isInteracting)
         {
@@ -141,13 +143,14 @@ public class Ghost : MonoBehaviour
         isActive = false;
         index = 0;
         isInteracting = false;
-        status = Player_Status.idle;
+        //status = Player_Status.idle;
         //ghost.SetActive(false); //TODO: Removing this cuz it disables collider as well
     }
 
     public void Animate()
     {
         isActive = true;
+        isInteracting = false;
         //gameObject.SetActive(true);
         maxIndex = (int)(duration * (1 / Time.fixedDeltaTime));
         finalAction = GhostPath[GhostPath.Count - 1];

@@ -164,9 +164,9 @@ public class PlayerState : MonoBehaviour
 
     private void ReplantSeed()
     {
+        AC.SetBool("isMoving", false);
         ResetGhosts();
         AnimateGhosts();
-        AC.SetBool("isMoving", false);
         PC.SwitchToGhost(currSeed.ghost, currSeed.ghost.AC, currSeed.ghost.CC);
         GM.StartRecording(currSeed.ghost);
     }
@@ -285,7 +285,7 @@ public class PlayerState : MonoBehaviour
     {
         foreach (Seed s in seeds)
         {
-            s.ghost?.Reset();
+            s.ghost?.ResetGhost();
         }
     }
 
