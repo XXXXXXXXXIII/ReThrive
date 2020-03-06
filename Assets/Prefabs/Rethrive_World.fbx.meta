@@ -6,7 +6,22 @@ ModelImporter:
   - first:
       74: 1827226128182048838
     second: Take 001
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: StoneMaterial
+    second: {fileID: 2100000, guid: f898f86fb86d6724ab12f8497fc9f38d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stone_Grey_Hanin1Material
+    second: {fileID: 2100000, guid: 08949684e88e1654987554221b17776d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: soilMaterial
+    second: {fileID: 2100000, guid: 3ea757a38e868bb4286ac62edf179a9c, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
