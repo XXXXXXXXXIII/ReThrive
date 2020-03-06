@@ -3242,7 +3242,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729422887572217192}
-  m_LocalRotation: {x: 0, y: -1, z: -0, w: 0}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 21.382, y: 36.4, z: 77}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3306,6 +3306,7 @@ MonoBehaviour:
   jumpForce: 14
   hopForce: 0
   gravityScale: 5
+  interactHoldDuration: 2
   rotateRate: 3
   sprintMultiplier: 1.5
   jumpMultiplier: 200
@@ -3360,6 +3361,8 @@ MonoBehaviour:
   InteractionText: InteractionPrompt
   WarningText: WarningText
   TutorialText: TutorialText
+  PlayerProfile: {fileID: 11400000, guid: f1825cc5343f3a949be59bccbc9db78e, type: 2}
+  GhostProfile: {fileID: 11400000, guid: 725eef1c72b16c548a9ba98e261e54e2, type: 2}
 --- !u!1 &1729422887572217194
 GameObject:
   m_ObjectHideFlags: 0
@@ -3618,7 +3621,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: 725eef1c72b16c548a9ba98e261e54e2, type: 2}
+  sharedProfile: {fileID: 11400000, guid: f1825cc5343f3a949be59bccbc9db78e, type: 2}
   isGlobal: 1
   blendDistance: 0
   weight: 1
@@ -3725,7 +3728,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -155.20001, y: -132.6}
+  m_AnchoredPosition: {x: -155.19922, y: -132.6}
   m_SizeDelta: {x: 263.32996, y: 137.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4737028328101513828
