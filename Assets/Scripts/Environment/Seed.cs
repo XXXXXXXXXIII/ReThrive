@@ -28,7 +28,7 @@ public class Seed : MonoBehaviour
             {
                 Debug.Log("Seed::Player touching seed");
                 HUD.PushPrompt(PromptText);
-                PS.onInteractStart += OnInteract;
+                PS.onInteractEnd += OnInteract;
                 PS.onSeed = true;
             }
         }
@@ -41,7 +41,7 @@ public class Seed : MonoBehaviour
             HUD.PopPromptOnMatch(PromptText);
             Debug.Log("Seed::Player not touching seed");
             PS.onSeed = false;
-            PS.onInteractStart -= OnInteract;
+            PS.onInteractEnd -= OnInteract;
         }
     }
 

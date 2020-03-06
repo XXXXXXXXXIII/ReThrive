@@ -160,6 +160,18 @@ public class Ghost : MonoBehaviour
         AC.SetTrigger("OnSpawn");
     }
 
+    public void Kill()
+    {
+        if (isInteracting)
+        {
+            onInteractEnd?.Invoke();
+        }
+        isActive = false;
+        isInteracting = false; 
+        status = Player_Status.dead;
+        AC.SetTrigger("OnWilt");
+    }
+
     public void Halt()
     {
         isActive = false;

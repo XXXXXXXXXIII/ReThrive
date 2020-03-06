@@ -81,7 +81,7 @@ public class GhostManager : MonoBehaviour
     public void StopRecording()
     {
         Debug.Log("GM::Stopped Recording Ghost\n");
-        HUD.HideWiltBar();
+        HUD.PlayerView();
         HUD.ClearPrompt();
         isRecording = false;
         ghost.isControlling = false;
@@ -94,6 +94,6 @@ public class GhostManager : MonoBehaviour
     {
         isRecording = true;
         startTime = Time.time;
-        HUD.ShowWiltBar();
+        HUD.GhostView();
     }
 }

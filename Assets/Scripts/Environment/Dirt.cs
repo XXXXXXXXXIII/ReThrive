@@ -10,7 +10,7 @@ public class Dirt : MonoBehaviour
     public int maxSeedCount = 5;
     public float defaultGhostDuration = 10f;
 
-    public string PromptText = "Press X or E to plant Seed";
+    public string PromptText = "Press E to plant Seed\n Hold E to remove all Seeds";
 
     public List<Seed> seeds { get; set; }
     private List<Vector3> seedCoords;
@@ -38,7 +38,7 @@ public class Dirt : MonoBehaviour
 
     public Vector3 GetNextSeedCoord()
     {
-        return seedCoords[currSeedCount];
+        return seedCoords[seeds.Count];
     }
 
 
@@ -79,7 +79,8 @@ public class Dirt : MonoBehaviour
             GM = collider.gameObject.GetComponent<GhostManager>();
             HUD = collider.gameObject.GetComponent<HeadsUpDisplay>();
             PS.onDirt = true;
-            PS.onInteractStart += PlantSeed;
+            PS.onInteractEnd += PlantSeed;
+            PS.onInteractHold += ResetDirt;
             if(!GM.isRecording)
             {
                 HUD.PushPrompt(PromptText);
@@ -97,8 +98,19 @@ public class Dirt : MonoBehaviour
             HUD.PopPromptOnMatch(PromptText);
             PS.onDirt = false;
             GM.duration = GM.minDuration;
-            PS.onInteractStart -= PlantSeed;
+            PS.onInteractEnd -= PlantSeed;
+            PS.onInteractHold -= ResetDirt;
             //PS.currDirt = null;
+        }
+    }
+
+    private void ResetDirt()
+    {
+        foreach (Seed s in seeds)
+        {
+            s.ghost.Kill();
+            Destroy(s.ghost.gameObject, .6f);
+            Destroy(s.gameObject, .6f);
         }
     }
 }

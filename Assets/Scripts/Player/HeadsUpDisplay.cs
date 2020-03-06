@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Mathematics;
+using UnityEngine.Rendering.PostProcessing;
 
 public class HeadsUpDisplay : MonoBehaviour
 {
@@ -10,6 +11,9 @@ public class HeadsUpDisplay : MonoBehaviour
     public string InteractionText = "InteractionPrompt";
     public string WarningText = "WarningText";
     public string TutorialText = "TutorialText";
+
+    public PostProcessProfile PlayerProfile;
+    public PostProcessProfile GhostProfile;
 
     private float warningResetTime;
 
@@ -19,12 +23,14 @@ public class HeadsUpDisplay : MonoBehaviour
 
     PlayerState PS;
     GhostManager GM;
+    PostProcessVolume PPV;
 
     // Start is called before the first frame update
     void Start()
     {
         PS = GetComponent<PlayerState>();
         GM = GetComponent<GhostManager>();
+        PPV = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PostProcessVolume>();
         texts = new Dictionary<string, Text>();
         List<Text> children = new List<Text>(GetComponentsInChildren<Text>());
         promptTextStack = new Stack<string>();
@@ -133,5 +139,21 @@ public class HeadsUpDisplay : MonoBehaviour
     public void HideWiltBar()
     {
         wiltBar.transform.parent.gameObject.SetActive(false);
+    }
+
+    public void PlayerView()
+    {
+        PPV.profile = PlayerProfile;
+        HideWiltBar();
+        sunBar.transform.parent.gameObject.SetActive(true);
+        waterBar.transform.parent.gameObject.SetActive(true);
+    }
+
+    public void GhostView()
+    {
+        PPV.profile = GhostProfile;
+        ShowWiltBar();
+        sunBar.transform.parent.gameObject.SetActive(false);
+        waterBar.transform.parent.gameObject.SetActive(false);
     }
 }

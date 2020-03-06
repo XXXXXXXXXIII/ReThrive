@@ -6,15 +6,16 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed;
-    public float jumpForce;
-    public float hopForce;
+    public float moveSpeed = 5;
+    public float jumpForce = 10;
+    public float hopForce = 0;
+    public float gravityScale = 5;
+    public float interactHoldDuration = 2f;
     // Rigidbody rigidbody;
     // Transform player;
     private Vector3 moveDirection;
     private Vector3 defaultCameraCoord;
     private Quaternion defaultCameraRot;
-    public float gravityScale;
 
     private string KeyMoveVertical = "Vertical";
     private string KeyMoveHorizontal = "Horizontal";
@@ -36,9 +37,11 @@ public class PlayerController : MonoBehaviour
 
     public UnityAction onWilt { get; set; }
     public UnityAction onInteractStart { get; set; }
+    public UnityAction onInteractHold { get; set; }
     public UnityAction onInteractEnd { get; set; }
 
     public bool isInteracting { get; private set; }
+    private float interactHoldTime;
 
 
     // Start is called before the first frame update
@@ -68,11 +71,19 @@ public class PlayerController : MonoBehaviour
             {
                 onInteractStart?.Invoke();                
                 isInteracting = true;
+                interactHoldTime = Time.time;
             }
-            else if ((Input.GetButtonUp("Fire3") || Input.GetKeyUp(KeyCode.E))) // Circle button
+            else if (isInteracting && (Input.GetButtonUp("Fire3") || Input.GetKeyUp(KeyCode.E))) // Circle button
             {
                 onInteractEnd?.Invoke();
                 isInteracting = false;
+                interactHoldTime = Mathf.Infinity;
+            }
+            else if (isInteracting && Time.time - interactHoldTime > interactHoldDuration)
+            {
+                onInteractHold?.Invoke();
+                isInteracting = false;
+                interactHoldTime = Mathf.Infinity;
             }
 
             if (Input.GetKeyDown(KeyCode.Q)) // Triangle button
@@ -138,6 +149,7 @@ public class PlayerController : MonoBehaviour
         Debug.Log("PC::Switch control to ghost");
         isInteracting = false;
         onInteractStart = ghost.OnInteractStart;
+        onInteractHold = null;
         onInteractEnd = ghost.OnInteractEnd;
         onWilt += ghost.onWilt;
         CC = charCon;
@@ -153,6 +165,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("PC::Switch control to player");
         onInteractStart = PS.OnInteractStart;
+        onInteractHold = PS.OnInteractHold;
         onInteractEnd = PS.OnInteractEnd;
         onWilt = PS.onWilt;
         CC = charCon;

@@ -46,6 +46,7 @@ public class PlayerState : MonoBehaviour
     public UnityAction onDie;
     public UnityAction onSpawn;
     public UnityAction onInteractStart;
+    public UnityAction onInteractHold;
     public UnityAction onInteractEnd;
     //public UnityAction onPlant;
     public UnityAction onWilt;
@@ -79,6 +80,7 @@ public class PlayerState : MonoBehaviour
         onSpawn += OnSpawn;
         PC.onInteractStart += OnInteractStart;
         PC.onInteractEnd += OnInteractEnd;
+        PC.onInteractHold += OnInteractHold;
 
         PC.onWilt += onWilt.Invoke;
 
@@ -144,6 +146,17 @@ public class PlayerState : MonoBehaviour
     public void OnInteractStart()
     {
         //Debug.Log("PS::Interaction Start"); 
+        onInteractStart?.Invoke();
+    }
+
+    public void OnInteractHold()
+    {
+        onInteractHold?.Invoke();
+    }
+
+    public void OnInteractEnd()
+    {
+        //Debug.Log("PS::Interaction End");
         if (onSeed)
         {
             ReplantSeed();
@@ -152,13 +165,6 @@ public class PlayerState : MonoBehaviour
         {
             PlantSeed();
         }
-
-        onInteractStart?.Invoke();
-    }
-
-    public void OnInteractEnd()
-    {
-        //Debug.Log("PS::Interaction End");
         onInteractEnd?.Invoke();
     }
 
