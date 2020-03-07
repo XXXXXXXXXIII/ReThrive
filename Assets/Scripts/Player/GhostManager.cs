@@ -75,6 +75,7 @@ public class GhostManager : MonoBehaviour
 
         prevCoord = ghost.transform.position;
         prevRot = ghost.transform.rotation;
+        HUD.GhostView();
     }
 
     // Stops recording and returns ghost
@@ -94,6 +95,5 @@ public class GhostManager : MonoBehaviour
     {
         isRecording = true;
         startTime = Time.time;
-        HUD.GhostView();
     }
 }

@@ -157,11 +157,11 @@ public class PlayerState : MonoBehaviour
     public void OnInteractEnd()
     {
         //Debug.Log("PS::Interaction End");
-        if (onSeed)
+        if (onSeed && PC.canPlant)
         {
             ReplantSeed();
         }
-        else if (onDirt)
+        else if (onDirt && PC.canPlant)
         {
             PlantSeed();
         }

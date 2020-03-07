@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isInteracting { get; private set; }
     private float interactHoldTime;
+    public bool canPlant { get; private set; }
 
 
     // Start is called before the first frame update
@@ -53,13 +54,12 @@ public class PlayerController : MonoBehaviour
         defaultCameraCoord = CameraCenter.transform.localPosition;
         defaultCameraRot = CameraCenter.transform.localRotation;
         Main = gameObject;
+        canPlant = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
         float turnAxisX = Input.GetAxis("Mouse Y");
         float turnAxisY = Input.GetAxis("Mouse X"); ;
         moveDirection = Input.GetAxis("Horizontal") * moveSpeed * Main.transform.right + new Vector3(0f, moveDirection.y, 0f) + Input.GetAxis("Vertical") * moveSpeed * Main.transform.forward;
@@ -72,17 +72,19 @@ public class PlayerController : MonoBehaviour
                 onInteractStart?.Invoke();                
                 isInteracting = true;
                 interactHoldTime = Time.time;
+                canPlant = true;
             }
             else if (isInteracting && (Input.GetButtonUp("Fire3") || Input.GetKeyUp(KeyCode.E))) // Circle button
             {
                 onInteractEnd?.Invoke();
                 isInteracting = false;
+                canPlant = false;
                 interactHoldTime = Mathf.Infinity;
             }
             else if (isInteracting && Time.time - interactHoldTime > interactHoldDuration)
             {
                 onInteractHold?.Invoke();
-                isInteracting = false;
+                canPlant = false;
                 interactHoldTime = Mathf.Infinity;
             }
 
@@ -159,6 +161,7 @@ public class PlayerController : MonoBehaviour
         //CameraCenter.transform.localPosition = defaultCameraCoord;
         CameraCenter.transform.localRotation = defaultCameraRot;
         Main = ghost.gameObject;
+        canPlant = false;
     }
 
     public void SwitchToPlayer(PlayerState PS, Animator animator, CharacterController charCon)
@@ -175,6 +178,7 @@ public class PlayerController : MonoBehaviour
         //CameraCenter.transform.localPosition = defaultCameraCoord;
         CameraCenter.transform.localRotation = defaultCameraRot;
         Main = PS.gameObject;
+        canPlant = false;
     }
 
     public void FreezePlayer()
@@ -189,5 +193,6 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("PC::Unfreezing Player");
         isInteracting = false;
         freezePlayer = false;
+        canPlant = false;
     }
 }
