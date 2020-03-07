@@ -19,7 +19,9 @@ public class HeadsUpDisplay : MonoBehaviour
 
     private Dictionary<string, Text> texts; // Dictionary of text contents on HUD
     private Image sunBar, waterBar, wiltBar;
+    private Text wiltText;
     private Stack<string> promptTextStack;
+    private Color wiltBarColor, wiltTextColor;
 
     PlayerState PS;
     GhostManager GM;
@@ -43,6 +45,10 @@ public class HeadsUpDisplay : MonoBehaviour
         sunBar = GameObject.Find("SunBarForeground").GetComponent<Image>();
         waterBar = GameObject.Find("WaterBarForeground").GetComponent<Image>();
         wiltBar = GameObject.Find("WiltBarForeground").GetComponent<Image>();
+        wiltText = texts["WiltText"];
+        wiltBarColor = wiltBar.color;
+        wiltTextColor = wiltText.color;
+
         HideWiltBar();
         warningResetTime = Time.time;
     }
@@ -66,6 +72,21 @@ public class HeadsUpDisplay : MonoBehaviour
         if (GM.isRecording)
         {
             wiltBar.fillAmount = 1f - ((Time.time - GM.startTime) / GM.duration);
+            wiltText.text = ((int)(GM.duration - Time.time + GM.startTime)).ToString();
+
+            if ((GM.duration - Time.time + GM.startTime) < 5f)
+            {
+                if ((int)((GM.duration - Time.time + GM.startTime) * 2) % 2 == 0)
+                {
+                    //wiltBar.color = Color.red;
+                    wiltText.color = Color.red;
+                }
+                else
+                {
+                    //wiltBar.color = wiltBarColor;
+                    wiltText.color = wiltTextColor;
+                }
+            }
         }
 
         if (Time.time - warningResetTime > 1.5f)
@@ -134,6 +155,8 @@ public class HeadsUpDisplay : MonoBehaviour
     public void ShowWiltBar()
     {
         wiltBar.transform.parent.gameObject.SetActive(true);
+        wiltText.color = wiltTextColor;
+        wiltBar.color = wiltBarColor;
     }
 
     public void HideWiltBar()
