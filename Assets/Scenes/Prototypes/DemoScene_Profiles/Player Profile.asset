@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1cb7e9e120078f43bce4f0b1be547a7, type: 3}
   m_Name: AmbientOcclusion
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -55,13 +55,13 @@ MonoBehaviour:
     value: 0
   intensity:
     overrideState: 1
-    value: 1.9
+    value: 4
   color:
     overrideState: 1
-    value: {r: 1, g: 1, b: 1, a: 1}
+    value: {r: 0.7735849, g: 0.7735849, b: 0.7735849, a: 1}
   ambientOnly:
     overrideState: 1
-    value: 0
+    value: 1
   noiseFilterTolerance:
     overrideState: 0
     value: 0
@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb84e30e02715445aeb9959894e3b4d, type: 3}
   m_Name: ColorGrading
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -1475,13 +1475,13 @@ MonoBehaviour:
     value: 1
   focusDistance:
     overrideState: 1
-    value: 10.03
+    value: 8.7
   aperture:
     overrideState: 1
-    value: 4.2
+    value: 0.1
   focalLength:
     overrideState: 1
-    value: 48
+    value: 1
   kernelSize:
     overrideState: 0
     value: 1
@@ -1497,7 +1497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b924e2dad56384a8df2a1e111bb675, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -1506,13 +1506,13 @@ MonoBehaviour:
     value: 0
   color:
     overrideState: 1
-    value: {r: 0.36862746, g: 0.8352942, b: 0.47450984, a: 1}
+    value: {r: 1, g: 1, b: 0.07075471, a: 1}
   center:
     overrideState: 1
     value: {x: 0.5, y: 0.5}
   intensity:
     overrideState: 1
-    value: 0.086
+    value: 1
   smoothness:
     overrideState: 1
     value: 1
@@ -1608,19 +1608,19 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 4.43
+    value: 1255
   threshold:
     overrideState: 1
-    value: 1
+    value: 150
   softKnee:
     overrideState: 1
-    value: 0.286
+    value: 0
   clamp:
     overrideState: 1
-    value: 65474.89
+    value: 65474.66
   diffusion:
     overrideState: 1
-    value: 10
+    value: 1
   anamorphicRatio:
     overrideState: 1
     value: 1
@@ -1677,7 +1677,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94fcd11afffcb142908bfcb1e261fba, type: 3}
   m_Name: MotionBlur
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
