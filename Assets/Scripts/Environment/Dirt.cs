@@ -10,19 +10,25 @@ public class Dirt : MonoBehaviour
     public int maxSeedCount = 5;
     public float defaultGhostDuration = 10f;
 
-    public string PromptText = "Press E to plant Seed\n Hold E to remove all Seeds";
+    public string PromptText = "Press E to plant Seed";
+    public string DirtText = "Space Remaining: ";
 
     public List<Seed> seeds { get; set; }
+
     private List<Vector3> seedCoords;
+    private bool isTracking = false;
+    private float _ghostDuration;
 
     PlayerState PS;
     GhostManager GM;
     HeadsUpDisplay HUD;
-
-    private float _ghostDuration;
+    TextMesh Text;
 
     private void Start()
     {
+        Text = GetComponentInChildren<TextMesh>();
+        Text.gameObject.SetActive(false);
+
         seeds = new List<Seed>();
         seedCoords = new List<Vector3>();
         Vector3 direction = new Vector3(0,0,0);
@@ -36,11 +42,27 @@ public class Dirt : MonoBehaviour
         _ghostDuration = defaultGhostDuration;
     }
 
+    private void FixedUpdate()
+    {
+        if (isTracking)
+        {
+            Text.text = DirtText + (maxSeedCount - seeds.Count);
+            Text.gameObject.transform.rotation = Quaternion.LookRotation(transform.position - PS.transform.position, Vector3.up);
+            if (seeds.Count == maxSeedCount)
+            {
+                Text.color = Color.red;
+            }
+            else
+            {
+                Text.color = Color.green;
+            }
+        }
+    }
+
     public Vector3 GetNextSeedCoord()
     {
         return seedCoords[seeds.Count];
     }
-
 
     public void PlantSeed()
     {
@@ -87,6 +109,8 @@ public class Dirt : MonoBehaviour
                 PS.currDirt = this;
                 GM.duration = _ghostDuration;
             }
+            isTracking = true;
+            Text.gameObject.SetActive(true);
         }
     }
 
@@ -101,6 +125,8 @@ public class Dirt : MonoBehaviour
             PS.onInteractEnd -= PlantSeed;
             PS.onInteractHold -= ResetDirt;
             //PS.currDirt = null;
+            isTracking = false;
+            Text.gameObject.SetActive(false);
         }
     }
 
@@ -112,5 +138,7 @@ public class Dirt : MonoBehaviour
             Destroy(s.ghost.gameObject, .6f);
             Destroy(s.gameObject, .6f);
         }
+        seeds.Clear();
+        HUD.SetWarning("Dirt Cleared!");
     }
 }

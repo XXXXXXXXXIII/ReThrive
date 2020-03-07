@@ -289,6 +289,7 @@ public class PlayerState : MonoBehaviour
 
     public void ResetGhosts()
     {
+        seeds.RemoveAll(s => s == null);
         foreach (Seed s in seeds)
         {
             s.ghost?.ResetGhost();
@@ -297,6 +298,7 @@ public class PlayerState : MonoBehaviour
 
     public void AnimateGhosts()
     {
+        seeds.RemoveAll(s => s == null);
         foreach (Seed s in seeds)
         {
             s.ghost?.Animate();
