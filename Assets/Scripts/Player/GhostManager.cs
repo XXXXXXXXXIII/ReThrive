@@ -20,8 +20,9 @@ public class GhostManager : MonoBehaviour
     HeadsUpDisplay HUD;
     Ghost ghost;
 
-    private Vector3 prevCoord;
+    private Vector3 prevCoord, prevLocalCoord;
     private Quaternion prevRot;
+    private bool isAttached = false;
 
     // Start is called before the first frame update
     void Start()
@@ -45,10 +46,30 @@ public class GhostManager : MonoBehaviour
             else
             {
                 //Debug.Log("GM::Time Remaining: " + (10f - (Time.time - startTime)));
-                //Debug.Log(ghost.transform.position);
-                ghost.GhostPath.Add(ghost.transform.position - prevCoord);
+                //Debug.Log(ghost.transform.localPosition.x - prevLocalCoord.x);
+                Vector3 transformOffset = ghost.transform.localPosition - prevLocalCoord;
+                if (ghost.transform.parent != null && !isAttached)
+                {
+                    isAttached = true;
+                    transformOffset = ghost.transform.position - prevCoord;
+                }
+                else if (ghost.transform.parent == null && isAttached)
+                {
+                    isAttached = false;
+                    transformOffset = ghost.transform.position - prevCoord;
+                } else if (isAttached)
+                {
+                    transformOffset = ghost.transform.parent.TransformVector(transformOffset);
+                }
+                if (transformOffset.y < 0f)
+                {
+                    transformOffset.y = 0f;
+                }
+                Debug.Log(transformOffset);
+                ghost.GhostPath.Add(transformOffset);
                 ghost.GhostRotation.Add(ghost.transform.rotation.eulerAngles - prevRot.eulerAngles);
                 prevCoord = ghost.transform.position;
+                prevLocalCoord = ghost.transform.localPosition;
                 prevRot = ghost.transform.rotation;
                 ghost.InteractionState.Add(PC.isInteracting);
                 //ghost.AnimationState.Add(ghost.currAnimation);
@@ -74,6 +95,7 @@ public class GhostManager : MonoBehaviour
         PC.FreezePlayer();
 
         prevCoord = ghost.transform.position;
+        prevLocalCoord = ghost.transform.localPosition;
         prevRot = ghost.transform.rotation;
         HUD.GhostView();
     }

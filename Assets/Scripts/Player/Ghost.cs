@@ -72,7 +72,7 @@ public class Ghost : MonoBehaviour
                 if (index < maxIndex)
                 {
                     Vector3 moveDirection = finalAction;
-                    moveDirection.y += Physics.gravity.y * 5f;
+                    moveDirection.y += Physics.gravity.y * 50f * Time.deltaTime * Time.deltaTime;
                     CC.Move(moveDirection);
                     if (finalAction.magnitude > 0)
                     {
@@ -96,6 +96,10 @@ public class Ghost : MonoBehaviour
             else
             {
                 Vector3 moveDirection = GhostPath[index];
+                if (moveDirection.y <= 0.01f)
+                {
+                    moveDirection.y += Physics.gravity.y * 50f * Time.deltaTime * Time.deltaTime;
+                }
                 CC.Move(moveDirection);
                 transform.Rotate(GhostRotation[index], Space.Self);
                 if (GhostPath[index].magnitude != 0)
