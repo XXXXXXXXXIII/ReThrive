@@ -87,7 +87,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2025034188595947055}
-  - component: {fileID: 8246625515548843132}
   m_Layer: 0
   m_Name: magic_Button_Short
   m_TagString: Untagged
@@ -112,24 +111,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8246625515548843132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3044719244259267644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47e0fb6ef94d12542a04217baff2e19a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnButtonPress:
-    m_PersistentCalls:
-      m_Calls: []
-  OnButtonRelease:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &6940260538256622456
 GameObject:
   m_ObjectHideFlags: 0
