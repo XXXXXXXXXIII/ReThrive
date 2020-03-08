@@ -27,7 +27,7 @@ public class Dirt : MonoBehaviour
     private void Start()
     {
         Text = GetComponentInChildren<TextMesh>();
-        Text.gameObject.SetActive(false);
+        Text?.gameObject.SetActive(false);
 
         seeds = new List<Seed>();
         seedCoords = new List<Vector3>();
