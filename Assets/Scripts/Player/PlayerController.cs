@@ -17,10 +17,10 @@ public class PlayerController : MonoBehaviour
     private Vector3 defaultCameraCoord;
     private Quaternion defaultCameraRot;
 
-    private string KeyMoveVertical = "Vertical";
-    private string KeyMoveHorizontal = "Horizontal";
-    private string MouseMoveHorizontal = "Mouse Y";
-    private string MouseMoveVertical = "Mouse X";
+    private string MoveVertical = "Vertical";
+    private string MoveHorizontal = "Horizontal";
+    private string LookHorizontal = "LookVertical";
+    private string LookVertical = "LookHorizontal";
 
     private bool freezePlayer = false;
     private bool inCameraTransition = false;
@@ -60,21 +60,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float turnAxisX = Input.GetAxis("Mouse Y");
-        float turnAxisY = Input.GetAxis("Mouse X"); ;
-        moveDirection = Input.GetAxis("Horizontal") * moveSpeed * Main.transform.right + new Vector3(0f, moveDirection.y, 0f) + Input.GetAxis("Vertical") * moveSpeed * Main.transform.forward;
+        float turnAxisX = Input.GetAxis(LookHorizontal);
+        float turnAxisY = Input.GetAxis(LookVertical);
+        moveDirection = Input.GetAxis(MoveHorizontal) * moveSpeed * Main.transform.right + new Vector3(0f, moveDirection.y, 0f) + Input.GetAxis(MoveVertical) * moveSpeed * Main.transform.forward;
         moveDirection.y += Physics.gravity.y * gravityScale * Time.deltaTime;
 
         if (!freezePlayer)
         {
-            if ((Input.GetButtonDown("Fire3") || Input.GetKeyDown(KeyCode.E))) // Circle button
+            if ((Input.GetButtonDown("Interact") || Input.GetKeyDown(KeyCode.E))) // Circle button
             {
                 onInteractStart?.Invoke();                
                 isInteracting = true;
                 interactHoldTime = Time.time;
                 canPlant = true;
             }
-            else if (isInteracting && (Input.GetButtonUp("Fire3") || Input.GetKeyUp(KeyCode.E))) // Circle button
+            else if (isInteracting && (Input.GetButtonUp("Interact") || Input.GetKeyUp(KeyCode.E))) // Circle button
             {
                 onInteractEnd?.Invoke();
                 isInteracting = false;
@@ -88,7 +88,7 @@ public class PlayerController : MonoBehaviour
                 interactHoldTime = Mathf.Infinity;
             }
 
-            if (Input.GetKeyDown(KeyCode.Q)) // Triangle button
+            if (Input.GetButtonDown("Wilt") || Input.GetKeyDown(KeyCode.Q)) // Triangle button
             {
                 onWilt?.Invoke();
             }
