@@ -8,61 +8,94 @@ public class TutorialStart : MonoBehaviour
     //public bool useSequence = false;
     public string tutorialText = "";
     HeadsUpDisplay HUD;
-    public float delay = 5.0f; 
+    public float delay = 2.0f; 
     public float prevPosition;
-    public float tutorialStage;
-    public bool initialPrompt = false;
+    public float tutorialStage = -1;
+    public bool initialPromptComplete = false;
+    public GameObject wall1;
+    public GameObject wall2;
+    public GameObject wall3;
+    public GameObject wall4;
     
     void Start() {
-        tutorialStage = 0;
-        // disable lookaround
-        // disable jump or set jump force zero
-        // disable clone, wilt
-        // enable actions sequentially
+
     }
     void Update() {
+        // Debug.Log(tutorialStage);
         if (tutorialStage == 0) // movement
         {
             if (Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Vertical") > 0) {
-                // delay is how many seconds to wait after player completed the correct action
-                if (delay <= -8) {
-                    HUD.SetTutorial("you moved!");
+                if (delay <= 0) {
                     tutorialStage++;
                 } else {
                     delay -= Time.deltaTime;
                 }
-            } else {
-                delay -= Time.deltaTime;
             }
         }
         if (tutorialStage == 1) // lookaround
         { 
             HUD.SetTutorial("use the right joystick to look around");
-            if (delay <= -15) {
+            // detect right stick movement
+            if (Input.GetKey("r")) { // joystick axis
                 tutorialStage++;
-            } else {
-                delay -= Time.deltaTime;
-            }  
+            }
         }
         if (tutorialStage == 2) // jump
         {
-
-            HUD.SetTutorial("jump using X"); // currently triange?
-            if (Input.GetKey("joystick button 3")) { // "joystick button 1" for X button
-                HUD.SetTutorial("you jumped!");
+            HUD.SetTutorial("jump using X");
+            if (Input.GetKey("space")) { // "joystick button 1" for X button
+                Destroy(wall1);
+                Destroy(wall2);
+                Destroy(wall3);
+                Destroy(wall4);
+                delay = 5.0f;
+                tutorialStage++;
             }
-
         }
-        // tutorial stage 3 and onward (button, dirt patch, etc) use Tutorial.cs on GameObject
+        if (tutorialStage == 3) // mushroom
+        {
+            HUD.SetTutorial("some mushrooms move platforms");
+            if (delay <= 0) {
+                tutorialStage++;
+            } else {
+                delay -= Time.deltaTime;
+            }
+        }
+        if (tutorialStage == 4) // dirt patch seed
+        {
+            HUD.SetTutorial("record actions on dirt patches");
+            // detect plant seed
+            if (Input.GetKey("e")) { // joystick button 1 (circle) 
+                tutorialStage++;
+            } 
+        }
+        if (tutorialStage == 5)  // dirt patch wilt
+        {
+            HUD.SetTutorial("press Q to stop recording");
+            if (Input.GetKey("q")) { // joystick button 1 (circle)
+                delay = 5.0f;
+                tutorialStage++;
+            }
+        }
+        if (tutorialStage == 5)  // dirt patch replant
+        {
+            HUD.SetTutorial("approach seeds to replant them");
+            if (delay <= 0) {
+                tutorialStage++;
+            } else {
+                delay -= Time.deltaTime;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !initialPrompt)
+        if (other.CompareTag("Player") && !initialPromptComplete)
         {
             HUD = other.gameObject.GetComponent<HeadsUpDisplay>(); 
             HUD.SetTutorial("use left joystick to move");
-            initialPrompt = true;
+            initialPromptComplete = true;
+            tutorialStage = 0;
         }
     }
 
