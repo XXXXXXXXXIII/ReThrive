@@ -63,8 +63,9 @@ public class PlayerState : MonoBehaviour
     public GameObject ghostPrefab;
 
     // Colours for ghosts and seeds
-    private Color[] colors = { Color.red, Color.blue, Color.yellow, Color.magenta, Color.cyan };
-    private int colorIndex = 0; 
+    public Color[] colors = { Color.red, Color.blue, Color.yellow, Color.magenta, Color.cyan };
+    public int colorIndex = 0;
+    public Material red, blue, yellow, magenta, cyan;
 
     // Start is called before the first frame update
     void Start()
@@ -232,6 +233,16 @@ public class PlayerState : MonoBehaviour
             SerializedObject ghostHalo = new SerializedObject(newGhost.gameObject.GetComponent("Halo"));
             ghostHalo.FindProperty("m_Color").colorValue = colors[colorIndex];
             ghostHalo.ApplyModifiedProperties();
+
+            Color targetColor = colors[colorIndex];
+
+            LineRenderer lineRenderer = newGhost.GetComponent<LineRenderer>();
+            
+            if (targetColor == Color.red) lineRenderer.material = red;
+            else if (targetColor == Color.blue) lineRenderer.material = blue;
+            else if (targetColor == Color.yellow) lineRenderer.material = yellow;
+            else if (targetColor == Color.magenta) lineRenderer.material = magenta;
+            else if (targetColor == Color.cyan) lineRenderer.material = cyan;
 
             colorIndex = ++colorIndex % colors.Length;
 
