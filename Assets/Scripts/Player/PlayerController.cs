@@ -17,14 +17,16 @@ public class PlayerController : MonoBehaviour
     private Vector3 defaultCameraCoord;
     private Quaternion defaultCameraRot;
 
-    private string KeyMoveVertical = "Vertical";
-    private string KeyMoveHorizontal = "Horizontal";
-    private string MouseMoveHorizontal = "Mouse Y";
-    private string MouseMoveVertical = "Mouse X";
+    private string MoveVertical = "Vertical";
+    private string MoveHorizontal = "Horizontal";
+    private string LookHorizontal = "LookVertical";
+    private string LookVertical = "LookHorizontal";
 
     private bool freezePlayer = false;
     private bool inCameraTransition = false;
     private float queueJump;
+    private float airTime;
+    private bool isFalling = false;
 
     public float rotateRate = 1f;
     public float sprintMultiplier = 1.5f;
@@ -60,21 +62,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float turnAxisX = Input.GetAxis("Mouse Y");
-        float turnAxisY = Input.GetAxis("Mouse X"); ;
-        moveDirection = Input.GetAxis("Horizontal") * moveSpeed * Main.transform.right + new Vector3(0f, moveDirection.y, 0f) + Input.GetAxis("Vertical") * moveSpeed * Main.transform.forward;
+        float turnAxisX = Input.GetAxis(LookHorizontal);
+        float turnAxisY = Input.GetAxis(LookVertical);
+        moveDirection = Input.GetAxis(MoveHorizontal) * moveSpeed * Main.transform.right + new Vector3(0f, moveDirection.y, 0f) + Input.GetAxis(MoveVertical) * moveSpeed * Main.transform.forward;
         moveDirection.y += Physics.gravity.y * gravityScale * Time.deltaTime;
 
         if (!freezePlayer)
         {
-            if ((Input.GetButtonDown("Fire3") || Input.GetKeyDown(KeyCode.E))) // Circle button
+            if ((Input.GetButtonDown("Interact") || Input.GetKeyDown(KeyCode.E))) // Circle button
             {
                 onInteractStart?.Invoke();                
                 isInteracting = true;
                 interactHoldTime = Time.time;
                 canPlant = true;
             }
-            else if (isInteracting && (Input.GetButtonUp("Fire3") || Input.GetKeyUp(KeyCode.E))) // Circle button
+            else if (isInteracting && (Input.GetButtonUp("Interact") || Input.GetKeyUp(KeyCode.E))) // Circle button
             {
                 onInteractEnd?.Invoke();
                 isInteracting = false;
@@ -88,7 +90,7 @@ public class PlayerController : MonoBehaviour
                 interactHoldTime = Mathf.Infinity;
             }
 
-            if (Input.GetKeyDown(KeyCode.Q)) // Triangle button
+            if (Input.GetButtonDown("Wilt") || Input.GetKeyDown(KeyCode.Q)) // Triangle button
             {
                 onWilt?.Invoke();
             }
@@ -105,14 +107,43 @@ public class PlayerController : MonoBehaviour
                     //moveDirection.y = hopForce;
                     AC.SetBool("isMoving", true);
                 }
+                isFalling = false;
+                AC.SetBool("isFalling", false);
+                airTime = 0f;
             }
             else if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Space))
             {
                 queueJump = 0.2f;
+                airTime += Time.deltaTime;
             }
             else if (queueJump > 0f)
             {
                 queueJump -= Time.deltaTime;
+                airTime += Time.deltaTime;
+            }
+            else
+            {
+                airTime += Time.deltaTime;
+            }
+
+            if (airTime > 0.3f)
+            {
+                if (!isFalling)
+                {
+                    isFalling = true;
+                    AC.SetTrigger("OnFall");
+                    AC.SetBool("isFalling", true); 
+                    moveDirection.x *= 0.8f;
+                    moveDirection.z *= 0.8f;
+                }
+                if (moveDirection.y < -7.5f)
+                {
+                    AC.SetTrigger("OnFallTerminal");
+                    moveDirection.y = -7.5f;
+                    moveDirection.x *= 1.2f;
+                    moveDirection.z *= 1.2f;
+                }
+                airTime += Time.deltaTime;
             }
 
             TurnPlayer(turnAxisX, turnAxisY);

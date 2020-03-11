@@ -27,6 +27,8 @@ public class Ghost : MonoBehaviour
     public int pressCounter { get; set; }
 
     private bool isActive;
+    private float airTime;
+    private bool isFalling;
     private int index;
     private int maxIndex;
     private Vector3 finalAction;
@@ -100,6 +102,32 @@ public class Ghost : MonoBehaviour
                 {
                     moveDirection.y += Physics.gravity.y * 50f * Time.deltaTime * Time.deltaTime;
                 }
+                if (CC.isGrounded)
+                {
+                    airTime = 0f;
+                    isFalling = false;
+                    AC.SetBool("isFalling", false);
+                }
+                else
+                {
+                    airTime += Time.fixedDeltaTime;
+                    if (airTime > 0.3f)
+                    {
+                        if (!isFalling)
+                        {
+                            isFalling = true;
+                            AC.SetTrigger("OnFall");
+                            AC.SetBool("isFalling", true);
+                        }
+                        if (moveDirection.y <= -7.5f)
+                        {
+                            AC.SetTrigger("OnFallTerminal");
+                            moveDirection.y = -7.5f;
+                        }
+                        airTime += Time.deltaTime;
+                    }
+                }
+
                 CC.Move(moveDirection);
                 transform.Rotate(GhostRotation[index], Space.Self);
                 if (GhostPath[index].magnitude != 0)
