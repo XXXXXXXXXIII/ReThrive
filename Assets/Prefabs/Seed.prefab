@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 9082342142919226708}
   - component: {fileID: 4464189479180787801}
   - component: {fileID: 4933442067145951083}
+  - component: {fileID: 2049657757973204385}
   m_Layer: 0
   m_Name: Seed
   m_TagString: Untagged
@@ -105,3 +106,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fd713f74d43fcf4da1e57ab0921d718, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  PromptText: Press X or E to replant seed
+--- !u!122 &2049657757973204385
+Halo:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2763290920348985721}
+  m_Enabled: 1
+  m_Color:
+    serializedVersion: 2
+    rgba: 4286611584
+  m_Size: 0.2

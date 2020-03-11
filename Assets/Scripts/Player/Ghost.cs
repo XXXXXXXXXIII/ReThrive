@@ -32,6 +32,8 @@ public class Ghost : MonoBehaviour
     private Vector3 finalAction;
     private Vector3 finalRotation;
 
+    public List<Vector3> GhostLinePath;
+
     // Awake is required here
     void Awake()
     {

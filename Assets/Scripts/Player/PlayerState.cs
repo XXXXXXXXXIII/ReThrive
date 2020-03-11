@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor; // for accessing and editing halo
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -60,6 +61,10 @@ public class PlayerState : MonoBehaviour
     // Prefabs for ghost and seed
     public GameObject seedPrefab;
     public GameObject ghostPrefab;
+
+    // Colours for ghosts and seeds
+    private Color[] colors = { Color.red, Color.blue, Color.yellow, Color.magenta, Color.cyan };
+    private int colorIndex = 0; 
 
     // Start is called before the first frame update
     void Start()
@@ -209,6 +214,13 @@ public class PlayerState : MonoBehaviour
             AnimateGhosts();
             //TODO: Let dirt decide where to plant the seed
             GameObject newSeed = Instantiate(seedPrefab, currDirt.transform.position + currDirt.GetNextSeedCoord(), transform.rotation);
+
+            Debug.Log("Colour count: " + colorIndex);
+
+            SerializedObject seedHalo = new SerializedObject(newSeed.gameObject.GetComponent("Halo"));
+            seedHalo.FindProperty("m_Color").colorValue = colors[colorIndex];
+            seedHalo.ApplyModifiedProperties();
+
             newSeed.transform.SetParent(currDirt.transform);
             Seed seed = newSeed.GetComponent<Seed>();
             currDirt.seeds.Add(seed);
@@ -216,6 +228,13 @@ public class PlayerState : MonoBehaviour
             seeds.Add(seed);
 
             GameObject newGhost = Instantiate(ghostPrefab, newSeed.transform.position, newSeed.transform.rotation);
+
+            SerializedObject ghostHalo = new SerializedObject(newGhost.gameObject.GetComponent("Halo"));
+            ghostHalo.FindProperty("m_Color").colorValue = colors[colorIndex];
+            ghostHalo.ApplyModifiedProperties();
+
+            colorIndex = ++colorIndex % colors.Length;
+
             newGhost.transform.parent = null;
             Ghost ghost = newGhost.GetComponent<Ghost>();
             seed.ghost = ghost;

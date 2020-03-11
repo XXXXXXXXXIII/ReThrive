@@ -68,6 +68,7 @@ public class GhostManager : MonoBehaviour
                 Debug.Log(transformOffset);
                 ghost.GhostPath.Add(transformOffset);
                 ghost.GhostRotation.Add(ghost.transform.rotation.eulerAngles - prevRot.eulerAngles);
+                ghost.GhostLinePath.Add(ghost.transform.position);
                 prevCoord = ghost.transform.position;
                 prevLocalCoord = ghost.transform.localPosition;
                 prevRot = ghost.transform.rotation;
@@ -111,6 +112,10 @@ public class GhostManager : MonoBehaviour
         ghost.duration = this.duration;
         ghost.ResetGhost();
         ghost.onActive = null;
+
+        LineRenderer lineRenderer = ghost.GetComponent<LineRenderer>();
+        lineRenderer.positionCount = ghost.GhostLinePath.Count;
+        lineRenderer.SetPositions(ghost.GhostLinePath.ToArray());
     }
 
     private void ActivateRecorder()
