@@ -25,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private bool freezePlayer = false;
     private bool inCameraTransition = false;
     private float queueJump;
+    private float airTime;
+    private bool isFalling = false;
 
     public float rotateRate = 1f;
     public float sprintMultiplier = 1.5f;
@@ -105,14 +107,43 @@ public class PlayerController : MonoBehaviour
                     //moveDirection.y = hopForce;
                     AC.SetBool("isMoving", true);
                 }
+                isFalling = false;
+                AC.SetBool("isFalling", false);
+                airTime = 0f;
             }
             else if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Space))
             {
                 queueJump = 0.2f;
+                airTime += Time.deltaTime;
             }
             else if (queueJump > 0f)
             {
                 queueJump -= Time.deltaTime;
+                airTime += Time.deltaTime;
+            }
+            else
+            {
+                airTime += Time.deltaTime;
+            }
+
+            if (airTime > 0.3f)
+            {
+                if (!isFalling)
+                {
+                    isFalling = true;
+                    AC.SetTrigger("OnFall");
+                    AC.SetBool("isFalling", true); 
+                    moveDirection.x *= 0.8f;
+                    moveDirection.z *= 0.8f;
+                }
+                if (moveDirection.y < -7.5f)
+                {
+                    AC.SetTrigger("OnFallTerminal");
+                    moveDirection.y = -7.5f;
+                    moveDirection.x *= 1.2f;
+                    moveDirection.z *= 1.2f;
+                }
+                airTime += Time.deltaTime;
             }
 
             TurnPlayer(turnAxisX, turnAxisY);
