@@ -49,4 +49,4 @@ sysinfo.txt
 .unitypackage
 # Crashlytics generated file
 crashlytics-build.properties
-.meta
+*.meta
