@@ -47,7 +47,10 @@ public class Dirt : MonoBehaviour
         if (isTracking)
         {
             Text.text = DirtText + (maxSeedCount - seeds.Count);
-            Text.gameObject.transform.rotation = Quaternion.LookRotation(transform.position - PS.transform.position, Vector3.up);
+            Quaternion targetRot = Quaternion.LookRotation(transform.position - PS.transform.position, Vector3.up);
+            targetRot.x = 0;
+            targetRot.z = 0;
+            Text.gameObject.transform.rotation = targetRot;
             if (seeds.Count == maxSeedCount)
             {
                 Text.color = Color.red;

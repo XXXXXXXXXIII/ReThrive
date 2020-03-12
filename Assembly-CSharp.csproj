@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\Environment\Checkpoint.cs" />
     <Compile Include="Assets\Scripts\Environment\DeathTrap.cs" />
     <Compile Include="Assets\Scripts\Environment\Dirt.cs" />
+    <Compile Include="Assets\Scripts\Environment\SceneLighting.cs" />
     <Compile Include="Assets\Scripts\Environment\Seed.cs" />
     <Compile Include="Assets\Scripts\Environment\Sunlight.cs" />
     <Compile Include="Assets\Scripts\Environment\Tutorial.cs" />
