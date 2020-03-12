@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
     private float airTime;
     private bool isFalling = false;
 
-    public float rotateRate = 1f;
+    public float rotateRate = 100f;
     public float sprintMultiplier = 1.5f;
     public float jumpMultiplier = 200f;
 
@@ -169,12 +169,12 @@ public class PlayerController : MonoBehaviour
 
     private void TurnCamera(float turnX, float turnY)
     {
-        CameraCenter.transform.Rotate(turnX * rotateRate * -1, 0, 0);
+        CameraCenter.transform.Rotate(turnX * rotateRate * Time.deltaTime, 0, 0);
     }
 
     private void TurnPlayer(float turnX, float turnY)
     {
-        Main.transform.Rotate(0, turnY * rotateRate, 0);
+        Main.transform.Rotate(0, turnY * rotateRate * Time.deltaTime, 0);
     }
 
     public void SwitchToGhost(Ghost ghost, Animator animator, CharacterController charCon)

@@ -78,12 +78,12 @@ public class HeadsUpDisplay : MonoBehaviour
             {
                 if ((int)((GM.duration - Time.time + GM.startTime) * 2) % 2 == 0)
                 {
-                    //wiltBar.color = Color.red;
+                    wiltBar.color = Color.red;
                     wiltText.color = Color.red;
                 }
                 else
                 {
-                    //wiltBar.color = wiltBarColor;
+                    wiltBar.color = wiltBarColor;
                     wiltText.color = wiltTextColor;
                 }
             }
@@ -157,6 +157,8 @@ public class HeadsUpDisplay : MonoBehaviour
         wiltBar.transform.parent.gameObject.SetActive(true);
         wiltText.color = wiltTextColor;
         wiltBar.color = wiltBarColor;
+        wiltText.text = "";
+        wiltBar.fillAmount = 1f;
     }
 
     public void HideWiltBar()
