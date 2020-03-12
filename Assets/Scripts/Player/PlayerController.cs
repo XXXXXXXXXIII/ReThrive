@@ -65,6 +65,7 @@ public class PlayerController : MonoBehaviour
         float turnAxisX = Input.GetAxis(LookHorizontal);
         float turnAxisY = Input.GetAxis(LookVertical);
         moveDirection = Input.GetAxis(MoveHorizontal) * moveSpeed * Main.transform.right + new Vector3(0f, moveDirection.y, 0f) + Input.GetAxis(MoveVertical) * moveSpeed * Main.transform.forward;
+        //moveDirection = moveSpeed * Main.transform.forward * (Input.GetAxis(MoveHorizontal) + Input.GetAxis(MoveVertical) / 2);
         moveDirection.y += Physics.gravity.y * gravityScale * Time.deltaTime;
 
         if (!freezePlayer)
@@ -146,6 +147,7 @@ public class PlayerController : MonoBehaviour
                 airTime += Time.deltaTime;
             }
 
+            //TurnPlayer(Input.GetAxis(MoveHorizontal), Input.GetAxis(MoveVertical));
             TurnPlayer(turnAxisX, turnAxisY);
             CC.Move(moveDirection * Time.deltaTime); 
         }

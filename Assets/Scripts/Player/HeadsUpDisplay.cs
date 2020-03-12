@@ -34,7 +34,7 @@ public class HeadsUpDisplay : MonoBehaviour
         GM = GetComponent<GhostManager>();
         PPV = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PostProcessVolume>();
         texts = new Dictionary<string, Text>();
-        List<Text> children = new List<Text>(GetComponentsInChildren<Text>());
+        List<Text> children = new List<Text>(GameObject.Find("HUD").GetComponentsInChildren<Text>());
         promptTextStack = new Stack<string>();
         promptTextStack.Push(" ");
         foreach (Text t in children)
