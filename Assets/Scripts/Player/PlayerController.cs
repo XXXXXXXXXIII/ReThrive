@@ -26,9 +26,10 @@ public class PlayerController : MonoBehaviour
     private bool inCameraTransition = false;
     private float queueJump;
     private float airTime;
+    private float interactHoldTime;
     private bool isFalling = false;
 
-    public float rotateRate = 100f;
+    public float rotateRate = 130f;
     public float sprintMultiplier = 1.5f;
     public float jumpMultiplier = 200f;
 
@@ -43,7 +44,6 @@ public class PlayerController : MonoBehaviour
     public UnityAction onInteractEnd { get; set; }
 
     public bool isInteracting { get; private set; }
-    private float interactHoldTime;
     public bool canPlant { get; private set; }
 
 
@@ -114,8 +114,16 @@ public class PlayerController : MonoBehaviour
             }
             else if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Space))
             {
-                queueJump = 0.2f;
                 airTime += Time.deltaTime;
+                if (airTime < 0.1f)
+                {
+                    moveDirection.y = jumpForce;
+                    queueJump = 0f;
+                }
+                else
+                {
+                    queueJump = 0.2f;
+                }
             }
             else if (queueJump > 0f)
             {
@@ -132,17 +140,35 @@ public class PlayerController : MonoBehaviour
                 if (!isFalling)
                 {
                     isFalling = true;
-                    AC.SetTrigger("OnFall");
                     AC.SetBool("isFalling", true); 
+                    AC.SetTrigger("OnFall");
                     moveDirection.x *= 0.8f;
                     moveDirection.z *= 0.8f;
                 }
-                if (moveDirection.y < -7.5f)
+                else if (Input.GetButton("Jump") || Input.GetKey(KeyCode.Space))
                 {
+                    AC.SetTrigger("OnFall");
+                    moveDirection.x *= 0.8f;
+                    moveDirection.z *= 0.8f;
+                }
+                else if (moveDirection.y < -10f)
+                {
+                    if (moveDirection.y < -11f)
+                    {
+                        moveDirection.y -= Physics.gravity.y * gravityScale * Time.deltaTime;
+                    }
+                    else
+                    {
+                        moveDirection.y = -10f;
+                    }
                     AC.SetTrigger("OnFallTerminal");
-                    moveDirection.y = -7.5f;
                     moveDirection.x *= 1.2f;
                     moveDirection.z *= 1.2f;
+                }
+                else
+                {
+                    moveDirection.x *= 0.8f;
+                    moveDirection.z *= 0.8f;
                 }
                 airTime += Time.deltaTime;
             }
@@ -186,6 +212,8 @@ public class PlayerController : MonoBehaviour
         onInteractStart = ghost.OnInteractStart;
         onInteractHold = null;
         onInteractEnd = ghost.OnInteractEnd;
+        interactHoldTime = Mathf.Infinity;
+
         onWilt += ghost.onWilt;
         CC = charCon;
         AC = animator;
@@ -203,6 +231,7 @@ public class PlayerController : MonoBehaviour
         onInteractStart = PS.OnInteractStart;
         onInteractHold = PS.OnInteractHold;
         onInteractEnd = PS.OnInteractEnd;
+        interactHoldTime = Mathf.Infinity;
         onWilt = PS.onWilt;
         CC = charCon;
         AC = animator;
