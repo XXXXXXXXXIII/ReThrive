@@ -34,7 +34,7 @@ public class HeadsUpDisplay : MonoBehaviour
         GM = GetComponent<GhostManager>();
         PPV = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<PostProcessVolume>();
         texts = new Dictionary<string, Text>();
-        List<Text> children = new List<Text>(GetComponentsInChildren<Text>());
+        List<Text> children = new List<Text>(GameObject.Find("HUD").GetComponentsInChildren<Text>());
         promptTextStack = new Stack<string>();
         promptTextStack.Push(" ");
         foreach (Text t in children)
@@ -42,8 +42,8 @@ public class HeadsUpDisplay : MonoBehaviour
             texts.Add(t.name, t);
             Debug.Log("HUD::Added: " + t.name);
         }
-        sunBar = GameObject.Find("SunBarForeground").GetComponent<Image>();
-        waterBar = GameObject.Find("WaterBarForeground").GetComponent<Image>();
+        //sunBar = GameObject.Find("SunBarForeground").GetComponent<Image>();
+        //waterBar = GameObject.Find("WaterBarForeground").GetComponent<Image>();
         wiltBar = GameObject.Find("WiltBarForeground").GetComponent<Image>();
         wiltText = texts["WiltText"];
         wiltBarColor = wiltBar.color;
@@ -55,6 +55,7 @@ public class HeadsUpDisplay : MonoBehaviour
 
     private void FixedUpdate()
     {
+        /*
         if (PS.waterMeter - waterBar.fillAmount > BarFillRate)
             waterBar.fillAmount += BarFillRate;
         else if (PS.waterMeter - waterBar.fillAmount < -BarFillRate)
@@ -68,6 +69,7 @@ public class HeadsUpDisplay : MonoBehaviour
             sunBar.fillAmount -= BarFillRate;
         else
             sunBar.fillAmount = PS.sunMeter;
+        */
 
         if (GM.isRecording)
         {
@@ -78,12 +80,12 @@ public class HeadsUpDisplay : MonoBehaviour
             {
                 if ((int)((GM.duration - Time.time + GM.startTime) * 2) % 2 == 0)
                 {
-                    //wiltBar.color = Color.red;
+                    wiltBar.color = Color.red;
                     wiltText.color = Color.red;
                 }
                 else
                 {
-                    //wiltBar.color = wiltBarColor;
+                    wiltBar.color = wiltBarColor;
                     wiltText.color = wiltTextColor;
                 }
             }
@@ -157,6 +159,8 @@ public class HeadsUpDisplay : MonoBehaviour
         wiltBar.transform.parent.gameObject.SetActive(true);
         wiltText.color = wiltTextColor;
         wiltBar.color = wiltBarColor;
+        wiltText.text = "";
+        wiltBar.fillAmount = 1f;
     }
 
     public void HideWiltBar()
@@ -168,15 +172,15 @@ public class HeadsUpDisplay : MonoBehaviour
     {
         PPV.profile = PlayerProfile;
         HideWiltBar();
-        sunBar.transform.parent.gameObject.SetActive(true);
-        waterBar.transform.parent.gameObject.SetActive(true);
+        //sunBar.transform.parent.gameObject.SetActive(true);
+        //waterBar.transform.parent.gameObject.SetActive(true);
     }
 
     public void GhostView()
     {
         PPV.profile = GhostProfile;
         ShowWiltBar();
-        sunBar.transform.parent.gameObject.SetActive(false);
-        waterBar.transform.parent.gameObject.SetActive(false);
+        //sunBar.transform.parent.gameObject.SetActive(false);
+        //waterBar.transform.parent.gameObject.SetActive(false);
     }
 }

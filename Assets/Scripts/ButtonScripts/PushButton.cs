@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class PushButton : MonoBehaviour
 {
     public string PromptText = "Hold E to Interact";
+    public Light ButtonLight;
 
     public UnityEvent OnButtonPress;
     public UnityEvent OnButtonRelease;
@@ -75,6 +76,11 @@ public class PushButton : MonoBehaviour
         if (++triggerCount == 1)
         {
             OnButtonPress.Invoke();
+            if (ButtonLight)
+            {
+                ButtonLight.intensity *= 1.1f;
+                ButtonLight.range *= 1.2f;
+            }
         }
     }
 
@@ -85,6 +91,11 @@ public class PushButton : MonoBehaviour
         {
             OnButtonRelease.Invoke();
             triggerCount = 0;
+            if (ButtonLight)
+            {
+                ButtonLight.intensity /= 1.1f;
+                ButtonLight.range /= 1.2f;
+            }
         }
     }
 }

@@ -65,7 +65,7 @@ public class GhostManager : MonoBehaviour
                 {
                     transformOffset.y = 0f;
                 }
-                Debug.Log(transformOffset);
+                //Debug.Log(transformOffset);
                 ghost.GhostPath.Add(transformOffset);
                 ghost.GhostRotation.Add(ghost.transform.rotation.eulerAngles - prevRot.eulerAngles);
                 prevCoord = ghost.transform.position;

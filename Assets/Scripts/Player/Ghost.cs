@@ -32,7 +32,8 @@ public class Ghost : MonoBehaviour
     private int index;
     private int maxIndex;
     private Vector3 finalAction;
-    private Vector3 finalRotation;
+    //private Vector3 finalRotation;
+    private Vector3 targetPosition;
 
     // Awake is required here
     void Awake()
@@ -97,11 +98,28 @@ public class Ghost : MonoBehaviour
             }
             else
             {
-                Vector3 moveDirection = GhostPath[index];
+                Vector3 moveDirection;
+                targetPosition += GhostPath[index];
+                moveDirection = GhostPath[index];
+                transform.Rotate(GhostRotation[index], Space.Self);
                 if (moveDirection.y <= 0.01f)
                 {
                     moveDirection.y += Physics.gravity.y * 50f * Time.deltaTime * Time.deltaTime;
                 }
+                /*if (Vector3.Distance(transform.position, targetPosition) < 0.1f)
+                {
+                }
+                else
+                {
+                    moveDirection = targetPosition - transform.position;
+                    if (moveDirection.y > 0)
+                    {
+                        moveDirection.y = 0f;
+                    }
+                }*/
+
+                //Debug.Log(Vector3.Distance(transform.position, targetPosition) + "  " + index);
+
                 if (CC.isGrounded)
                 {
                     airTime = 0f;
@@ -128,8 +146,6 @@ public class Ghost : MonoBehaviour
                     }
                 }
 
-                CC.Move(moveDirection);
-                transform.Rotate(GhostRotation[index], Space.Self);
                 if (GhostPath[index].magnitude != 0)
                 {
                     AC.SetBool("isMoving", true);
@@ -159,7 +175,9 @@ public class Ghost : MonoBehaviour
                         isInteracting = true;
                     }
                 }
-                index++;
+
+                CC.Move(moveDirection);                
+                    index++;
             }
         }
     }
@@ -174,6 +192,7 @@ public class Ghost : MonoBehaviour
         transform.rotation = this.SeedRot;
         isActive = false;
         index = 0;
+        targetPosition = transform.position + GhostPath[index];
         isInteracting = false;
         //status = Player_Status.idle;
         //ghost.SetActive(false); //TODO: Removing this cuz it disables collider as well
@@ -187,7 +206,7 @@ public class Ghost : MonoBehaviour
         maxIndex = (int)(duration * (1 / Time.fixedDeltaTime));
         finalAction = GhostPath[GhostPath.Count - 1];
         finalAction.y = 0; // Prevent ghost from jumping up forever
-        finalRotation = GhostRotation[GhostRotation.Count - 1];
+        //finalRotation = GhostRotation[GhostRotation.Count - 1];
         status = Player_Status.spawning;
         AC.SetTrigger("OnSpawn");
     }
