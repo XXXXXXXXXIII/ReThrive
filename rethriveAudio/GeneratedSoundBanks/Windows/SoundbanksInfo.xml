@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="135">
+	<RootPaths>
+		<ProjectRoot>D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\</ProjectRoot>
+		<SourceFilesRoot>D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>Init.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="3161908922" Language="SFX">
+			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
+			<ShortName>Main</ShortName>
+			<Path>Main.bnk</Path>
+			<IncludedEvents>
+				<Event Id="3972643080" Name="leafyGrow1" ObjectPath="\Events\Default Work Unit\SFX\leafy\leafyGrow\leafyGrow1">
+					<IncludedMemoryFiles>
+						<File Id="246841881" Language="SFX">
+							<ShortName>leafyGrow1.wav</ShortName>
+							<Path>SFX\leafyGrow1_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="803670522" Name="leafyJump" ObjectPath="\Events\Default Work Unit\SFX\leafy\leafyJump">
+					<IncludedMemoryFiles>
+						<File Id="494066402" Language="SFX">
+							<ShortName>leafyJump1.wav</ShortName>
+							<Path>SFX\leafyJump1_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1405049245" Name="leafyLand" ObjectPath="\Events\Default Work Unit\SFX\leafy\leafyLand">
+					<IncludedMemoryFiles>
+						<File Id="1022976474" Language="SFX">
+							<ShortName>leafyLand1.wav</ShortName>
+							<Path>SFX\leafyLand1_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="1298843541" Name="leafyWalk" ObjectPath="\Events\Default Work Unit\SFX\leafy\leafyWalk">
+					<IncludedMemoryFiles>
+						<File Id="44741734" Language="SFX">
+							<ShortName>leafyWalkDirt3.wav</ShortName>
+							<Path>SFX\leafyWalkDirt3_10C4C929.wem</Path>
+						</File>
+						<File Id="267222137" Language="SFX">
+							<ShortName>leafyWalkGrass2.wav</ShortName>
+							<Path>SFX\leafyWalkGrass2_10C4C929.wem</Path>
+						</File>
+						<File Id="315042288" Language="SFX">
+							<ShortName>leafyWalkDirt1.wav</ShortName>
+							<Path>SFX\leafyWalkDirt1_10C4C929.wem</Path>
+						</File>
+						<File Id="487012226" Language="SFX">
+							<ShortName>leafyWalkGrass3.wav</ShortName>
+							<Path>SFX\leafyWalkGrass3_10C4C929.wem</Path>
+						</File>
+						<File Id="717644420" Language="SFX">
+							<ShortName>leafyWalkDirt2.wav</ShortName>
+							<Path>SFX\leafyWalkDirt2_10C4C929.wem</Path>
+						</File>
+						<File Id="967104007" Language="SFX">
+							<ShortName>leafyWalkGrass1.wav</ShortName>
+							<Path>SFX\leafyWalkGrass1_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+					<SwitchContainers>
+						<SwitchContainer SwitchValue="{85482F03-26C4-41BC-B768-B11B725755AD}">
+							<Media>
+								<File Id="967104007"/>
+								<File Id="267222137"/>
+								<File Id="487012226"/>
+							</Media>
+						</SwitchContainer>
+						<SwitchContainer SwitchValue="{77F54698-FC36-431C-8FAD-2CD29BD8DC25}">
+							<Media>
+								<File Id="315042288"/>
+								<File Id="717644420"/>
+								<File Id="44741734"/>
+							</Media>
+						</SwitchContainer>
+					</SwitchContainers>
+				</Event>
+				<Event Id="4206939873" Name="musicLevel1" ObjectPath="\Events\Default Work Unit\music\musicLevel1">
+					<IncludedMemoryFiles>
+						<File Id="171190262" Language="SFX">
+							<ShortName>musicTransition.wav</ShortName>
+							<Path>SFX\musicTransition_10C4C929.wem</Path>
+						</File>
+						<File Id="219316460" Language="SFX">
+							<ShortName>musicLight3.wav</ShortName>
+							<Path>SFX\musicLight3_10C4C929.wem</Path>
+						</File>
+						<File Id="226167227" Language="SFX">
+							<ShortName>musicLight9.wav</ShortName>
+							<Path>SFX\musicLight9_10C4C929.wem</Path>
+						</File>
+						<File Id="474498909" Language="SFX">
+							<ShortName>musicLight8.wav</ShortName>
+							<Path>SFX\musicLight8_10C4C929.wem</Path>
+						</File>
+						<File Id="528842569" Language="SFX">
+							<ShortName>musicMainTail.wav</ShortName>
+							<Path>SFX\musicMainTail_10C4C929.wem</Path>
+						</File>
+						<File Id="596384329" Language="SFX">
+							<ShortName>musicLight5.wav</ShortName>
+							<Path>SFX\musicLight5_10C4C929.wem</Path>
+						</File>
+						<File Id="612445011" Language="SFX">
+							<ShortName>musicLight4.wav</ShortName>
+							<Path>SFX\musicLight4_10C4C929.wem</Path>
+						</File>
+						<File Id="671615932" Language="SFX">
+							<ShortName>musicLight1.wav</ShortName>
+							<Path>SFX\musicLight1_10C4C929.wem</Path>
+						</File>
+						<File Id="798290998" Language="SFX">
+							<ShortName>musicLight7.wav</ShortName>
+							<Path>SFX\musicLight7_10C4C929.wem</Path>
+						</File>
+						<File Id="950156361" Language="SFX">
+							<ShortName>musicLight6.wav</ShortName>
+							<Path>SFX\musicLight6_10C4C929.wem</Path>
+						</File>
+						<File Id="960874467" Language="SFX">
+							<ShortName>musicLight2.wav</ShortName>
+							<Path>SFX\musicLight2_10C4C929.wem</Path>
+						</File>
+						<File Id="1045700399" Language="SFX">
+							<ShortName>musicMainBody.wav</ShortName>
+							<Path>SFX\musicMainBody_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+			<SwitchGroups>
+				<SwitchGroup Id="1808717673" Name="floorType" ObjectPath="\Switches\Default Work Unit\floorType">
+					<Switches>
+						<Switch Id="4248645337" Name="grass" ObjectPath="\Switches\Default Work Unit\floorType\grass"/>
+						<Switch Id="687380132" Name="soil" ObjectPath="\Switches\Default Work Unit\floorType\soil"/>
+						<Switch Id="1216965916" Name="stone" ObjectPath="\Switches\Default Work Unit\floorType\stone"/>
+					</Switches>
+				</SwitchGroup>
+			</SwitchGroups>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

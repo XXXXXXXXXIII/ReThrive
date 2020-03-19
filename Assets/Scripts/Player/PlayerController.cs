@@ -46,6 +46,10 @@ public class PlayerController : MonoBehaviour
     public bool isInteracting { get; private set; }
     public bool canPlant { get; private set; }
 
+    public AK.Wwise.Event walkingEvent;
+    public AK.Wwise.Event jumpingEvent;
+    public AK.Wwise.Event landingEvent;
+    public AK.Wwise.Event helicopterEvent;
 
     // Start is called before the first frame update
     void Start()
@@ -97,12 +101,19 @@ public class PlayerController : MonoBehaviour
             }
 
             if (CC.isGrounded) {
+
+                if (airTime > 0.2f) {
+                    Debug.Log("Air Time: " + airTime);
+                    landingEvent.Post(gameObject);
+                }
+
                 moveDirection.y = 0f;
                 AC.SetBool("isMoving", false);
                 if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.Space) || queueJump > 0f)
                 {
                     moveDirection.y = jumpForce;
                     queueJump = 0f;
+                    jumpingEvent.Post(gameObject);
                 }
                 else if (Input.GetAxis("Horizontal") != 0f || Input.GetAxis("Vertical") != 0f) {
                     //moveDirection.y = hopForce;
@@ -119,6 +130,7 @@ public class PlayerController : MonoBehaviour
                 {
                     moveDirection.y = jumpForce;
                     queueJump = 0f;
+                    jumpingEvent.Post(gameObject);
                 }
                 else
                 {
@@ -187,6 +199,12 @@ public class PlayerController : MonoBehaviour
         {
             inCameraTransition = false;
         }
+    }
+
+    public void PlayWalkingSound() {
+        // use this for detecting which surface you're walking on
+        // AkSoundEngine.SetSwitch("floorType", "grass", gameObject);
+        walkingEvent.Post(gameObject);
     }
 
     private void TransitionCamera()
