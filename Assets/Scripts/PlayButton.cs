@@ -11,7 +11,7 @@ public class PlayButton : MonoBehaviour
         if (Input.anyKey)
         {
             // whatever our first scene is called
-            SceneManager. LoadScene("Level_1_Feb25"); 
+            SceneManager.LoadScene(1);
         }
     }
 }
