@@ -1412,6 +1412,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocky_Platform_1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 570405408732567732, guid: 0b3275ad840a1bb44b0f20bfe44d80aa,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b3275ad840a1bb44b0f20bfe44d80aa, type: 3}
 --- !u!4 &3315764628423014267 stripped
