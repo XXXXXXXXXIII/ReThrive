@@ -1,0 +1,26 @@
+fileFormatVersion: 2
+guid: aa0d8d6b18d46354b95f03037afe784f
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: DigitalStrip BB
+  fontNames:
+  - DigitalStrip BB
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 90684d113fcbd044b9505b4569788704, type: 3}
+  - {fileID: 12800000, guid: 11b2a215277de744caa9e711cd305ac9, type: 3}
+  - {fileID: 12800000, guid: 0e769cbac8d2d4a4a85bf2355473484b, type: 3}
+  - {fileID: 12800000, guid: 19733b9d2e693ff47b4cfbb99b722f0e, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
