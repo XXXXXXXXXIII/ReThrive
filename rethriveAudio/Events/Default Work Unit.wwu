@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{5EE6FBFD-9CFF-4423-8643-3524DA37C1B4}" SchemaVersion="97">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{5EE6FBFD-9CFF-4423-8643-3524DA37C1B4}" PersistMode="Standalone">
+			<ChildrenList>
+				<Folder Name="music" ID="{04D61D41-4B8F-4F7F-84C5-523BEE40084C}" ShortID="875300114">
+					<ChildrenList>
+						<Event Name="musicMenu" ID="{07C0E084-9A29-43D9-B955-1A149A5AD514}"/>
+						<Event Name="musicLevel1" ID="{7F973652-59E9-499A-90ED-9D3DD299D52D}">
+							<ChildrenList>
+								<Action Name="" ID="{5997422A-D28D-4EE3-BFDC-61616D14DBD0}" ShortID="41538458">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="musicStructure" ID="{D043FAE7-D3FE-4D37-A53D-086D29329B0D}" WorkUnitID="{18CC6B73-61F9-4C4E-9E9B-54007988958B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="SFX" ID="{F4F92F69-2183-4C5B-A10C-A312FA21E9AD}" ShortID="767077075">
+					<ChildrenList>
+						<Event Name="birds" ID="{AC35E169-CEF9-4A96-8886-05EB7D10D766}"/>
+						<Folder Name="leafy" ID="{850330D0-12F8-46C7-9528-FD4BFD5BF4EA}" ShortID="1011338719">
+							<ChildrenList>
+								<Event Name="leafyHelicopter" ID="{3A5D7A86-8AE1-4F6D-9EB5-209E60EE8932}"/>
+								<Event Name="leafyJump" ID="{ACF84AC1-954E-4162-8F7C-4F17BE7B0D94}">
+									<ChildrenList>
+										<Action Name="" ID="{3FA248F2-3302-476B-A18E-2092099F9B29}" ShortID="644456810">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="leafyJump" ID="{6E3704CE-5CFF-422F-83F2-865520E7B498}" WorkUnitID="{18CC6B73-61F9-4C4E-9E9B-54007988958B}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Event Name="leafyWalk" ID="{5CEDDA21-0AD3-40A8-A1A8-CB698DBC12E2}">
+									<ChildrenList>
+										<Action Name="" ID="{D50E4B1F-AB31-48E7-BFEC-C0D65C3C17CF}" ShortID="926423247">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="leafyWalk" ID="{D1461A4A-B722-478B-9B10-BF9BF8D9717D}" WorkUnitID="{18CC6B73-61F9-4C4E-9E9B-54007988958B}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+								<Folder Name="leafyGrow" ID="{6149F65B-3486-46A4-A3DF-AF89F7A75F21}" ShortID="974769494">
+									<ChildrenList>
+										<Event Name="leafyGrow1" ID="{7568BBDA-84BB-4A6F-9281-DAC002AD22B0}">
+											<ChildrenList>
+												<Action Name="" ID="{DBB3F783-5431-4E3E-B5CF-121AF3ABF589}" ShortID="918753321">
+													<ReferenceList>
+														<Reference Name="Target">
+															<ObjectRef Name="leafyGrow1" ID="{16CF1B2C-2065-4CF7-B1C8-1BFF260C0C13}" WorkUnitID="{18CC6B73-61F9-4C4E-9E9B-54007988958B}"/>
+														</Reference>
+													</ReferenceList>
+												</Action>
+											</ChildrenList>
+										</Event>
+										<Event Name="leafyGrow2" ID="{9E536CC9-4989-45A6-B681-00FE5D68BC78}"/>
+										<Event Name="leafyGrow3" ID="{DA3BFD4B-CC19-41BF-BD64-83D101157D44}"/>
+									</ChildrenList>
+								</Folder>
+								<Event Name="leafyLand" ID="{06642848-3094-40FB-A1EB-B6622D7DA8E7}">
+									<ChildrenList>
+										<Action Name="" ID="{ACB1D90E-35DD-410D-8712-BDCE1E4A8D18}" ShortID="831398048">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="leafyLand" ID="{6AA1A7F5-D22F-42C8-BD89-A0D241BFF0EA}" WorkUnitID="{18CC6B73-61F9-4C4E-9E9B-54007988958B}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
+							</ChildrenList>
+						</Folder>
+					</ChildrenList>
+				</Folder>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

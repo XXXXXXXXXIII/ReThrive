@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{9EA27C40-5B06-4A9A-919A-A8CD4CC3DA6E}" SchemaVersion="97">
+	<SoundBanks>
+		<WorkUnit Name="Default Work Unit" ID="{9EA27C40-5B06-4A9A-919A-A8CD4CC3DA6E}" PersistMode="Standalone">
+			<ChildrenList>
+				<SoundBank Name="Main" ID="{D6629908-0F75-4396-BFCE-AB7A0E3C5705}">
+					<ObjectInclusionList>
+						<ObjectRef Name="leafyWalk" ID="{5CEDDA21-0AD3-40A8-A1A8-CB698DBC12E2}" WorkUnitID="{5EE6FBFD-9CFF-4423-8643-3524DA37C1B4}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="leafyLand" ID="{06642848-3094-40FB-A1EB-B6622D7DA8E7}" WorkUnitID="{5EE6FBFD-9CFF-4423-8643-3524DA37C1B4}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="leafyJump" ID="{ACF84AC1-954E-4162-8F7C-4F17BE7B0D94}" WorkUnitID="{5EE6FBFD-9CFF-4423-8643-3524DA37C1B4}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="musicLevel1" ID="{7F973652-59E9-499A-90ED-9D3DD299D52D}" WorkUnitID="{5EE6FBFD-9CFF-4423-8643-3524DA37C1B4}" Origin="Manual" Filter="7"/>
+						<ObjectRef Name="leafyGrow1" ID="{7568BBDA-84BB-4A6F-9281-DAC002AD22B0}" WorkUnitID="{5EE6FBFD-9CFF-4423-8643-3524DA37C1B4}" Origin="Manual" Filter="7"/>
+					</ObjectInclusionList>
+					<ObjectExclusionList/>
+					<GameSyncExclusionList/>
+				</SoundBank>
+			</ChildrenList>
+		</WorkUnit>
+	</SoundBanks>
+</WwiseDocument>

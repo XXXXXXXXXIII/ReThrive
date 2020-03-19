@@ -61,6 +61,8 @@ public class PlayerState : MonoBehaviour
     public GameObject seedPrefab;
     public GameObject ghostPrefab;
 
+    public AK.Wwise.Event sproutingEvent;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -285,6 +287,7 @@ public class PlayerState : MonoBehaviour
         AnimateGhosts();
         AC.SetTrigger("OnSpawn");
         status = Player_Status.spawning;
+        sproutingEvent.Post(gameObject);
     }
 
     public void ResetGhosts()
