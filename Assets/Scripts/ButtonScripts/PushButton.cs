@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class PushButton : MonoBehaviour
 {
-    public string PromptText = "Hold E to Interact";
+    public string PromptText = "Hold [CIRCLE] to Interact";
     public Light ButtonLight;
 
     public UnityEvent OnButtonPress;

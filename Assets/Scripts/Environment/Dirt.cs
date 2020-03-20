@@ -10,7 +10,7 @@ public class Dirt : MonoBehaviour
     public int maxSeedCount = 5;
     public float defaultGhostDuration = 10f;
 
-    public string PromptText = "Press E to plant Seed";
+    public string PromptText = "Press [CIRCLE] to plant Seed";
     public string DirtText = "Space Remaining: ";
 
     public List<Seed> seeds { get; set; }

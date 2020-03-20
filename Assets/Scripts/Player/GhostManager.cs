@@ -81,7 +81,7 @@ public class GhostManager : MonoBehaviour
     {
         Debug.Log("GM::Started Recording Ghost\n");
         HUD.ClearPrompt();
-        HUD.PushPrompt("Press Q to wilt");
+        HUD.PushPrompt("Press [TRIANGLE] to wilt");
 
         this.ghost = g;
         ghost.isControlling = true;
