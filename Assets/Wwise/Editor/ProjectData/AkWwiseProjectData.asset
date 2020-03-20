@@ -1,0 +1,350 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6a58db79d0e87544a888cad0bbac7be, type: 3}
+  m_Name: AkWwiseProjectData
+  m_EditorClassIdentifier: 
+  AcousticTextureWwu:
+  - PhysicalPath: Virtual Acoustics\Default Work Unit.wwu
+    ParentPath: Default Work Unit
+    guid: c7593ae807250b4ebd799f1e8ec27f6f
+    GuidInternal: 
+    m_lastTime: -8586169638496501559
+    List: []
+  AuxBusWwu:
+  - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
+    ParentPath: Default Work Unit
+    guid: dc73e0298df32748a8205cb9816b9ccb
+    GuidInternal: 
+    m_lastTime: -8586169638498983815
+    List:
+    - name: Master Audio Bus
+      guid: d8a41415a61d2a41a17e75ca0c2149f3
+      id: 3803692087
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Master Audio Bus
+        ObjectType: 2
+      Path: Default Work Unit\Master Audio Bus
+  BankWwu:
+  - PhysicalPath: SoundBanks\Default Work Unit.wwu
+    ParentPath: Default Work Unit
+    guid: 407ca29e065b9a4a919aa8cd4cc3da6e
+    GuidInternal: 
+    m_lastTime: -8586169638496521578
+    List:
+    - name: Main
+      guid: 089962d6750f9643bfceab7a0e3c5705
+      id: 3161908922
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: Main
+        ObjectType: 7
+      Path: Default Work Unit\Main
+  EventWwu:
+  - PhysicalPath: Events\Default Work Unit.wwu
+    ParentPath: Default Work Unit
+    guid: fdfbe65eff9c234486433524da37c1b4
+    GuidInternal: 
+    m_lastTime: -8586169638500159932
+    List:
+    - name: birds
+      guid: 69e135acf9ce964a888605eb7d10d766
+      id: 352130103
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFX
+        ObjectType: 4
+      - ElementName: birds
+        ObjectType: 3
+      Path: Default Work Unit\SFX\birds
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: leafy
+      guid: d0300385f812c7469528fd4bfd5bf4ea
+      id: 3032258722
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFX
+        ObjectType: 4
+      - ElementName: leafy
+        ObjectType: 4
+      - ElementName: leafy
+        ObjectType: 3
+      Path: Default Work Unit\SFX\leafy\leafy
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: leafyGrow
+      guid: 5bf649618634a446a3dfaf89f7a75f21
+      id: 2668775811
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFX
+        ObjectType: 4
+      - ElementName: leafy
+        ObjectType: 4
+      - ElementName: leafyGrow
+        ObjectType: 4
+      - ElementName: leafyGrow
+        ObjectType: 3
+      Path: Default Work Unit\SFX\leafy\leafyGrow\leafyGrow
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: leafyGrow1
+      guid: dabb6875bb846f4a9281dac002ad22b0
+      id: 3972643080
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFX
+        ObjectType: 4
+      - ElementName: leafy
+        ObjectType: 4
+      - ElementName: leafyGrow
+        ObjectType: 4
+      - ElementName: leafyGrow1
+        ObjectType: 3
+      Path: Default Work Unit\SFX\leafy\leafyGrow\leafyGrow1
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: leafyGrow2
+      guid: c96c539e8949a645b68100fe5d68bc78
+      id: 3972643083
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFX
+        ObjectType: 4
+      - ElementName: leafy
+        ObjectType: 4
+      - ElementName: leafyGrow
+        ObjectType: 4
+      - ElementName: leafyGrow2
+        ObjectType: 3
+      Path: Default Work Unit\SFX\leafy\leafyGrow\leafyGrow2
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: leafyGrow3
+      guid: 4bfd3bda19ccbf41bd6483d101157d44
+      id: 3972643082
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFX
+        ObjectType: 4
+      - ElementName: leafy
+        ObjectType: 4
+      - ElementName: leafyGrow
+        ObjectType: 4
+      - ElementName: leafyGrow3
+        ObjectType: 3
+      Path: Default Work Unit\SFX\leafy\leafyGrow\leafyGrow3
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: leafyHelicopter
+      guid: 867a5d3ae18a6d4f9eb5209e60ee8932
+      id: 2947935073
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFX
+        ObjectType: 4
+      - ElementName: leafy
+        ObjectType: 4
+      - ElementName: leafyHelicopter
+        ObjectType: 3
+      Path: Default Work Unit\SFX\leafy\leafyHelicopter
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: leafyJump
+      guid: c14af8ac4e9562418f7c4f17be7b0d94
+      id: 803670522
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFX
+        ObjectType: 4
+      - ElementName: leafy
+        ObjectType: 4
+      - ElementName: leafyJump
+        ObjectType: 3
+      Path: Default Work Unit\SFX\leafy\leafyJump
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: leafyLand
+      guid: 482864069430fb40a1ebb6622d7da8e7
+      id: 1405049245
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFX
+        ObjectType: 4
+      - ElementName: leafy
+        ObjectType: 4
+      - ElementName: leafyLand
+        ObjectType: 3
+      Path: Default Work Unit\SFX\leafy\leafyLand
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: leafyWalk
+      guid: 21daed5cd30aa840a1a8cb698dbc12e2
+      id: 1298843541
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFX
+        ObjectType: 4
+      - ElementName: leafy
+        ObjectType: 4
+      - ElementName: leafyWalk
+        ObjectType: 3
+      Path: Default Work Unit\SFX\leafy\leafyWalk
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: music
+      guid: 411dd6048f4b7f4f84c5523bee40084c
+      id: 3991942870
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: music
+        ObjectType: 4
+      - ElementName: music
+        ObjectType: 3
+      Path: Default Work Unit\music\music
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: musicLevel1
+      guid: 5236977fe9599a4990ed9d3dd299d52d
+      id: 4206939873
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: music
+        ObjectType: 4
+      - ElementName: musicLevel1
+        ObjectType: 3
+      Path: Default Work Unit\music\musicLevel1
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: musicMenu
+      guid: 84e0c007299ad943b9551a149a5ad514
+      id: 4082046343
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: music
+        ObjectType: 4
+      - ElementName: musicMenu
+        ObjectType: 3
+      Path: Default Work Unit\music\musicMenu
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: SFX
+      guid: 692ff9f483215b4ca10ca312fa21e9ad
+      id: 393239870
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFX
+        ObjectType: 4
+      - ElementName: SFX
+        ObjectType: 3
+      Path: Default Work Unit\SFX\SFX
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+  RtpcWwu:
+  - PhysicalPath: Game Parameters\Default Work Unit.wwu
+    ParentPath: Default Work Unit
+    guid: 372e3c8e2aa8624a80f83f80cac5e299
+    GuidInternal: 
+    m_lastTime: -8586169638500149922
+    List: []
+  StateWwu:
+  - PhysicalPath: States\Default Work Unit.wwu
+    ParentPath: Default Work Unit
+    guid: 2aeef3c8be68a747a2f36c343ce92517
+    GuidInternal: 
+    m_lastTime: -8586169638496511567
+    List: []
+  SwitchWwu:
+  - PhysicalPath: Switches\Default Work Unit.wwu
+    ParentPath: Default Work Unit
+    guid: 87973d386cb2f645a698da342f3233f9
+    GuidInternal: 
+    m_lastTime: -8586169638496511567
+    List:
+    - name: floorType
+      guid: 0a7400c6da463146b1e2339a7f07d2cc
+      id: 1808717673
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: floorType
+        ObjectType: 11
+      Path: Default Work Unit\floorType
+      values:
+      - name: grass
+        guid: 032f4885c426bc41b768b11b725755ad
+        id: 4248645337
+        PathAndIcons:
+        - ElementName: grass
+          ObjectType: 10
+      - name: soil
+        guid: 9846f57736fc1c438fad2cd29bd8dc25
+        id: 687380132
+        PathAndIcons:
+        - ElementName: soil
+          ObjectType: 10
+      - name: stone
+        guid: c431692a1339604395a2e96824de58c6
+        id: 1216965916
+        PathAndIcons:
+        - ElementName: stone
+          ObjectType: 10
+      ValueGuids: []
+      ValueIcons: []
+      valuesInternal: []
+  TriggerWwu:
+  - PhysicalPath: Triggers\Default Work Unit.wwu
+    ParentPath: Default Work Unit
+    guid: 4d113671ea4a6043a0aaac3c0091f669
+    GuidInternal: 
+    m_lastTime: -8586169638496511567
+    List: []
+  ExpandedItems:
+  - /Rethrive
+  - /Rethrive/Events
+  - /Rethrive/Events/Default Work Unit
+  - /Rethrive/Events/Default Work Unit/SFX
+  - /Rethrive/Events/Default Work Unit/SFX/leafy
+  - /Rethrive/Events/Default Work Unit/SFX/leafy/leafyGrow
+  autoPopulateEnabled: 1
+  CurrentPluginConfig: 
