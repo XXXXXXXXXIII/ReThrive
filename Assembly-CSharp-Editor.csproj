@@ -2,8 +2,6 @@
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <LangVersion>latest</LangVersion>
-    <CscToolPath>C:\Program Files\Unity\Hub\Editor\2019.2.17f1\Editor\Data\Tools\RoslynScripts</CscToolPath>
-    <CscToolExe>unity_csc.bat</CscToolExe>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -46,14 +44,6 @@
     <ImplicitlyExpandNETStandardFacades>false</ImplicitlyExpandNETStandardFacades>
     <ImplicitlyExpandDesignTimeFacades>false</ImplicitlyExpandDesignTimeFacades>
   </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="UnityEngine">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.2.17f1\Editor\Data\Managed/UnityEngine/UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor">
-      <HintPath>C:\Program Files\Unity\Hub\Editor\2019.2.17f1\Editor\Data\Managed/UnityEditor.dll</HintPath>
-    </Reference>
-  </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Wwise\Editor\WwiseComponents\AkAmbientInspector.cs" />
      <Compile Include="Assets\Wwise\Editor\WwiseComponents\AkAudioListenerInspector.cs" />
@@ -106,97 +96,100 @@
      <Compile Include="Assets\Wwise\Editor\WwiseWindows\TreeViewControl\TreeViewControl.cs" />
      <Compile Include="Assets\Wwise\Editor\WwiseWindows\TreeViewControl\TreeViewItem.cs" />
  <Reference Include="UnityEditor.TestRunner">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.TestRunner">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Cinemachine">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Cinemachine.dll</HintPath>
  </Reference>
  <Reference Include="com.unity.multiplayer-hlapi.Editor">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Polybrush">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.Polybrush.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.Polybrush.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Polybrush.Editor">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.Polybrush.Editor.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.Polybrush.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.ProBuilder.AssetIdRemapUtility">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.ProBuilder.AssetIdRemapUtility.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Postprocessing.Editor">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll</HintPath>
  </Reference>
  <Reference Include="com.unity.multiplayer-weaver.Editor">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/com.unity.multiplayer-weaver.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.XR.LegacyInputHelpers">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/UnityEngine.XR.LegacyInputHelpers.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Mathematics">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.Mathematics.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Sprite.Editor">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.2D.Sprite.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Postprocessing.Runtime">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll</HintPath>
  </Reference>
  <Reference Include="Unity.2D.Tilemap.Editor">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.2D.Tilemap.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.SpatialTracking">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/UnityEditor.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="com.unity.cinemachine.editor">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/com.unity.cinemachine.editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.SpatialTracking">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="Unity.ProBuilder.AddOns.Editor">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.ProBuilder.AddOns.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Mathematics.Editor">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.Mathematics.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.DataPrivacy">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.XR.LegacyInputHelpers">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/UnityEditor.XR.LegacyInputHelpers.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="com.unity.multiplayer-hlapi.Runtime">
- <HintPath>D:/Documents/ReThrive/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/ScriptAssemblies/com.unity.multiplayer-hlapi.Runtime.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEngine">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -375,6 +368,9 @@
  <Reference Include="UnityEngine.XRModule">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEditor">
+ <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEditor.VR">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/UnityExtensions/Unity/UnityVR/Editor/UnityEditor.VR.dll</HintPath>
  </Reference>
@@ -384,29 +380,23 @@
  <Reference Include="UnityEditor.WindowsStandalone.Extensions">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
  </Reference>
- <Reference Include="UnityEditor.WebGL.Extensions">
- <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll</HintPath>
- </Reference>
- <Reference Include="UnityEditor.OSXStandalone.Extensions">
- <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/PlaybackEngines/MacStandaloneSupport/UnityEditor.OSXStandalone.Extensions.dll</HintPath>
- </Reference>
  <Reference Include="UnityEditor.Advertisements">
- <HintPath>D:/Documents/ReThrive/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/PackageCache/com.unity.ads@2.0.8/Editor/UnityEditor.Advertisements.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Editor">
- <HintPath>D:/Documents/ReThrive/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.StandardEvents">
- <HintPath>D:/Documents/ReThrive/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Analytics.Tracker">
- <HintPath>D:/Documents/ReThrive/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/PackageCache/com.unity.analytics@3.3.2/Unity.Analytics.Tracker.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Purchasing">
- <HintPath>D:/Documents/ReThrive/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/PackageCache/com.unity.purchasing@2.0.6/Editor/UnityEditor.Purchasing.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
- <HintPath>D:/Documents/ReThrive/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
+ <HintPath>C:/Users/nosa_/Documents/Github/ReThrive/ReThrive/Library/PackageCache/com.unity.ext.nunit@1.0.0/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>C:/Program Files/Unity/Hub/Editor/2019.2.17f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -765,16 +755,16 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{B75E8CBF-C616-E278-E504-D5294D2BDC6B}</Project>
+      <Project>{C2B09ED2-5299-B8C9-49C2-B2297EE0BEEA}</Project>
       <Name>Assembly-CSharp-firstpass</Name>
     </ProjectReference>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{15E0CED8-03BC-1684-18A8-B96A456A3C3A}</Project>
+      <Project>{5BBB1421-3F3F-0745-554A-AFB7DC09194C}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
