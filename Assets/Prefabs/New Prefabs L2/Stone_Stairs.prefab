@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3004753989050411588}
   - component: {fileID: 5737302722698408166}
   - component: {fileID: 6135495070783633071}
+  - component: {fileID: 5890385374103883921}
+  - component: {fileID: 2174757286488073709}
   m_Layer: 0
   m_Name: Stone_Stairs
   m_TagString: Untagged
@@ -93,3 +95,28 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: -7087271138916236341, guid: b06a67cdccc23a24e88f64e94b76e8bf, type: 3}
+--- !u!65 &5890385374103883921
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6135495070783633070}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.052930597, y: 0.01965592, z: 0.091388084}
+  m_Center: {x: -0.00050415925, y: 0.0006385386, z: -0.0007416956}
+--- !u!114 &2174757286488073709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6135495070783633070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7c74cb31ab7da4da63f3db621c4c61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

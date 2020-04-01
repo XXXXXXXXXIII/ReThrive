@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6856165226225469358}
   - component: {fileID: 4594140706961576141}
   - component: {fileID: 570405408732567731}
+  - component: {fileID: 1625913394044717477}
+  - component: {fileID: 7899710228780641912}
   m_Layer: 0
   m_Name: Rocky_Platform_1
   m_TagString: Untagged
@@ -93,3 +95,28 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 14
   m_Mesh: {fileID: 1439065353712321240, guid: 5eff7bbf54572e24b8b231b72506acb4, type: 3}
+--- !u!65 &1625913394044717477
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570405408732567732}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.42976698, y: 0.2550243, z: 0.19568236}
+  m_Center: {x: -1.7535731, y: 1.5281392, z: -3.0565293}
+--- !u!114 &7899710228780641912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570405408732567732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7c74cb31ab7da4da63f3db621c4c61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
