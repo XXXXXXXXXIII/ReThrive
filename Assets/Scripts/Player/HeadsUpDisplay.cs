@@ -130,6 +130,18 @@ public class HeadsUpDisplay : MonoBehaviour
         texts[InteractionText].text = promptTextStack.Peek();
     }
 
+    // public void ShowPlantPrompt()
+    // {
+    //     Transform aChild = transform.Find("PlantPrompt");
+    //     aChild.gameobject.SetActive(true);
+    // }
+
+    // public void HidePlantPrompt()
+    // {
+    //     Transform aChild = transform.Find("PlantPrompt");
+    //     aChild.gameobject.SetActive(false);
+    // }
+
     public void PopPromptOnMatch(string text)
     {
         if (text.Equals(promptTextStack.Peek()))

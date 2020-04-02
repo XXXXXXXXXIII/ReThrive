@@ -17,14 +17,14 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: c7593ae807250b4ebd799f1e8ec27f6f
     GuidInternal: 
-    m_lastTime: -8586169638496501559
+    m_lastTime: -8586157672412142234
     List: []
   AuxBusWwu:
   - PhysicalPath: Master-Mixer Hierarchy\Default Work Unit.wwu
     ParentPath: Default Work Unit
     guid: dc73e0298df32748a8205cb9816b9ccb
     GuidInternal: 
-    m_lastTime: -8586169638498983815
+    m_lastTime: -8586157672424953883
     List:
     - name: Master Audio Bus
       guid: d8a41415a61d2a41a17e75ca0c2149f3
@@ -40,7 +40,7 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: 407ca29e065b9a4a919aa8cd4cc3da6e
     GuidInternal: 
-    m_lastTime: -8586169638496521578
+    m_lastTime: -8586157643466437315
     List:
     - name: Main
       guid: 089962d6750f9643bfceab7a0e3c5705
@@ -56,7 +56,7 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: fdfbe65eff9c234486433524da37c1b4
     GuidInternal: 
-    m_lastTime: -8586169638500159932
+    m_lastTime: -8586157672427926582
     List:
     - name: birds
       guid: 69e135acf9ce964a888605eb7d10d766
@@ -122,8 +122,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Default Work Unit\SFX\leafy\leafyGrow\leafyGrow1
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 1.769478
+      minDuration: 1.769478
     - name: leafyGrow2
       guid: c96c539e8949a645b68100fe5d68bc78
       id: 3972643083
@@ -174,8 +174,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Default Work Unit\SFX\leafy\leafyHelicopter
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.144402
+      minDuration: 0.141104
     - name: leafyJump
       guid: c14af8ac4e9562418f7c4f17be7b0d94
       id: 803670522
@@ -190,8 +190,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Default Work Unit\SFX\leafy\leafyJump
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.366632
+      minDuration: 0.326632
     - name: leafyLand
       guid: 482864069430fb40a1ebb6622d7da8e7
       id: 1405049245
@@ -206,8 +206,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Default Work Unit\SFX\leafy\leafyLand
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.340686
+      minDuration: 0.303517
     - name: leafyWalk
       guid: 21daed5cd30aa840a1a8cb698dbc12e2
       id: 1298843541
@@ -222,8 +222,8 @@ MonoBehaviour:
         ObjectType: 3
       Path: Default Work Unit\SFX\leafy\leafyWalk
       maxAttenuation: 0
-      maxDuration: -1
-      minDuration: -1
+      maxDuration: 0.203333
+      minDuration: 0.138299
     - name: music
       guid: 411dd6048f4b7f4f84c5523bee40084c
       id: 3991942870
@@ -280,26 +280,54 @@ MonoBehaviour:
       maxAttenuation: 0
       maxDuration: -1
       minDuration: -1
+    - name: sunbath
+      guid: ac3b533482822d4189e0856ef10b8031
+      id: 2365426706
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFX
+        ObjectType: 4
+      - ElementName: sunbath
+        ObjectType: 3
+      Path: Default Work Unit\SFX\sunbath
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
+    - name: waterfall
+      guid: 1822d19f287fd64b96cc3a4a6645cba6
+      id: 2074477625
+      PathAndIcons:
+      - ElementName: Default Work Unit
+        ObjectType: 12
+      - ElementName: SFX
+        ObjectType: 4
+      - ElementName: waterfall
+        ObjectType: 3
+      Path: Default Work Unit\SFX\waterfall
+      maxAttenuation: 0
+      maxDuration: -1
+      minDuration: -1
   RtpcWwu:
   - PhysicalPath: Game Parameters\Default Work Unit.wwu
     ParentPath: Default Work Unit
     guid: 372e3c8e2aa8624a80f83f80cac5e299
     GuidInternal: 
-    m_lastTime: -8586169638500149922
+    m_lastTime: -8586157672427776448
     List: []
   StateWwu:
   - PhysicalPath: States\Default Work Unit.wwu
     ParentPath: Default Work Unit
     guid: 2aeef3c8be68a747a2f36c343ce92517
     GuidInternal: 
-    m_lastTime: -8586169638496511567
+    m_lastTime: -8586157672412592644
     List: []
   SwitchWwu:
   - PhysicalPath: Switches\Default Work Unit.wwu
     ParentPath: Default Work Unit
     guid: 87973d386cb2f645a698da342f3233f9
     GuidInternal: 
-    m_lastTime: -8586169638496511567
+    m_lastTime: -8586157672412442508
     List:
     - name: floorType
       guid: 0a7400c6da463146b1e2339a7f07d2cc
@@ -337,7 +365,7 @@ MonoBehaviour:
     ParentPath: Default Work Unit
     guid: 4d113671ea4a6043a0aaac3c0091f669
     GuidInternal: 
-    m_lastTime: -8586169638496511567
+    m_lastTime: -8586157672412292376
     List: []
   ExpandedItems:
   - /Rethrive

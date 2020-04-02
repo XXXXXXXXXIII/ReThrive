@@ -109,6 +109,7 @@ public class Dirt : MonoBehaviour
             if(!GM.isRecording)
             {
                 HUD.PushPrompt(PromptText);
+                // HUD.ShowPlantPrompt();
                 PS.currDirt = this;
                 GM.duration = _ghostDuration;
             }
@@ -123,6 +124,7 @@ public class Dirt : MonoBehaviour
         {
             Debug.Log("Dirt::Player left dirt");
             HUD.PopPromptOnMatch(PromptText);
+            // HUD.HidePlantPrompt();
             PS.onDirt = false;
             GM.duration = GM.minDuration;
             PS.onInteractEnd -= PlantSeed;

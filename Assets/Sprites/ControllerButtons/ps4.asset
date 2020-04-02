@@ -1,0 +1,267 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &-8926905919189978268
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: TextMeshPro/Sprite
+  m_Shader: {fileID: 4800000, guid: cf81c85f95fe47e1a27f6ae460cf182c, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 43cff21c71b94f940aebbafa53cb86e9, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84a92b25f83d49b9bc132d206b370281, type: 3}
+  m_Name: ps4
+  m_EditorClassIdentifier: 
+  hashCode: 118359
+  material: {fileID: -8926905919189978268}
+  materialHashCode: 0
+  m_Version: 1.1.0
+  spriteSheet: {fileID: 2800000, guid: 43cff21c71b94f940aebbafa53cb86e9, type: 3}
+  m_SpriteCharacterTable:
+  - m_ElementType: 2
+    m_Unicode: 1339030782
+    m_GlyphIndex: 0
+    m_Scale: 1.5
+    m_Name: PS4_Circle
+    m_HashCode: 1520661690
+  - m_ElementType: 2
+    m_Unicode: 1962737663
+    m_GlyphIndex: 1
+    m_Scale: 1
+    m_Name: PS4_Cross
+    m_HashCode: 697712278
+  - m_ElementType: 2
+    m_Unicode: 4294967247
+    m_GlyphIndex: 2
+    m_Scale: 1
+    m_Name: PS4_Left_Stick
+    m_HashCode: 234918026
+  - m_ElementType: 2
+    m_Unicode: 4294967247
+    m_GlyphIndex: 3
+    m_Scale: 1
+    m_Name: PS4_Right_Stick
+    m_HashCode: -575732015
+  - m_ElementType: 2
+    m_Unicode: 1342175998
+    m_GlyphIndex: 4
+    m_Scale: 1
+    m_Name: PS4_Square
+    m_HashCode: 2137656457
+  - m_ElementType: 2
+    m_Unicode: 2147155966
+    m_GlyphIndex: 5
+    m_Scale: 2
+    m_Name: PS4_Triangle
+    m_HashCode: -438744858
+  m_SpriteGlyphTable:
+  - m_Index: 0
+    m_Metrics:
+      m_Width: 100
+      m_Height: 100
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 100
+      m_HorizontalAdvance: 100
+    m_GlyphRect:
+      m_X: 0
+      m_Y: 0
+      m_Width: 100
+      m_Height: 100
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 0}
+  - m_Index: 1
+    m_Metrics:
+      m_Width: 100
+      m_Height: 100
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 100
+      m_HorizontalAdvance: 100
+    m_GlyphRect:
+      m_X: 100
+      m_Y: 0
+      m_Width: 100
+      m_Height: 100
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 0}
+  - m_Index: 2
+    m_Metrics:
+      m_Width: 100
+      m_Height: 100
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 100
+      m_HorizontalAdvance: 100
+    m_GlyphRect:
+      m_X: 200
+      m_Y: 0
+      m_Width: 100
+      m_Height: 100
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 0}
+  - m_Index: 3
+    m_Metrics:
+      m_Width: 100
+      m_Height: 100
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 100
+      m_HorizontalAdvance: 100
+    m_GlyphRect:
+      m_X: 300
+      m_Y: 0
+      m_Width: 100
+      m_Height: 100
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 0}
+  - m_Index: 4
+    m_Metrics:
+      m_Width: 100
+      m_Height: 100
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 100
+      m_HorizontalAdvance: 100
+    m_GlyphRect:
+      m_X: 400
+      m_Y: 0
+      m_Width: 100
+      m_Height: 100
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 0}
+  - m_Index: 5
+    m_Metrics:
+      m_Width: 100
+      m_Height: 100
+      m_HorizontalBearingX: 0
+      m_HorizontalBearingY: 100
+      m_HorizontalAdvance: 100
+    m_GlyphRect:
+      m_X: 500
+      m_Y: 0
+      m_Width: 100
+      m_Height: 100
+    m_Scale: 1
+    m_AtlasIndex: 0
+    sprite: {fileID: 0}
+  spriteInfoList:
+  - id: 0
+    x: 0
+    y: 0
+    width: 100
+    height: 100
+    xOffset: 0
+    yOffset: 100
+    xAdvance: 100
+    scale: 1
+    name: PS4_Circle
+    hashCode: 1520661690
+    unicode: 1339030782
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+  - id: 1
+    x: 100
+    y: 0
+    width: 100
+    height: 100
+    xOffset: 0
+    yOffset: 100
+    xAdvance: 100
+    scale: 1
+    name: PS4_Cross
+    hashCode: 697712278
+    unicode: 1962737663
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+  - id: 2
+    x: 200
+    y: 0
+    width: 100
+    height: 100
+    xOffset: 0
+    yOffset: 100
+    xAdvance: 100
+    scale: 1
+    name: PS4_Left_Stick
+    hashCode: 234918026
+    unicode: -49
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+  - id: 3
+    x: 300
+    y: 0
+    width: 100
+    height: 100
+    xOffset: 0
+    yOffset: 100
+    xAdvance: 100
+    scale: 1
+    name: PS4_Right_Stick
+    hashCode: -575732015
+    unicode: -49
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+  - id: 4
+    x: 400
+    y: 0
+    width: 100
+    height: 100
+    xOffset: 0
+    yOffset: 100
+    xAdvance: 100
+    scale: 1
+    name: PS4_Square
+    hashCode: 2137656457
+    unicode: 1342175998
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+  - id: 5
+    x: 500
+    y: 0
+    width: 100
+    height: 100
+    xOffset: 0
+    yOffset: 100
+    xAdvance: 100
+    scale: 1
+    name: PS4_Triangle
+    hashCode: -438744858
+    unicode: 2147155966
+    pivot: {x: 0, y: 0}
+    sprite: {fileID: 0}
+  fallbackSpriteAssets: []
