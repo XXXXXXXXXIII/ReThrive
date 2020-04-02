@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 3356756067094914048}
   - component: {fileID: 3356756067094914050}
   - component: {fileID: 3356756067094914051}
+  - component: {fileID: 8494926505120213920}
+  - component: {fileID: 6974106491284025943}
   m_Layer: 0
   m_Name: Stone_Platform
   m_TagString: Untagged
@@ -79,3 +81,28 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!65 &8494926505120213920
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3356756067094914049}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.047217358, y: 0.016407805, z: 0.044818413}
+  m_Center: {x: -0.15431267, y: 0.35785517, z: -0.18635024}
+--- !u!114 &6974106491284025943
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3356756067094914049}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f7c74cb31ab7da4da63f3db621c4c61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
