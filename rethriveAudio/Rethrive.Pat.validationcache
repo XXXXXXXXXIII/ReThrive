@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ValidationCache Version="1" SchemaVersion="97">
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Virtual Acoustics\Default Work Unit.wwu" DateLow="1585839644" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Triggers\Default Work Unit.wwu" DateLow="1585839644" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Switches\Default Work Unit.wwu" DateLow="1585839644" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\States\Default Work Unit.wwu" DateLow="1585839644" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Soundcaster Sessions\Default Work Unit.wwu" DateLow="1585839644" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\SoundBanks\Default Work Unit.wwu" DateLow="1585842538" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Rethrive.wproj" DateLow="1585841094" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Rethrive.Pat.wsettings" DateLow="1585842679" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Queries\Factory Queries.wwu" DateLow="1585839644" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Queries\Default Work Unit.wwu" DateLow="1585839644" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Presets\Factory Spatial Audio.wwu" DateLow="1585839644" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Presets\Default Work Unit.wwu" DateLow="1585839644" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Modulators\Default Work Unit.wwu" DateLow="1585839643" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Mixing Sessions\Default Work Unit.wwu" DateLow="1585839642" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Master-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1585839642" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Interactive Music Hierarchy\Default Work Unit.wwu" DateLow="1585839642" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Game Parameters\Default Work Unit.wwu" DateLow="1585839642" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Events\Default Work Unit.wwu" DateLow="1585839642" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Effects\Factory Effects.wwu" DateLow="1585839642" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Effects\Default Work Unit.wwu" DateLow="1585839642" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Dynamic Dialogue\Default Work Unit.wwu" DateLow="1585839642" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Conversion Settings\Factory Conversion Settings.wwu" DateLow="1585839642" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Conversion Settings\Default Work Unit.wwu" DateLow="1585839642" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Control Surface Sessions\Default Work Unit.wwu" DateLow="1585839642" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Audio Devices\Default Work Unit.wwu" DateLow="1585839642" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Attenuations\Default Work Unit.wwu" DateLow="1585839642" DateHigh="0"/>
+	<ValidationCacheItem File="D:\Documents\ReThrive\rethriveAudio\Actor-Mixer Hierarchy\Default Work Unit.wwu" DateLow="1585839642" DateHigh="0"/>
+</ValidationCache>

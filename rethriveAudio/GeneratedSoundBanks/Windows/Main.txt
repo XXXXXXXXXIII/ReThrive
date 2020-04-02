@@ -2,6 +2,9 @@ Event	ID	Name			Wwise Object Path	Notes
 	803670522	leafyJump			\Default Work Unit\SFX\leafy\leafyJump	
 	1298843541	leafyWalk			\Default Work Unit\SFX\leafy\leafyWalk	
 	1405049245	leafyLand			\Default Work Unit\SFX\leafy\leafyLand	
+	2074477625	waterfall			\Default Work Unit\SFX\waterfall	
+	2365426706	sunbath			\Default Work Unit\SFX\sunbath	
+	2947935073	leafyHelicopter			\Default Work Unit\SFX\leafy\leafyHelicopter	
 	3972643080	leafyGrow1			\Default Work Unit\SFX\leafy\leafyGrow\leafyGrow1	
 	4206939873	musicLevel1			\Default Work Unit\music\musicLevel1	
 
@@ -14,25 +17,28 @@ Switch	ID	Name	Switch Group			Notes
 	4248645337	grass	floorType			
 
 In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
-	44741734	leafyWalkDirt3	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\leafyWalkDirt3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyWalk\leafyWalkSoil\leafyWalkDirt3		24460
-	171190262	musicTransition	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\musicTransition_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicBeginning\musicToTransition\musicTransition		2872864
-	219316460	musicLight3	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\musicLight3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight3		907264
-	226167227	musicLight9	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\musicLight9_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight9		1197184
-	246841881	leafyGrow1	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\leafyGrow1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyGrow\leafyGrow1		312200
-	267222137	leafyWalkGrass2	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\leafyWalkGrass2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyWalk\leafyWalkGrass\leafyWalkGrass2		33084
-	315042288	leafyWalkDirt1	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\leafyWalkDirt1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyWalk\leafyWalkSoil\leafyWalkDirt1		35932
-	474498909	musicLight8	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\musicLight8_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight8		511736
-	487012226	leafyWalkGrass3	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\leafyWalkGrass3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyWalk\leafyWalkGrass\leafyWalkGrass3		29488
-	494066402	leafyJump1	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\leafyJump1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyJump\leafyJump1		61108
-	528842569	musicMainTail	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\musicMainTail_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicBeginning\musicMain\musicMainLoop\musicMainLooped\musicMainTail		302464
-	596384329	musicLight5	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\musicLight5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight5		675856
-	612445011	musicLight4	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\musicLight4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight4		604864
-	671615932	musicLight1	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\musicLight1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight1		604864
-	717644420	leafyWalkDirt2	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\leafyWalkDirt2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyWalk\leafyWalkSoil\leafyWalkDirt2		34564
-	798290998	musicLight7	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\musicLight7_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight7		572880
-	950156361	musicLight6	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\musicLight6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight6		667528
-	960874467	musicLight2	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\musicLight2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight2		756064
-	967104007	leafyWalkGrass1	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\leafyWalkGrass1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyWalk\leafyWalkGrass\leafyWalkGrass1		35188
-	1022976474	leafyLand1	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\leafyLand1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyLand\leafyLand1		56788
-	1045700399	musicMainBody	D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\SFX\musicMainBody_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicBeginning\musicMain\musicMainBody		6350464
+	44741734	leafyWalkDirt3	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\leafyWalkDirt3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyWalk\leafyWalkSoil\leafyWalkDirt3		24460
+	171190262	musicTransition	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\musicTransition_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicBeginning\musicToTransition\musicTransition		2872864
+	219316460	musicLight3	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\musicLight3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight3		907264
+	226167227	musicLight9	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\musicLight9_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight9		1197184
+	246841881	leafyGrow1	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\leafyGrow1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyGrow\leafyGrow1		312200
+	267222137	leafyWalkGrass2	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\leafyWalkGrass2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyWalk\leafyWalkGrass\leafyWalkGrass2		33084
+	315042288	leafyWalkDirt1	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\leafyWalkDirt1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyWalk\leafyWalkSoil\leafyWalkDirt1		35932
+	344720793	watefall	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\watefall_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\environment\watefall		588688
+	474498909	musicLight8	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\musicLight8_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight8		511736
+	487012226	leafyWalkGrass3	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\leafyWalkGrass3_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyWalk\leafyWalkGrass\leafyWalkGrass3		29488
+	494066402	leafyJump1	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\leafyJump1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyJump\leafyJump1		61108
+	528842569	musicMainTail	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\musicMainTail_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicBeginning\musicMain\musicMainLoop\musicMainLooped\musicMainTail		302464
+	596384329	musicLight5	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\musicLight5_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight5		675856
+	612445011	musicLight4	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\musicLight4_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight4		604864
+	612653811	helicopter	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\helicopter_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyHelicopter\helicopter		25244
+	671615932	musicLight1	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\musicLight1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight1		604864
+	717644420	leafyWalkDirt2	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\leafyWalkDirt2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyWalk\leafyWalkSoil\leafyWalkDirt2		34564
+	798290998	musicLight7	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\musicLight7_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight7		572880
+	950156361	musicLight6	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\musicLight6_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight6		667528
+	960874467	musicLight2	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\musicLight2_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicLight\musicLight2		756064
+	967104007	leafyWalkGrass1	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\leafyWalkGrass1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyWalk\leafyWalkGrass\leafyWalkGrass1		35188
+	997235047	sunbath	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\sunbath_D79FB2B7.wem		\Actor-Mixer Hierarchy\Default Work Unit\environment\sunbath		847052
+	1022976474	leafyLand1	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\leafyLand1_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\leafy\leafyLand\leafyLand1		56788
+	1045700399	musicMainBody	D:\Documents\ReThrive\rethriveAudio\.cache\Windows\SFX\musicMainBody_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\music\musicStructure\musicBeginning\musicMain\musicMainBody		6350464
 

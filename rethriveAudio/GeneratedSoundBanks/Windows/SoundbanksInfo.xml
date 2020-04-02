@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <SoundBanksInfo Platform="Windows" BasePlatform="Windows" SchemaVersion="12" SoundbankVersion="135">
 	<RootPaths>
-		<ProjectRoot>D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\</ProjectRoot>
-		<SourceFilesRoot>D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\.cache\Windows\</SourceFilesRoot>
-		<SoundBanksRoot>D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\GeneratedSoundBanks\Windows\</SoundBanksRoot>
+		<ProjectRoot>D:\Documents\ReThrive\rethriveAudio\</ProjectRoot>
+		<SourceFilesRoot>D:\Documents\ReThrive\rethriveAudio\.cache\Windows\</SourceFilesRoot>
+		<SoundBanksRoot>D:\Documents\ReThrive\rethriveAudio\GeneratedSoundBanks\Windows\</SoundBanksRoot>
 		<ExternalSourcesInputFile></ExternalSourcesInputFile>
-		<ExternalSourcesOutputRoot>D:\Users\Aryo Nazaradeh\Documents\WwiseProjects\rethriveAudio\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
+		<ExternalSourcesOutputRoot>D:\Documents\ReThrive\rethriveAudio\GeneratedSoundBanks\Windows</ExternalSourcesOutputRoot>
 	</RootPaths>
 	<DialogueEvents/>
 	<StreamedFiles/>
@@ -21,7 +21,7 @@
 			<ShortName>Main</ShortName>
 			<Path>Main.bnk</Path>
 			<IncludedEvents>
-				<Event Id="3972643080" Name="leafyGrow1" ObjectPath="\Events\Default Work Unit\SFX\leafy\leafyGrow\leafyGrow1">
+				<Event Id="3972643080" Name="leafyGrow1" ObjectPath="\Events\Default Work Unit\SFX\leafy\leafyGrow\leafyGrow1" DurationType="OneShot" DurationMin="1.769478" DurationMax="1.769478">
 					<IncludedMemoryFiles>
 						<File Id="246841881" Language="SFX">
 							<ShortName>leafyGrow1.wav</ShortName>
@@ -29,7 +29,15 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="803670522" Name="leafyJump" ObjectPath="\Events\Default Work Unit\SFX\leafy\leafyJump">
+				<Event Id="2947935073" Name="leafyHelicopter" ObjectPath="\Events\Default Work Unit\SFX\leafy\leafyHelicopter" DurationType="OneShot" DurationMin="0.141104" DurationMax="0.144402">
+					<IncludedMemoryFiles>
+						<File Id="612653811" Language="SFX">
+							<ShortName>helicopter.wav</ShortName>
+							<Path>SFX\helicopter_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="803670522" Name="leafyJump" ObjectPath="\Events\Default Work Unit\SFX\leafy\leafyJump" DurationType="OneShot" DurationMin="0.326632" DurationMax="0.366632">
 					<IncludedMemoryFiles>
 						<File Id="494066402" Language="SFX">
 							<ShortName>leafyJump1.wav</ShortName>
@@ -37,7 +45,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1405049245" Name="leafyLand" ObjectPath="\Events\Default Work Unit\SFX\leafy\leafyLand">
+				<Event Id="1405049245" Name="leafyLand" ObjectPath="\Events\Default Work Unit\SFX\leafy\leafyLand" DurationType="OneShot" DurationMin="0.303517" DurationMax="0.340686">
 					<IncludedMemoryFiles>
 						<File Id="1022976474" Language="SFX">
 							<ShortName>leafyLand1.wav</ShortName>
@@ -45,7 +53,7 @@
 						</File>
 					</IncludedMemoryFiles>
 				</Event>
-				<Event Id="1298843541" Name="leafyWalk" ObjectPath="\Events\Default Work Unit\SFX\leafy\leafyWalk">
+				<Event Id="1298843541" Name="leafyWalk" ObjectPath="\Events\Default Work Unit\SFX\leafy\leafyWalk" DurationType="OneShot" DurationMin="0.138299" DurationMax="0.203333">
 					<IncludedMemoryFiles>
 						<File Id="44741734" Language="SFX">
 							<ShortName>leafyWalkDirt3.wav</ShortName>
@@ -89,7 +97,7 @@
 						</SwitchContainer>
 					</SwitchContainers>
 				</Event>
-				<Event Id="4206939873" Name="musicLevel1" ObjectPath="\Events\Default Work Unit\music\musicLevel1">
+				<Event Id="4206939873" Name="musicLevel1" ObjectPath="\Events\Default Work Unit\music\musicLevel1" DurationType="Infinite">
 					<IncludedMemoryFiles>
 						<File Id="171190262" Language="SFX">
 							<ShortName>musicTransition.wav</ShortName>
@@ -138,6 +146,22 @@
 						<File Id="1045700399" Language="SFX">
 							<ShortName>musicMainBody.wav</ShortName>
 							<Path>SFX\musicMainBody_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2365426706" Name="sunbath" ObjectPath="\Events\Default Work Unit\SFX\sunbath" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="997235047" Language="SFX">
+							<ShortName>sunbath.wav</ShortName>
+							<Path>SFX\sunbath_D79FB2B7.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+				<Event Id="2074477625" Name="waterfall" ObjectPath="\Events\Default Work Unit\SFX\waterfall" DurationType="Infinite">
+					<IncludedMemoryFiles>
+						<File Id="344720793" Language="SFX">
+							<ShortName>watefall.wav</ShortName>
+							<Path>SFX\watefall_D79FB2B7.wem</Path>
 						</File>
 					</IncludedMemoryFiles>
 				</Event>

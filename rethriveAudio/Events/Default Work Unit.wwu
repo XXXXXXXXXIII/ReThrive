@@ -24,7 +24,17 @@
 						<Event Name="birds" ID="{AC35E169-CEF9-4A96-8886-05EB7D10D766}"/>
 						<Folder Name="leafy" ID="{850330D0-12F8-46C7-9528-FD4BFD5BF4EA}" ShortID="1011338719">
 							<ChildrenList>
-								<Event Name="leafyHelicopter" ID="{3A5D7A86-8AE1-4F6D-9EB5-209E60EE8932}"/>
+								<Event Name="leafyHelicopter" ID="{3A5D7A86-8AE1-4F6D-9EB5-209E60EE8932}">
+									<ChildrenList>
+										<Action Name="" ID="{DA1A9DA9-E885-4CBD-9B21-9B77DE9F8738}" ShortID="903316435">
+											<ReferenceList>
+												<Reference Name="Target">
+													<ObjectRef Name="leafyHelicopter" ID="{96AFAD4A-7A64-4F7B-B7E7-8D223F6EAFD5}" WorkUnitID="{18CC6B73-61F9-4C4E-9E9B-54007988958B}"/>
+												</Reference>
+											</ReferenceList>
+										</Action>
+									</ChildrenList>
+								</Event>
 								<Event Name="leafyJump" ID="{ACF84AC1-954E-4162-8F7C-4F17BE7B0D94}">
 									<ChildrenList>
 										<Action Name="" ID="{3FA248F2-3302-476B-A18E-2092099F9B29}" ShortID="644456810">
@@ -77,6 +87,28 @@
 								</Event>
 							</ChildrenList>
 						</Folder>
+						<Event Name="sunbath" ID="{34533BAC-8282-412D-89E0-856EF10B8031}">
+							<ChildrenList>
+								<Action Name="" ID="{90F1A643-A20A-43BB-A28B-9402765A5240}" ShortID="776598470">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="sunbath" ID="{A67DFC83-C343-441C-AECF-30C293E148CF}" WorkUnitID="{18CC6B73-61F9-4C4E-9E9B-54007988958B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
+						<Event Name="waterfall" ID="{9FD12218-7F28-4BD6-96CC-3A4A6645CBA6}">
+							<ChildrenList>
+								<Action Name="" ID="{B5A87D8A-9641-4A01-AA0F-E083023E8AEB}" ShortID="558602037">
+									<ReferenceList>
+										<Reference Name="Target">
+											<ObjectRef Name="watefall" ID="{1A6E97BF-F0CE-4105-BC65-44758EF9ECE0}" WorkUnitID="{18CC6B73-61F9-4C4E-9E9B-54007988958B}"/>
+										</Reference>
+									</ReferenceList>
+								</Action>
+							</ChildrenList>
+						</Event>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

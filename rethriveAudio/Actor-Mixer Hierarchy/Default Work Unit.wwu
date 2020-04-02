@@ -6,6 +6,13 @@
 				<Folder Name="leafy" ID="{91EC0949-1AA7-495E-BEC9-B806B85C5461}" ShortID="972488069">
 					<ChildrenList>
 						<SwitchContainer Name="leafyWalk" ID="{D1461A4A-B722-478B-9B10-BF9BF8D9717D}" ShortID="611759529">
+							<PropertyList>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-7</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
 							<ReferenceList>
 								<Reference Name="Conversion">
 									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{41928520-EFF4-4020-B0D2-3A16BFD04458}"/>
@@ -39,6 +46,13 @@
 									</ReferenceList>
 									<ChildrenList>
 										<Sound Name="leafyWalkGrass1" ID="{B9DD4A0D-C827-4D22-BB01-57A9D5F9C655}" ShortID="196848514">
+											<PropertyList>
+												<Property Name="Volume" Type="Real64">
+													<ValueList>
+														<Value>-2</Value>
+													</ValueList>
+												</Property>
+											</PropertyList>
 											<ReferenceList>
 												<Reference Name="Conversion">
 													<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{41928520-EFF4-4020-B0D2-3A16BFD04458}"/>
@@ -219,6 +233,68 @@
 									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{29E073DC-F38D-4827-A820-5CB9816B9CCB}"/>
 								</Reference>
 							</ReferenceList>
+							<ChildrenList>
+								<Sound Name="helicopter" ID="{46C4F0F2-5F7B-44B9-924A-12C017DF8D84}" ShortID="1055352400">
+									<PropertyList>
+										<Property Name="Highpass" Type="int16">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{169372D6-22BD-4A63-8192-B9658889BB6A}"/>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="Lowpass" Type="int16">
+											<ValueList>
+												<Value>20</Value>
+											</ValueList>
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{C9C1424A-3783-43E3-B29D-55E150621794}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="5"/>
+															<Property Name="Min" Type="Real64" Value="-5"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+										<Property Name="Pitch" Type="int32">
+											<ModifierList>
+												<ModifierInfo>
+													<Modifier Name="" ID="{5CD16F31-7B45-4528-8ACC-5A8B3FD64B24}">
+														<PropertyList>
+															<Property Name="Enabled" Type="bool" Value="True"/>
+															<Property Name="Max" Type="Real64" Value="20"/>
+															<Property Name="Min" Type="Real64" Value="-20"/>
+														</PropertyList>
+													</Modifier>
+												</ModifierInfo>
+											</ModifierList>
+										</Property>
+									</PropertyList>
+									<ReferenceList>
+										<Reference Name="Conversion">
+											<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{41928520-EFF4-4020-B0D2-3A16BFD04458}"/>
+										</Reference>
+										<Reference Name="OutputBus">
+											<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{29E073DC-F38D-4827-A820-5CB9816B9CCB}"/>
+										</Reference>
+									</ReferenceList>
+									<ChildrenList>
+										<AudioFileSource Name="helicopter" ID="{D38EA9B7-4211-4E83-855A-D6BE0AE0E73D}">
+											<Language>SFX</Language>
+											<AudioFile>helicopter.wav</AudioFile>
+											<MediaIDList>
+												<MediaID ID="612653811"/>
+											</MediaIDList>
+										</AudioFileSource>
+									</ChildrenList>
+									<ActiveSourceList>
+										<ActiveSource Name="helicopter" ID="{D38EA9B7-4211-4E83-855A-D6BE0AE0E73D}" Platform="Linked"/>
+									</ActiveSourceList>
+								</Sound>
+							</ChildrenList>
 						</RandomSequenceContainer>
 						<Folder Name="leafyGrow" ID="{7729815D-F73C-4E3D-9948-97197149089B}" ShortID="169701474">
 							<ChildrenList>
@@ -955,6 +1031,75 @@
 								<ItemRef Name="musicLight" ID="{78C752BD-DFFB-4CCD-BA4C-F6412F08983E}"/>
 							</Playlist>
 						</RandomSequenceContainer>
+					</ChildrenList>
+				</Folder>
+				<Folder Name="environment" ID="{B6FE402C-AE11-4795-8416-FAE900CC5BE6}" ShortID="821977575">
+					<ChildrenList>
+						<Sound Name="watefall" ID="{1A6E97BF-F0CE-4105-BC65-44758EF9ECE0}" ShortID="987507814">
+							<PropertyList>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-21</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{41928520-EFF4-4020-B0D2-3A16BFD04458}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{29E073DC-F38D-4827-A820-5CB9816B9CCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="watefall" ID="{0F7676AD-018A-4214-9BD9-C24BC4401EEE}">
+									<Language>SFX</Language>
+									<AudioFile>watefall.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="344720793"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="watefall" ID="{0F7676AD-018A-4214-9BD9-C24BC4401EEE}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
+						<Sound Name="sunbath" ID="{A67DFC83-C343-441C-AECF-30C293E148CF}" ShortID="528550407">
+							<PropertyList>
+								<Property Name="Highpass" Type="int16">
+									<ValueList>
+										<Value>45</Value>
+									</ValueList>
+								</Property>
+								<Property Name="IsLoopingEnabled" Type="bool" Value="True"/>
+								<Property Name="Volume" Type="Real64">
+									<ValueList>
+										<Value>-24</Value>
+									</ValueList>
+								</Property>
+							</PropertyList>
+							<ReferenceList>
+								<Reference Name="Conversion">
+									<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{41928520-EFF4-4020-B0D2-3A16BFD04458}"/>
+								</Reference>
+								<Reference Name="OutputBus">
+									<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{29E073DC-F38D-4827-A820-5CB9816B9CCB}"/>
+								</Reference>
+							</ReferenceList>
+							<ChildrenList>
+								<AudioFileSource Name="sunbath" ID="{7CF66A76-A8D8-46FA-BB3C-55D899D4D49E}">
+									<Language>SFX</Language>
+									<AudioFile>sunbath.wav</AudioFile>
+									<MediaIDList>
+										<MediaID ID="997235047"/>
+									</MediaIDList>
+								</AudioFileSource>
+							</ChildrenList>
+							<ActiveSourceList>
+								<ActiveSource Name="sunbath" ID="{7CF66A76-A8D8-46FA-BB3C-55D899D4D49E}" Platform="Linked"/>
+							</ActiveSourceList>
+						</Sound>
 					</ChildrenList>
 				</Folder>
 			</ChildrenList>

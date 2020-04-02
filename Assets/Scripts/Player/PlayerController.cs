@@ -156,6 +156,7 @@ public class PlayerController : MonoBehaviour
                     AC.SetTrigger("OnFall");
                     moveDirection.x *= 0.8f;
                     moveDirection.z *= 0.8f;
+                    Debug.Log("helicopter!");
                 }
                 else if (Input.GetButton("Jump") || Input.GetKey(KeyCode.Space))
                 {
@@ -205,6 +206,12 @@ public class PlayerController : MonoBehaviour
         // use this for detecting which surface you're walking on
         // AkSoundEngine.SetSwitch("floorType", "grass", gameObject);
         walkingEvent.Post(gameObject);
+    }
+
+    public void PlayHelicopterSound() {
+        // use this for detecting which surface you're walking on
+        // AkSoundEngine.SetSwitch("floorType", "grass", gameObject);
+        helicopterEvent.Post(gameObject);
     }
 
     private void TransitionCamera()
